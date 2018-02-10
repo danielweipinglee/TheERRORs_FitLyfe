@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "283088625115",
+    "firebase_url": "https://theerrors-fitlyfe.firebaseio.com",
+    "project_id": "theerrors-fitlyfe",
+    "storage_bucket": "theerrors-fitlyfe.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:283088625115:android:cea2bc29d7967b80",
+        "android_client_info": {
+          "package_name": "edu.ttu.www.theerrors_fitlyfe"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "283088625115-losbvf22pr43nu4pd3a1qjvadvrv767e.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "edu.ttu.www.theerrors_fitlyfe",
+            "certificate_hash": "cf2699b31ac1e11b6690ecc9115a2db6169bf247"
+          }
+        },
+        {
+          "client_id": "283088625115-jg5akilvtht3fkotf9lfvrkuaren109n.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCl67qZ7ho4VyZhpeRtTF92XGNID0KNlU0"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "283088625115-jg5akilvtht3fkotf9lfvrkuaren109n.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

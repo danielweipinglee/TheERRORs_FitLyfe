@@ -21,7 +21,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-            }
+    }
 
 
     /*
@@ -31,6 +31,6 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(getBaseContext(), LoginActivity.class);
         startActivity(intent);
     }
-        }
+}
 
 

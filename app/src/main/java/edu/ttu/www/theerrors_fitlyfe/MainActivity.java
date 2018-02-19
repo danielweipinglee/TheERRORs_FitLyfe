@@ -30,6 +30,14 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    /*
+    * Go to the login screen on button click.
+    */
+    public void goCreateAcct(View v) {
+        Intent intent = new Intent(getBaseContext(), CreateAcct.class);
+        startActivity(intent);
+    }
+
 
 
 }

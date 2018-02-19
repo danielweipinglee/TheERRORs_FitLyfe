@@ -6,6 +6,9 @@ package edu.ttu.www.theerrors_fitlyfe;
 
 public class TermandConditionActivity {
 
+    public void goToMain(View v) {
+        Intent intent = new Intent(getBaseContext(), MainActivity.class);
+        startActivity(intent);
 
-
+    }
 }

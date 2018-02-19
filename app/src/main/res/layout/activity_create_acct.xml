@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="edu.ttu.www.theerrors_fitlyfe.CreateAcct">
+
+    <EditText
+        android:id="@+id/editText"
+        android:layout_width="383dp"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Name:"
+        android:inputType="textPersonName"
+        tools:layout_editor_absoluteX="1dp"
+        tools:layout_editor_absoluteY="0dp" />
+
+    <EditText
+        android:id="@+id/editText2"
+        android:layout_width="383dp"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="UserName:"
+        android:inputType="textPersonName"
+        tools:layout_editor_absoluteX="1dp"
+        tools:layout_editor_absoluteY="46dp" />
+
+    <EditText
+        android:id="@+id/editText3"
+        android:layout_width="383dp"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Password:"
+        android:inputType="textPassword"
+        tools:layout_editor_absoluteX="1dp"
+        tools:layout_editor_absoluteY="92dp" />
+
+    <EditText
+        android:id="@+id/editText4"
+        android:layout_width="383dp"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Confirm Password:"
+        android:inputType="textPassword"
+        tools:layout_editor_absoluteX="1dp"
+        tools:layout_editor_absoluteY="138dp" />
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="223dp"
+        android:layout_height="wrap_content"
+        android:text="Create Account"
+        tools:layout_editor_absoluteX="81dp"
+        tools:layout_editor_absoluteY="231dp" />
+
+    <EditText
+        android:id="@+id/editText6"
+        android:layout_width="384dp"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Email:"
+        android:inputType="textEmailAddress"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="184dp" />
+
+</android.support.constraint.ConstraintLayout>

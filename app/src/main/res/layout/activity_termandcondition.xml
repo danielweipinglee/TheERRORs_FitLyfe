@@ -1,45 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
     tools:context="edu.ttu.www.theerrors_fitlyfe.TermandConditionActivity">
 
-    <EditText
-        android:id="@+id/editText"
-        Terms
-        android:layout_width="340dp"
-        android:layout_height="431dp"
-        android:ems="10"
-        android:inputType="textMultiLine"
-        android:text="Terms and Condition
-Last updated: February 15, 2018
-
-Please read these Terms and Conditions carefully before using the TheERRORs application operated by FitLyfe.
-
-Your access to and use of the Service is conditioned on your acceptance of and compliance with these Terms. These Terms apply to all visitors, users and others who access or use the Service.
-
-By accessing or using the Service you agree to be bound by these Terms. If you disagree with any part of the terms then you may not access the Service. Terms and Conditions for FitLyfe based on the T&C example from TermsFeed.
-
-"
-        tools:layout_editor_absoluteX="19dp"
-        tools:layout_editor_absoluteY="11dp" />
-
-    <Button
-        android:id="@+id/Agree"
+    <android.support.constraint.Guideline
+        android:id="@+id/guideline"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Agree"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="20dp" />
+
+    <Button
+        android:id="@+id/agree_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="200dp"
         android:onClick="goToMain"
-        tools:layout_editor_absoluteX="215dp"
-        tools:layout_editor_absoluteY="447dp" />
+        android:text="Go To Main"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
-        android:id="@+id/Disagree"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Disagree"
-        tools:layout_editor_absoluteX="84dp"
-        tools:layout_editor_absoluteY="447dp" />
 </android.support.constraint.ConstraintLayout>
+

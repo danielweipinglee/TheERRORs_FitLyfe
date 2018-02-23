@@ -27,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
      * Go to the login screen on button click.
      */
     public void goToLogin(View v) {
-        Intent intent = new Intent(getBaseContext(), LoginActivity.class);
+        Intent intent = new Intent(getBaseContext(), TermandConditionActivity.class);
         startActivity(intent);
     }
 

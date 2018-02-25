@@ -13,21 +13,36 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+
 public class MainActivity extends AppCompatActivity {
 
+    private FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        mAuth = FirebaseAuth.getInstance();
+    }
+
+    @Override
+    protected void onStart(){
+        super.onStart();
+
+        if(mAuth.getCurrentUser() == null){
+            Intent intent = new Intent(getBaseContext(), LoginActivity.class);
+            startActivity(intent);
+        }
     }
 
     /*
      * Go to the login screen on button click.
      */
     public void goToLogin(View v) {
-        Intent intent = new Intent(getBaseContext(), TermandConditionActivity.class);
+        Intent intent = new Intent(getBaseContext(), LoginActivity.class);
         startActivity(intent);
     }
 

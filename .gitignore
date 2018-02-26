@@ -7,6 +7,9 @@
 /build
 /captures
 .externalNativeBuild
+<<<<<<< HEAD
+app/app.iml
+=======
 app/src/main/java/edu/ttu/www/theerrors_fitlyfe/MainActivity.java
 app/src/main/java/edu/ttu/www/theerrors_fitlyfe/MainActivity.java
 app/app.iml

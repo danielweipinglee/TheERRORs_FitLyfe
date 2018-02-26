@@ -26,6 +26,16 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         mAuth = FirebaseAuth.getInstance();
+
+        Button advance = (Button) findViewById(R.id.button3);
+        advance.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, TermandConditionActivity.class);
+                startActivity(intent);
+
+            }
+        });
     }
 
     @Override

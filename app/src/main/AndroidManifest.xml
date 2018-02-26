@@ -23,12 +23,6 @@
         </activity>
 
         <activity
-            android:name=".MainPage"
-            android:screenOrientation="sensorPortrait"
-            android:label="Main Page">
-        </activity>
-
-        <activity
             android:name=".Add"
             android:screenOrientation="sensorPortrait"
             android:label="Add">

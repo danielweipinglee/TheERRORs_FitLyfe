@@ -363,7 +363,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     /*
     * Go to the create account screen on button click.
     */
-    public void goCreateAcct(View v) {
+    public void goToRegister(View v) {
         Intent intent = new Intent(getBaseContext(), CreateAcct.class);
         startActivity(intent);
     }

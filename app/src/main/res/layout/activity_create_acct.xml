@@ -52,7 +52,7 @@
         android:layout_height="wrap_content"
         android:text="Create Account"
         tools:layout_editor_absoluteX="81dp"
-        tools:layout_editor_absoluteY="231dp" />
+        tools:layout_editor_absoluteY="447dp" />
 
     <EditText
         android:id="@+id/editText6"
@@ -63,5 +63,45 @@
         android:inputType="textEmailAddress"
         tools:layout_editor_absoluteX="0dp"
         tools:layout_editor_absoluteY="184dp" />
+
+    <EditText
+        android:id="@+id/editText5"
+        android:layout_width="383dp"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Age:"
+        android:inputType="textPersonName"
+        tools:layout_editor_absoluteX="1dp"
+        tools:layout_editor_absoluteY="232dp" />
+
+    <EditText
+        android:id="@+id/editText7"
+        android:layout_width="381dp"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Weight:"
+        android:inputType="textPersonName"
+        tools:layout_editor_absoluteX="1dp"
+        tools:layout_editor_absoluteY="278dp" />
+
+    <EditText
+        android:id="@+id/editText8"
+        android:layout_width="381dp"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Height:"
+        android:inputType="textPersonName"
+        tools:layout_editor_absoluteX="1dp"
+        tools:layout_editor_absoluteY="324dp" />
+
+    <EditText
+        android:id="@+id/editText9"
+        android:layout_width="384dp"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Gender:"
+        android:inputType="textPersonName"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="370dp" />
 
 </android.support.constraint.ConstraintLayout>

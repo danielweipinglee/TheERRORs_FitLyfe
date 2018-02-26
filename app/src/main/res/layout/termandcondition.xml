@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="73dp"
-        android:layout_weight="1"
-        android:text="I disagree" />
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
     <TextView
         android:layout_width="215dp"
         android:layout_height="278dp"
         android:layout_weight="1"
         android:text="This is the term and condition" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="73dp"
+        android:text="I disagree" />
 
     <Button
         android:layout_width="wrap_content"

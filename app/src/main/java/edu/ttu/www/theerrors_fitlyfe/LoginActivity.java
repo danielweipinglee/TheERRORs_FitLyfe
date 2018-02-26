@@ -3,6 +3,7 @@ package edu.ttu.www.theerrors_fitlyfe;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
@@ -19,6 +20,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -28,7 +30,11 @@ import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.ArrayList;
@@ -57,9 +63,6 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
      * Keep track of the login task to ensure we can cancel it if requested.
      */
     private UserLoginTask mAuthTask = null;
-
-    // Create a FirebaseAuth object to authenticate users.
-    private FirebaseAuth mAuth;
 
     // UI references.
     private AutoCompleteTextView mEmailView;
@@ -97,8 +100,6 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
         mLoginFormView = findViewById(R.id.login_form);
         mProgressView = findViewById(R.id.login_progress);
-
-        mAuth = FirebaseAuth.getInstance();
     }
 
     private void populateAutoComplete() {
@@ -306,32 +307,37 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         private final String mEmail;
         private final String mPassword;
 
+        // Create a FirebaseAuth object to authenticate users.
+        private FirebaseAuth mAuth;
+
         UserLoginTask(String email, String password) {
             mEmail = email;
             mPassword = password;
+
+            mAuth = FirebaseAuth.getInstance();
         }
 
         @Override
         protected Boolean doInBackground(Void... params) {
-            // TODO: attempt authentication against a network service.
+            // Start the authentication process.
+            Task<AuthResult> task = mAuth.signInWithEmailAndPassword(mEmail, mPassword);
 
-            try {
-                // Simulate network access.
-                Thread.sleep(2000);
-            } catch (InterruptedException e) {
-                return false;
-            }
-
-            for (String credential : DUMMY_CREDENTIALS) {
-                String[] pieces = credential.split(":");
-                if (pieces[0].equals(mEmail)) {
-                    // Account exists, return true if the password matches.
-                    return pieces[1].equals(mPassword);
+            // Wait for the authentication process to complete.
+            while(!task.isComplete()){
+                try {
+                    // Simulate network access.
+                    Thread.sleep(1000);
+                } catch (InterruptedException e) {
+                    return false;
                 }
             }
 
-            // TODO: register the new account here.
-            return true;
+            if(task.isSuccessful()){
+                return true;
+            }
+            else{
+                return false;
+            }
         }
 
         @Override
@@ -352,6 +358,14 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             mAuthTask = null;
             showProgress(false);
         }
+    }
+
+    /*
+    * Go to the create account screen on button click.
+    */
+    public void goToRegister(View v) {
+        Intent intent = new Intent(getBaseContext(), CreateAcct.class);
+        startActivity(intent);
     }
 }
 

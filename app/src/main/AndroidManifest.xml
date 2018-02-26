@@ -36,8 +36,10 @@
 
         <activity
             android:name=".LoginActivity"
-            android:label="@string/title_activity_login">
-        </activity>
+            android:label="@string/title_activity_login"></activity>
+        <activity android:name=".CreateAcct" />
+        <activity android:name=".TermandConditionActivity" />
+        <activity android:name=".MainPage" />
     </application>
 
 </manifest>

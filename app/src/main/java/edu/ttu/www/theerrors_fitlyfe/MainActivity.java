@@ -47,8 +47,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /*
-    * Go to the login screen on button click.
-    */
+     * Go to the create account screen on button click.
+     */
     public void goCreateAcct(View v) {
         Intent intent = new Intent(getBaseContext(), CreateAcct.class);
         startActivity(intent);

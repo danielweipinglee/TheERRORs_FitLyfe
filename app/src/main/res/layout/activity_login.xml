@@ -67,7 +67,6 @@
                 style="@style/Widget.AppCompat.Button.Small"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:onClick="attemptLogin"
                 android:text="@string/action_sign_in" />
 
             <Button

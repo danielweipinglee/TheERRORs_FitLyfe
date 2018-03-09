@@ -27,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
 
         mAuth = FirebaseAuth.getInstance();
 
-        Button advance = (Button) findViewById(R.id.button3);
+        Button advance = (Button) findViewById(R.id.calorie_consumption_button);
         advance.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

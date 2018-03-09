@@ -11,11 +11,13 @@
         android:text="This is the term and condition" />
 
     <Button
+        android:id="@+id/disagree_button"
         android:layout_width="wrap_content"
         android:layout_height="73dp"
         android:text="I disagree" />
 
     <Button
+        android:id="@+id/agree_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_weight="1"

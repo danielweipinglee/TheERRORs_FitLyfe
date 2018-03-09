@@ -7,46 +7,46 @@
     tools:context="edu.ttu.www.theerrors_fitlyfe.CreateAcct">
 
     <EditText
-        android:id="@+id/editText"
+        android:id="@+id/name_field"
         android:layout_width="383dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="1dp"
         android:ems="10"
         android:hint="Name:"
         android:inputType="textPersonName"
-        app:layout_constraintBottom_toTopOf="@+id/editText2"
+        app:layout_constraintBottom_toTopOf="@+id/username_field"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/editText2"
+        android:id="@+id/username_field"
         android:layout_width="383dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="1dp"
         android:ems="10"
         android:hint="UserName:"
         android:inputType="textPersonName"
-        app:layout_constraintBottom_toTopOf="@+id/editText3"
+        app:layout_constraintBottom_toTopOf="@+id/password_field"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText" />
+        app:layout_constraintTop_toBottomOf="@+id/name_field" />
 
     <EditText
-        android:id="@+id/editText3"
+        android:id="@+id/password_field"
         android:layout_width="383dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="1dp"
         android:ems="10"
         android:hint="Password:"
         android:inputType="textPassword"
-        app:layout_constraintBottom_toTopOf="@+id/editText4"
+        app:layout_constraintBottom_toTopOf="@+id/confirm_password_field"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText2" />
+        app:layout_constraintTop_toBottomOf="@+id/username_field" />
 
     <EditText
-        android:id="@+id/editText4"
+        android:id="@+id/confirm_password_field"
         android:layout_width="383dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="1dp"
@@ -54,13 +54,13 @@
         android:ems="10"
         android:hint="Confirm Password:"
         android:inputType="textPassword"
-        app:layout_constraintBottom_toTopOf="@+id/editText6"
+        app:layout_constraintBottom_toTopOf="@+id/email_field"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText3" />
+        app:layout_constraintTop_toBottomOf="@+id/password_field" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/create_account_button"
         android:layout_width="223dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="14dp"
@@ -72,23 +72,23 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText9" />
+        app:layout_constraintTop_toBottomOf="@+id/gender_field" />
 
     <EditText
-        android:id="@+id/editText6"
+        android:id="@+id/email_field"
         android:layout_width="384dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="4dp"
         android:ems="10"
         android:hint="Email:"
         android:inputType="textEmailAddress"
-        app:layout_constraintBottom_toTopOf="@+id/editText5"
+        app:layout_constraintBottom_toTopOf="@+id/age_field"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText4" />
+        app:layout_constraintTop_toBottomOf="@+id/confirm_password_field" />
 
     <EditText
-        android:id="@+id/editText5"
+        android:id="@+id/age_field"
         android:layout_width="383dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="1dp"
@@ -96,13 +96,13 @@
         android:ems="10"
         android:hint="Age:"
         android:inputType="textPersonName"
-        app:layout_constraintBottom_toTopOf="@+id/editText7"
+        app:layout_constraintBottom_toTopOf="@+id/weight_field"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText6" />
+        app:layout_constraintTop_toBottomOf="@+id/email_field" />
 
     <EditText
-        android:id="@+id/editText7"
+        android:id="@+id/weight_field"
         android:layout_width="381dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="2dp"
@@ -110,13 +110,13 @@
         android:ems="10"
         android:hint="Weight:"
         android:inputType="textPersonName"
-        app:layout_constraintBottom_toTopOf="@+id/editText8"
+        app:layout_constraintBottom_toTopOf="@+id/height_field"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText5" />
+        app:layout_constraintTop_toBottomOf="@+id/age_field" />
 
     <EditText
-        android:id="@+id/editText8"
+        android:id="@+id/height_field"
         android:layout_width="381dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="1dp"
@@ -125,22 +125,22 @@
         android:ems="10"
         android:hint="Height:"
         android:inputType="textPersonName"
-        app:layout_constraintBottom_toTopOf="@+id/editText9"
+        app:layout_constraintBottom_toTopOf="@+id/gender_field"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText7" />
+        app:layout_constraintTop_toBottomOf="@+id/weight_field" />
 
     <EditText
-        android:id="@+id/editText9"
+        android:id="@+id/gender_field"
         android:layout_width="384dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="29dp"
         android:ems="10"
         android:hint="Gender:"
         android:inputType="textPersonName"
-        app:layout_constraintBottom_toTopOf="@+id/button2"
+        app:layout_constraintBottom_toTopOf="@+id/create_account_button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText8" />
+        app:layout_constraintTop_toBottomOf="@+id/height_field" />
 
 </android.support.constraint.ConstraintLayout>

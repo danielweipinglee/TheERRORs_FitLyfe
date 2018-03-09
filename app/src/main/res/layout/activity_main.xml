@@ -63,7 +63,7 @@
             android:orientation="vertical">
 
             <Button
-                android:id="@+id/button3"
+                android:id="@+id/calorie_consumption_button"
                 android:layout_width="match_parent"
                 android:layout_height="63dp"
                 android:text="Calorie Consumption"
@@ -71,7 +71,7 @@
                 tools:layout_editor_absoluteY="254dp" />
 
             <Button
-                android:id="@+id/button4"
+                android:id="@+id/water_consumption_button"
                 android:layout_width="match_parent"
                 android:layout_height="55dp"
                 android:text="Water Consumption"
@@ -79,15 +79,15 @@
                 tools:layout_editor_absoluteY="327dp" />
 
             <Button
-                android:id="@+id/button5"
+                android:id="@+id/exercise_log_button"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:text="Excersize Log"
+                android:text="Exercise Log"
                 tools:layout_editor_absoluteX="100dp"
                 tools:layout_editor_absoluteY="398dp" />
 
             <Button
-                android:id="@+id/button6"
+                android:id="@+id/sleep_tracking_button"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Sleep Tracking" />
@@ -112,8 +112,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:onClick="goToLogin"
-        android:text="I'm freakin' out!!!"
-        tools:layout_editor_absoluteX="119dp"
+        android:text="Go to login"
+        tools:layout_editor_absoluteX="138dp"
         tools:layout_editor_absoluteY="25dp" />
 
 </android.support.constraint.ConstraintLayout>

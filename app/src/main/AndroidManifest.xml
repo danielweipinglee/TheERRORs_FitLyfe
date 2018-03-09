@@ -21,13 +21,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".LoginActivity"
-            android:label="@string/title_activity_login"></activity>
+            android:label="@string/title_activity_login" />
         <activity android:name=".CreateAcct" />
         <activity android:name=".TermandConditionActivity" />
-        <activity android:name=".MainPage" />
+        <activity android:name=".Calorie_Consumption"></activity>
     </application>
 
 </manifest>

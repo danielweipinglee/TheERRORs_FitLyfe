@@ -10,107 +10,72 @@
     <ProgressBar
         android:id="@+id/progressBar3"
         style="?android:attr/progressBarStyleHorizontal"
-        android:layout_width="0dp"
-        android:layout_height="32dp"
+        android:layout_width="133dp"
+        android:layout_height="44dp"
         android:layout_alignParentTop="true"
-        android:layout_marginBottom="22dp"
-        android:layout_marginEnd="29dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="17dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
         android:progress="47"
         android:progressTint="@android:color/holo_blue_light"
         android:scaleY="10"
-        app:layout_constraintBottom_toTopOf="@+id/textView2"
-        app:layout_constraintEnd_toStartOf="@+id/textView"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText10" />
+        app:layout_constraintTop_toBottomOf="@+id/textView4" />
 
     <ProgressBar
         android:id="@+id/progressBar4"
         style="?android:attr/progressBarStyleHorizontal"
-        android:layout_width="0dp"
-        android:layout_height="44dp"
-        android:layout_marginBottom="51dp"
-        android:layout_marginEnd="27dp"
-        android:layout_marginStart="16dp"
+        android:layout_width="132dp"
+        android:layout_height="51dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
         android:progress="81"
         android:progressTint="@android:color/holo_blue_light"
         android:scaleY="10"
-        app:layout_constraintBottom_toTopOf="@+id/relativeLayout2"
-        app:layout_constraintEnd_toStartOf="@+id/textView2"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        app:layout_constraintTop_toBottomOf="@+id/progressBar3" />
 
     <TextView
         android:id="@+id/textView4"
-        android:layout_width="wrap_content"
-        android:layout_height="34dp"
-        android:layout_marginBottom="25dp"
-        android:layout_marginEnd="32dp"
+        android:layout_width="140dp"
+        android:layout_height="35dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         android:text="This Week:"
         android:textSize="24sp"
-        app:layout_constraintBottom_toTopOf="@+id/textView"
-        app:layout_constraintEnd_toStartOf="@+id/editText10"
+        app:layout_constraintEnd_toStartOf="@+id/textView7"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/textView2"
-        android:layout_width="0dp"
-        android:layout_height="47dp"
-        android:layout_marginBottom="11dp"
-        android:layout_marginEnd="62dp"
-        android:layout_marginTop="22dp"
+        android:layout_width="151dp"
+        android:layout_height="31dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="24dp"
         android:text="Previous Week"
         android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="@+id/progressBar4"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/progressBar4"
-        app:layout_constraintTop_toBottomOf="@+id/textView"
-        app:layout_constraintVertical_bias="0.523" />
-
-    <EditText
-        android:id="@+id/editText10"
-        android:layout_width="0dp"
-        android:layout_height="44dp"
-        android:layout_marginBottom="6dp"
-        android:layout_marginEnd="24dp"
-        android:layout_marginTop="6dp"
-        android:ems="10"
-        android:inputType="numberDecimal"
-        android:text="5.7 Liters"
-        android:textSize="24sp"
-        app:layout_constraintBottom_toTopOf="@+id/textView"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/textView4"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
 
     <TextView
         android:id="@+id/textView"
-        android:layout_width="0dp"
-        android:layout_height="41dp"
-        android:layout_marginBottom="30dp"
-        android:layout_marginEnd="54dp"
+        android:layout_width="112dp"
+        android:layout_height="37dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="24dp"
         android:text="Current Week"
         android:textSize="18sp"
-        app:layout_constraintBottom_toTopOf="@+id/progressBar4"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/progressBar3"
-        app:layout_constraintTop_toBottomOf="@+id/textView4" />
+        app:layout_constraintTop_toBottomOf="@+id/textView7" />
 
     <RelativeLayout
         android:id="@+id/relativeLayout2"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginBottom="2dp"
-        android:layout_marginEnd="48dp"
-        android:layout_marginStart="48dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/progressBar4"
+        android:layout_width="316dp"
+        android:layout_height="299dp"
+        android:layout_marginTop="55dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView2"
         tools:context="com.example.parsaniahardik.progressanimation.MainActivity">
 
         <ProgressBar
@@ -130,7 +95,8 @@
         <ImageView
             android:layout_width="90dp"
             android:layout_height="90dp"
-            android:layout_centerInParent="true" />
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true" />
 
         <TextView
             android:id="@+id/tv"
@@ -143,7 +109,37 @@
             android:textColor="@color/colorPrimaryDark"
             android:textSize="20sp" />
 
+        <TextView
+            android:id="@+id/textView5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/circularProgressbar"
+            android:layout_alignParentStart="true"
+            android:text="Progress Towards Goal:"
+            android:textSize="24sp" />
+
     </RelativeLayout>
+
+    <ImageButton
+        android:id="@+id/Add"
+        android:layout_width="60dp"
+        android:layout_height="63dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginTop="8dp"
+        android:src="@drawable/plus"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView7"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginTop="8dp"
+        android:text="440 Calories"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toStartOf="@+id/Add"
+        app:layout_constraintTop_toTopOf="parent" />
 
 
 </android.support.constraint.ConstraintLayout>

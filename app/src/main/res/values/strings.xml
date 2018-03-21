@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">TheERRORs_FitLyfe</string>
     <string name="title_activity_login">Sign in</string>
+    <string name="title_activity_calorie_consumption">Calorie Consumption</string>
 
     <!-- Strings related to login -->
     <string name="prompt_email">Email</string>

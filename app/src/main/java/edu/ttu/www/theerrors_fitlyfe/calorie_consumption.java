@@ -1,6 +1,7 @@
 package edu.ttu.www.theerrors_fitlyfe;
 
 import android.animation.ObjectAnimator;
+import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.RotateDrawable;
@@ -14,10 +15,13 @@ import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.DecelerateInterpolator;
 import android.view.animation.RotateAnimation;
+import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
 public class Calorie_Consumption extends AppCompatActivity {
+
 
 
     int pStatus = 0;
@@ -29,10 +33,23 @@ public class Calorie_Consumption extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
 
 
+
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_calorie__consumption);
 
+/*
+        ImageButton advance = (ImageButton) findViewById(R.id.Add);
+        advance.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Calorie_Consumption.this, Add_Calories.class);
+                startActivity(intent);
 
+            }
+        });
+
+*/
         Resources res = getResources();
         Drawable drawable = ResourcesCompat.getDrawable(getResources(),R.drawable.custom_progressbar_drawable, null);
         final ProgressBar mProgress = (ProgressBar) findViewById(R.id.circularProgressbar);

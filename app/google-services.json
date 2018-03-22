@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "283088625115-6pb3rhcl0fan97od77pjp6ogtrq0rpv6.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "edu.ttu.www.theerrors_fitlyfe",
+            "certificate_hash": "34b5c8743ce24ea3999bffd93b5559f3c89ed0a5"
+          }
+        },
+        {
           "client_id": "283088625115-losbvf22pr43nu4pd3a1qjvadvrv767e.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {

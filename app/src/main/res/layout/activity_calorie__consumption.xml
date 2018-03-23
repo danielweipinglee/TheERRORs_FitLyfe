@@ -8,71 +8,76 @@
     tools:layout_editor_absoluteY="81dp">
 
     <ProgressBar
-        android:id="@+id/progressBar3"
+        android:id="@+id/currentProgress"
         style="?android:attr/progressBarStyleHorizontal"
         android:layout_width="133dp"
         android:layout_height="44dp"
         android:layout_alignParentTop="true"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginLeft="32dp"
+        android:layout_marginTop="24dp"
         android:progress="47"
         android:progressTint="@android:color/holo_blue_light"
         android:scaleY="10"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView4" />
 
     <ProgressBar
-        android:id="@+id/progressBar4"
+        android:id="@+id/previousProgress"
         style="?android:attr/progressBarStyleHorizontal"
         android:layout_width="132dp"
         android:layout_height="51dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginLeft="32dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="20dp"
         android:progress="81"
         android:progressTint="@android:color/holo_blue_light"
         android:scaleY="10"
+        app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/progressBar3" />
+        app:layout_constraintTop_toBottomOf="@+id/currentProgress" />
 
     <TextView
         android:id="@+id/textView4"
         android:layout_width="140dp"
-        android:layout_height="35dp"
+        android:layout_height="38dp"
+        android:layout_marginLeft="16dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="16dp"
         android:text="This Week:"
         android:textSize="24sp"
-        app:layout_constraintEnd_toStartOf="@+id/textView7"
+        app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/textView2"
         android:layout_width="151dp"
-        android:layout_height="31dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="24dp"
+        android:layout_height="27dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="32dp"
         android:text="Previous Week"
         android:textSize="18sp"
-        app:layout_constraintStart_toEndOf="@+id/progressBar4"
+        app:layout_constraintStart_toEndOf="@+id/previousProgress"
         app:layout_constraintTop_toBottomOf="@+id/textView" />
 
     <TextView
         android:id="@+id/textView"
         android:layout_width="112dp"
         android:layout_height="37dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="36dp"
         android:text="Current Week"
         android:textSize="18sp"
-        app:layout_constraintStart_toEndOf="@+id/progressBar3"
-        app:layout_constraintTop_toBottomOf="@+id/textView7" />
+        app:layout_constraintStart_toEndOf="@+id/currentProgress"
+        app:layout_constraintTop_toBottomOf="@+id/caloriecount" />
 
     <RelativeLayout
         android:id="@+id/relativeLayout2"
         android:layout_width="316dp"
         android:layout_height="299dp"
-        android:layout_marginTop="55dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginTop="48dp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView2"
@@ -124,21 +129,19 @@
         android:id="@+id/Add"
         android:layout_width="60dp"
         android:layout_height="63dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginTop="8dp"
         android:src="@drawable/plus"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textView7"
+        android:id="@+id/caloriecount"
         android:layout_width="wrap_content"
-        android:layout_height="30dp"
-        android:layout_marginEnd="32dp"
-        android:layout_marginTop="8dp"
+        android:layout_height="26dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
         android:text="440 Calories"
         android:textSize="24sp"
-        app:layout_constraintEnd_toStartOf="@+id/Add"
+        app:layout_constraintStart_toEndOf="@+id/textView4"
         app:layout_constraintTop_toTopOf="parent" />
 
 

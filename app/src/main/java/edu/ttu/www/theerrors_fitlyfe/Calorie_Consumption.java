@@ -7,6 +7,7 @@ import android.graphics.drawable.Drawable;
 import android.graphics.drawable.RotateDrawable;
 import android.os.Build;
 import android.os.Handler;
+import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.content.res.ResourcesCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -27,6 +28,13 @@ public class Calorie_Consumption extends AppCompatActivity {
     int pStatus = 0;
     private Handler handler = new Handler();
     TextView tv;
+    //Variables to change values of 3 progress bar and this weeks calorie consumptions
+
+    int currentprogress = 25;
+    int previousprogress = 50;
+    int goalpercentage = 55;
+    CharSequence totalcalories = "100 Calories";
+
     @Override
 
 
@@ -63,13 +71,15 @@ public class Calorie_Consumption extends AppCompatActivity {
         animation.setInterpolator(new DecelerateInterpolator());
         animation.start();*/
 
+
         tv = (TextView) findViewById(R.id.tv);
         new Thread(new Runnable() {
 
             @Override
             public void run() {
                 // TODO Auto-generated method stub
-                while (pStatus < 55) {
+                //Indicates when the progress bar will stop
+                while (pStatus < goalpercentage) {
                     pStatus += 1;
 
                     handler.post(new Runnable() {
@@ -92,5 +102,15 @@ public class Calorie_Consumption extends AppCompatActivity {
                 }
             }
         }).start();
+
+
+        //Code to change values of both progress bars and what the this weeks calorie count is
+        final ProgressBar cProgress = (ProgressBar) findViewById(R.id.currentProgress);
+        final ProgressBar pProgress = (ProgressBar) findViewById(R.id.previousProgress);
+        final TextView caloriecount = (TextView) findViewById(R.id.caloriecount);
+
+        cProgress.setProgress(currentprogress);
+        pProgress.setProgress(previousprogress);
+        caloriecount.setText(totalcalories);
     }
 }

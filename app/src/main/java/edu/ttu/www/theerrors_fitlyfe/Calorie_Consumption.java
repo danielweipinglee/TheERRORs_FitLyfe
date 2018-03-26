@@ -33,7 +33,7 @@ public class Calorie_Consumption extends AppCompatActivity {
     int currentprogress = 25;
     int previousprogress = 50;
     int goalpercentage = 55;
-    CharSequence totalcalories = "100 Calories";
+    int calories = 100;
 
     @Override
 
@@ -109,8 +109,11 @@ public class Calorie_Consumption extends AppCompatActivity {
         final ProgressBar pProgress = (ProgressBar) findViewById(R.id.previousProgress);
         final TextView caloriecount = (TextView) findViewById(R.id.caloriecount);
 
+        CharSequence totalcalories = calories + " Calories";
+
         cProgress.setProgress(currentprogress);
         pProgress.setProgress(previousprogress);
         caloriecount.setText(totalcalories);
+
     }
 }

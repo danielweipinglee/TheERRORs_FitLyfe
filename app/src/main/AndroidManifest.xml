@@ -24,11 +24,16 @@
         <activity
             android:name=".LoginActivity"
             android:label="@string/title_activity_login" />
-        <activity android:name=".CreateAcct" />
-        <activity android:name=".TermandConditionActivity" />
-        <activity android:name=".Calorie_Consumption"
-            android:label="@string/title_activity_calorie_consumption">
-
+        <activity
+            android:name=".CreateAcct" />
+        <activity
+            android:name=".TermandConditionActivity" />
+        <activity
+            android:name=".Calorie_Consumption"
+            android:label="@string/title_activity_calorie_consumption" />
+        <activity
+            android:name=".Calorie_Input"
+            android:label="@string/title_activity_calorie_input">
         </activity>
     </application>
 

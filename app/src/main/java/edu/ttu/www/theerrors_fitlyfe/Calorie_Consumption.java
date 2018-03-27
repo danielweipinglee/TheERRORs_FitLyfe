@@ -46,18 +46,18 @@ public class Calorie_Consumption extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_calorie__consumption);
 
-/*
+
         ImageButton advance = (ImageButton) findViewById(R.id.Add);
         advance.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(Calorie_Consumption.this, Add_Calories.class);
+                Intent intent = new Intent(Calorie_Consumption.this, Calorie_Input.class);
                 startActivity(intent);
 
             }
         });
 
-*/
+
         Resources res = getResources();
         Drawable drawable = ResourcesCompat.getDrawable(getResources(),R.drawable.custom_progressbar_drawable, null);
         final ProgressBar mProgress = (ProgressBar) findViewById(R.id.circularProgressbar);

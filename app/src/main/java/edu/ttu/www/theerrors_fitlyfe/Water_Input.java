@@ -16,7 +16,7 @@ public class Water_Input extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_calorie__input);
+        setContentView(R.layout.activity_water_input);
 
 
         ImageButton advance = (ImageButton) findViewById(R.id.Back);

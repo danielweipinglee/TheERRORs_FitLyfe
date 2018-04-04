@@ -35,6 +35,18 @@
             android:name=".Calorie_Input"
             android:label="@string/title_activity_calorie_input">
         </activity>
+        <activity
+            android:name=".Water_Consumption"
+            android:label="@string/title_activity_water_consumption" />
+        <activity
+            android:name=".Sleep_Tracking"
+            android:label="@string/title_activity_sleep_tracking" />
+        <activity
+            android:name=".Sleep_Input"
+            android:label="@string/title_activity_sleep_input" />
+        <activity
+            android:name=".Water_Input"
+            android:label="@string/title_activity_water_input" />
     </application>
 
 </manifest>

@@ -27,11 +27,31 @@ public class MainActivity extends AppCompatActivity {
 
         mAuth = FirebaseAuth.getInstance();
 
-        Button advance = (Button) findViewById(R.id.calorie_consumption_button);
-        advance.setOnClickListener(new View.OnClickListener() {
+        Button advancetocalories = (Button) findViewById(R.id.calorie_consumption_button);
+        advancetocalories.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(MainActivity.this, Calorie_Consumption.class);
+                startActivity(intent);
+
+            }
+        });
+
+        Button advancetowater = (Button) findViewById(R.id.water_consumption_button);
+        advancetowater.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intents = new Intent(MainActivity.this, Water_Consumption.class);
+                startActivity(intents);
+
+            }
+        });
+
+        Button advancetosleep = (Button) findViewById(R.id.sleep_tracking_button);
+        advancetosleep.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, Sleep_Tracking.class);
                 startActivity(intent);
 
             }

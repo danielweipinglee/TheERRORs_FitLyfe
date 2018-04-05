@@ -24,7 +24,7 @@ public class Sleep_Tracking extends AppCompatActivity {
     int currentprogress = 25;
     int previousprogress = 50;
     int goalpercentage = 55;
-    int sleep = 100;
+    float sleep = 100;
 
     @Override
 
@@ -100,7 +100,7 @@ public class Sleep_Tracking extends AppCompatActivity {
         final ProgressBar pProgress = (ProgressBar) findViewById(R.id.previousProgress);
         final TextView sleepcount = (TextView) findViewById(R.id.avgSleep);
 
-        CharSequence totalsleep = sleep + " Sleep";
+        CharSequence totalsleep = sleep + " hours";
 
         cProgress.setProgress(currentprogress);
         pProgress.setProgress(previousprogress);

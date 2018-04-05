@@ -21,7 +21,7 @@ import android.widget.ImageButton;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-public class Water_Consumption extends AppCompatActivity {
+public class Exercise_log extends AppCompatActivity {
 
 
 
@@ -33,7 +33,7 @@ public class Water_Consumption extends AppCompatActivity {
     int currentprogress = 25;
     int previousprogress = 50;
     int goalpercentage = 55;
-    float water = 33;
+    float hours = 16;
 
     @Override
 
@@ -44,14 +44,14 @@ public class Water_Consumption extends AppCompatActivity {
 
 
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_water_consumption);
+        setContentView(R.layout.activity_calorie__consumption);
 
 
         ImageButton advance = (ImageButton) findViewById(R.id.Add);
         advance.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(Water_Consumption.this, Water_Input.class);
+                Intent intent = new Intent(Exercise_log.this, Exercise_Input.class);
                 startActivity(intent);
 
             }
@@ -107,13 +107,14 @@ public class Water_Consumption extends AppCompatActivity {
         //Code to change values of both progress bars and what the this weeks calorie count is
         final ProgressBar cProgress = (ProgressBar) findViewById(R.id.currentProgress);
         final ProgressBar pProgress = (ProgressBar) findViewById(R.id.previousProgress);
-        final TextView caloriecount = (TextView) findViewById(R.id.caloriecount);
+        final TextView hourlycount = (TextView) findViewById(R.id.caloriecount);
 
-        CharSequence totalwater = water + " Liters";
+        CharSequence totalhours = hours + " Hours";
 
         cProgress.setProgress(currentprogress);
         pProgress.setProgress(previousprogress);
-        caloriecount.setText(totalwater);
+        hourlycount.setText(totalhours);
 
     }
 }
+

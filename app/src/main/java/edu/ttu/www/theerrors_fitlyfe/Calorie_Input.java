@@ -39,7 +39,6 @@ public class Calorie_Input extends AppCompatActivity {
             }
         });
 
-        EditText Calories = (EditText) findViewById(R.id.calories);
 
 
 
@@ -81,6 +80,18 @@ public class Calorie_Input extends AppCompatActivity {
         // Enter CalorieInt into the database
         int CalorieInt = Integer.parseInt(CaloriesCount);
         Calories.setText("");
+
+        EditText Name = (EditText) findViewById(R.id.foodname);
+        String FoodName = Name.getText().toString();
+        Name.setText("");
+
+
+        EditText Sugar = (EditText) findViewById(R.id.sugar);
+        String SugarCount = Sugar.getText().toString();
+        int SugarInt = Integer.parseInt(SugarCount);
+        Sugar.setText("");
+
+        // Use CalorieInt, FoodName, and SugarInt to add to database
 
     }
 }

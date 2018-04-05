@@ -24,17 +24,14 @@
         <activity
             android:name=".LoginActivity"
             android:label="@string/title_activity_login" />
-        <activity
-            android:name=".CreateAcct" />
-        <activity
-            android:name=".TermandConditionActivity" />
+        <activity android:name=".CreateAcct" />
+        <activity android:name=".TermandConditionActivity" />
         <activity
             android:name=".Calorie_Consumption"
             android:label="@string/title_activity_calorie_consumption" />
         <activity
             android:name=".Calorie_Input"
-            android:label="@string/title_activity_calorie_input">
-        </activity>
+            android:label="@string/title_activity_calorie_input" />
         <activity
             android:name=".Water_Consumption"
             android:label="@string/title_activity_water_consumption" />
@@ -47,6 +44,13 @@
         <activity
             android:name=".Water_Input"
             android:label="@string/title_activity_water_input" />
+        <activity
+            android:name=".Exercise_log"
+            android:label="@string/title_activity_exercise_log" />
+        <activity
+            android:name=".Exercise_Input"
+            android:label="@string/title_activity_exercise_input">
+        </activity>
     </application>
 
 </manifest>

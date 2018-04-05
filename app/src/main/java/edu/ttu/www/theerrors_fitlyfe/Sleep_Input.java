@@ -5,6 +5,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ListView;
 
@@ -26,6 +28,14 @@ public class Sleep_Input extends AppCompatActivity {
                 Intent intent = new Intent(Sleep_Input.this, Sleep_Tracking.class);
                 startActivity(intent);
 
+            }
+        });
+
+        Button Submit = (Button) findViewById(R.id.submit);
+        Submit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log();
             }
         });
 
@@ -51,6 +61,14 @@ public class Sleep_Input extends AppCompatActivity {
         ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, listItems);
         mListView.setAdapter(adapter);
         */
+    }
+    private void Log(){
 
+
+        EditText Slept = (EditText) findViewById(R.id.sleep);
+        String SleptS = Slept.getText().toString();
+        float SleptInt = Float.parseFloat(SleptS);
+        Slept.setText("");
+        //Use SleptInt
     }
 }

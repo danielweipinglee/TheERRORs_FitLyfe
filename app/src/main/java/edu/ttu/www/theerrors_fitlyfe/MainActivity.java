@@ -56,6 +56,16 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+
+        Button advancetoexercise = (Button) findViewById(R.id.exercise_log_button);
+        advancetoexercise.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, Exercise_log.class);
+                startActivity(intent);
+
+            }
+        });
     }
 
     @Override

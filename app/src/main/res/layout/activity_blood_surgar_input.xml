@@ -7,7 +7,7 @@
     tools:context="edu.ttu.www.theerrors_fitlyfe.Calorie_Input">
 
     <EditText
-        android:id="@+id/surgar"
+        android:id="@+id/bloodsurgar"
         android:layout_width="190dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="52dp"

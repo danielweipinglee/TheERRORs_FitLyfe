@@ -12,7 +12,7 @@ import android.widget.ImageButton;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-public class Weight_Tracking extends AppCompatActivity {
+public class BloodSurgar_Tracking extends AppCompatActivity {
 
 
 
@@ -24,7 +24,7 @@ public class Weight_Tracking extends AppCompatActivity {
     int currentprogress = 25;
     int previousprogress = 50;
     int goalpercentage = 55;
-    float weight = 100;
+    float bloodsurgar = 100;
 
     @Override
 
@@ -42,7 +42,7 @@ public class Weight_Tracking extends AppCompatActivity {
         advance.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(Weight_Tracking.this, Weight_Input.class);
+                Intent intent = new Intent(BloodSurgar_Tracking.this, BloodSurgar_Input.class);
                 startActivity(intent);
 
             }
@@ -100,11 +100,11 @@ public class Weight_Tracking extends AppCompatActivity {
         final ProgressBar pProgress = (ProgressBar) findViewById(R.id.previousProgress);
         final TextView sleepcount = (TextView) findViewById(R.id.avgSleep);
 
-        CharSequence totalweight = weight + " lbs";
+        CharSequence totalbloodsurgar = bloodsurgar + " lbs";
 
         cProgress.setProgress(currentprogress);
         pProgress.setProgress(previousprogress);
-        sleepcount.setText(totalweight);
+        sleepcount.setText(totalbloodsurgar);
 
     }
 }

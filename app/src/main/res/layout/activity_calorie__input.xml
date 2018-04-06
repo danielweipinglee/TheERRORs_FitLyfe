@@ -7,30 +7,60 @@
     tools:context="edu.ttu.www.theerrors_fitlyfe.Calorie_Input">
 
     <EditText
-        android:id="@+id/calorie"
+        android:id="@+id/calories"
         android:layout_width="190dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="52dp"
+        android:layout_marginTop="112dp"
+        android:contentDescription="Enter Calorie"
         android:ems="10"
-        android:inputType="textPersonName"
-        android:text="Enter Calories"
+        android:hint="Enter Calories"
+        android:inputType="number"
         android:textAlignment="center"
         android:textSize="26sp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <EditText
+        android:id="@+id/foodname"
+        android:layout_width="190dp"
+        android:layout_height="wrap_content"
+        android:contentDescription="Enter Food"
+        android:ems="10"
+        android:hint="Enter Food"
+        android:inputType="text"
+        android:textAlignment="center"
+        android:textSize="26sp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <EditText
+        android:id="@+id/sugar"
+        android:layout_width="190dp"
+        android:layout_height="wrap_content"
+        android:contentDescription="Enter Sugar"
+        android:ems="10"
+        android:hint="Enter Sugar"
+        android:inputType="number"
+        android:textAlignment="center"
+        android:textSize="26sp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/foodname" />
+
     <Button
         android:id="@+id/submit"
         android:layout_width="145dp"
-        android:layout_height="70dp"
+        android:layout_height="67dp"
         android:layout_marginTop="8dp"
         android:text="Submit"
         android:textSize="24sp"
         app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/calorie" />
+        app:layout_constraintTop_toBottomOf="@+id/calories" />
 
     <ImageButton
         android:id="@+id/Back"
@@ -45,8 +75,9 @@
         android:id="@+id/calorielist"
         android:layout_width="368dp"
         android:layout_height="279dp"
-        android:layout_marginTop="36dp"
+        android:layout_marginTop="8dp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/submit" />
+
 </android.support.constraint.ConstraintLayout>

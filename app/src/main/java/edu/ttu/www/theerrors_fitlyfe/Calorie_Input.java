@@ -5,6 +5,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ListView;
 
@@ -28,6 +30,27 @@ public class Calorie_Input extends AppCompatActivity {
 
             }
         });
+
+        Button Submit = (Button) findViewById(R.id.submit);
+        Submit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log();
+            }
+        });
+
+
+
+
+
+
+
+
+
+
+
+
+
 /*      May be possible to display database in a list so that the user can see there calorie consumption
         logs.
 
@@ -48,6 +71,27 @@ public class Calorie_Input extends AppCompatActivity {
         ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, listItems);
         mListView.setAdapter(adapter);
         */
+
+    }
+
+    private void Log(){
+        EditText Calories = (EditText) findViewById(R.id.calories);
+        String CaloriesCount = Calories.getText().toString();
+        // Enter CalorieInt into the database
+        int CalorieInt = Integer.parseInt(CaloriesCount);
+        Calories.setText("");
+
+        EditText Name = (EditText) findViewById(R.id.foodname);
+        String FoodName = Name.getText().toString();
+        Name.setText("");
+
+
+        EditText Sugar = (EditText) findViewById(R.id.sugar);
+        String SugarCount = Sugar.getText().toString();
+        int SugarInt = Integer.parseInt(SugarCount);
+        Sugar.setText("");
+
+        // Use CalorieInt, FoodName, and SugarInt to add to database
 
     }
 }

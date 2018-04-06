@@ -10,7 +10,7 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ListView;
 
-public class Water_Input extends AppCompatActivity {
+public class Exercise_Input extends AppCompatActivity {
 
 
     private ListView mListView;
@@ -18,14 +18,14 @@ public class Water_Input extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_water_input);
+        setContentView(R.layout.activity_exercise__input);
 
 
         ImageButton advance = (ImageButton) findViewById(R.id.Back);
         advance.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(Water_Input.this, Water_Consumption.class);
+                Intent intent = new Intent(Exercise_Input.this, Exercise_log.class);
                 startActivity(intent);
 
             }
@@ -38,6 +38,19 @@ public class Water_Input extends AppCompatActivity {
                 Log();
             }
         });
+
+
+
+
+
+
+
+
+
+
+
+
+
 /*      May be possible to display database in a list so that the user can see there calorie consumption
         logs.
 
@@ -58,15 +71,22 @@ public class Water_Input extends AppCompatActivity {
         ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, listItems);
         mListView.setAdapter(adapter);
         */
+
     }
+
     private void Log(){
 
 
-        EditText Water = (EditText) findViewById(R.id.water);
-        String WaterS = Water.getText().toString();
-        float WaterInt = Float.parseFloat(WaterS);
-        Water.setText("");
-        //Use SleptInt
+        EditText Name = (EditText) findViewById(R.id.workoutname);
+        String WorkoutName = Name.getText().toString();
+        Name.setText("");
+
+        EditText Length = (EditText) findViewById(R.id.exercise);
+        String LengthS = Length.getText().toString();
+        Float LengthInt = Float.parseFloat(LengthS);
+        Length.setText("");
+
+        //use WorkoutName and LengthInt
 
     }
 }

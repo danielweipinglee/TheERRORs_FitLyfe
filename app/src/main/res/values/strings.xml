@@ -3,6 +3,12 @@
     <string name="title_activity_login">Sign in</string>
     <string name="title_activity_calorie_consumption">Calorie Consumption</string>
     <string name="title_activity_calorie_input">Calorie Input</string>
+    <string name="title_activity_water_consumption">Water Consumption</string>
+    <string name="title_activity_water_input">Water Input</string>
+    <string name="title_activity_sleep_input">Sleep Tracking</string>
+    <string name="title_activity_sleep_tracking">Sleep Input</string>
+    <string name="title_activity_exercise_log">Exercise Log</string>
+    <string name="title_activity_exercise_input">Exercise Input</string>
 
     <!-- Strings related to login -->
     <string name="prompt_email">Email</string>

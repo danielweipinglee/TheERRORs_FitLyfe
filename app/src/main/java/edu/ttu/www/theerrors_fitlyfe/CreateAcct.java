@@ -3,71 +3,86 @@ package edu.ttu.www.theerrors_fitlyfe;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.HashMap;
+
 public class CreateAcct extends AppCompatActivity {
-    FirebaseDatabase database;
-    DatabaseReference ref;
-    User user;
+
     private FirebaseAuth mAuth;
-    EditText name, email, password, username, weight, height, gender, age;
+    private FirebaseUser curUser;
+    private EditText name, email, password, username, weight, height, gender, age;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_acct);
 
-        name = (EditText) findViewById(R.id.name_field);
+        mAuth = FirebaseAuth.getInstance();
+
         email = (EditText) findViewById(R.id.email_field);
         password = (EditText) findViewById(R.id.password_field);
         username = (EditText) findViewById(R.id.username_field);
-        weight = (EditText) findViewById(R.id.weight_field);
-        height = (EditText) findViewById(R.id.height_field);
-        gender = (EditText) findViewById(R.id.gender_field);
+        name = (EditText) findViewById(R.id.name_field);
         age = (EditText) findViewById(R.id.age_field);
-
-
-        database=FirebaseDatabase.getInstance("User");
-        ref = database.getReference();
-        user = new User();
+        height = (EditText) findViewById(R.id.height_field);
+        weight = (EditText) findViewById(R.id.weight_field);
+        gender = (EditText) findViewById(R.id.gender_field);
     }
-private void getValues(){
-        user.setName(name.getText().toString());
-        user.setPassword(password.getText().toString());
-        user.setUsername(username.getText().toString());
-        user.setWeight(weight.getText().toString());
-        user.setHeight(height.getText().toString());
-        user.setAge(age.getText().toString());
-        user.setGender(gender.getText().toString());
-}
+
+    public void addUserToDatabase(){
+
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference();
+
+        DatabaseReference child = reference.child(curUser.getUid());
+
+        HashMap<String, String> user = new HashMap<String, String>();
+        user.put("email", email.getText().toString());
+        user.put("username", username.getText().toString());
+        user.put("name", name.getText().toString());
+        user.put("age", age.getText().toString());
+        user.put("height", height.getText().toString());
+        user.put("weight", weight.getText().toString());
+        user.put("gender", gender.getText().toString());
+
+        child.setValue(user);
+    }
 
     /*
      * Go to the login screen on button click.
      */
     public void register(View v) {
 
-        ref.addValueEventListener(new ValueEventListener() {
+        mAuth.createUserWithEmailAndPassword(email.getText().toString(),
+                password.getText().toString()).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                ref.child("User02").setValue(user);
+            public void onComplete(Task<AuthResult> task) {
+                if (task.isSuccessful()){
+                    curUser = mAuth.getCurrentUser();
 
-            }
+                    addUserToDatabase();
 
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
+                    Intent intent = new Intent(getBaseContext(), TermandConditionActivity.class);
+                    startActivity(intent);
+                }
+                else{
+                    Toast.makeText(CreateAcct.this,"Could not create account. Please try again",Toast.LENGTH_SHORT).show();
+                }
             }
         });
-
-
-        Intent intent = new Intent(getBaseContext(), TermandConditionActivity.class);
-        startActivity(intent);
     }
 }

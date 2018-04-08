@@ -33,11 +33,13 @@ public class TermandConditionActivity extends AppCompatActivity {
         // Get the user that just got created.
         curUser = mAuth.getCurrentUser();
 
+        // Get the accept CheckBox.
         accept = (CheckBox) findViewById(R.id.acceptCheckBox);
     }
 
+    /* accept accepts the terms and conditions for the user if they have accepted them.
+     */
     public void accept(View v) {
-
         // If the terms and conditions were accepted by the user:
         if(accept.isChecked()) {
             // Get a reference to the root of the Firebase database.

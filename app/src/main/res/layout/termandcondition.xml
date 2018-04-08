@@ -27,14 +27,16 @@
     </android.support.v4.widget.NestedScrollView>
 
     <CheckBox
+        android:id="@+id/acceptCheckBox"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:text="Agree" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/continueButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Continue" />
+        android:text="Continue"
+        android:onClick="accept"/>
 
 </LinearLayout>

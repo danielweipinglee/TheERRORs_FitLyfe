@@ -4,6 +4,13 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.CheckBox;
+import android.widget.EditText;
+
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 /**
  * Created by Daniel on 2/19/18.
@@ -11,16 +18,45 @@ import android.view.View;
 
 public class TermandConditionActivity extends AppCompatActivity {
 
+    private FirebaseAuth mAuth;
+    private FirebaseUser curUser;
+    private CheckBox accept;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.termandcondition);
+
+        // Get the Firebase authentifier.
+        mAuth = FirebaseAuth.getInstance();
+
+        // Get the user that just got created.
+        curUser = mAuth.getCurrentUser();
+
+        accept = (CheckBox) findViewById(R.id.acceptCheckBox);
     }
 
+    public void accept(View v) {
 
-    public void goToMain(View v) {
-        Intent intent = new Intent(getBaseContext(), LoginActivity.class);
-        startActivity(intent);
+        // If the terms and conditions were accepted by the user:
+        if(accept.isChecked()) {
+            // Get a reference to the root of the Firebase database.
+            DatabaseReference reference = FirebaseDatabase.getInstance().getReference();
+
+            // Create the new child node in the database for the user, using the unique id generated
+            // by the Firebase authentifier.
+            DatabaseReference child = reference.child(curUser.getUid()).child("TermsAndConditionsAccepted");
+
+            // Set that the terms and conditions were accepted.
+            child.setValue(true);
+
+            // Got to the main page.
+            Intent intent = new Intent(getBaseContext(), MainActivity.class);
+            startActivity(intent);
+        }
+        else{
+            accept.setError("Terms and conditions must be accepted.");
+        }
     }
 
 }

@@ -5,22 +5,36 @@
     android:orientation="vertical">
 
     <TextView
-        android:layout_width="215dp"
-        android:layout_height="278dp"
-        android:layout_weight="1"
-        android:text="This is the term and condition" />
-
-    <RadioButton
+        android:id="@+id/textView6"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:text="I agree" />
+        android:text="The Terms and Conditions of FitLyfe."
+        android:textAlignment="center"
+        android:textSize="18sp" />
 
-    <RadioButton
-        android:id="@+id/radioButton"
+    <android.support.v4.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="368dp"
+        android:padding="10dp"
+        android:fillViewport="true">
+
+        <TextView
+            android:id="@+id/textView7"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/terms_and_conditions"
+            android:textAlignment="textStart" />
+    </android.support.v4.widget.NestedScrollView>
+
+    <CheckBox
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="Agree" />
+
+    <Button
+        android:id="@+id/button2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:text="I Disagree" />
+        android:text="Continue" />
 
 </LinearLayout>

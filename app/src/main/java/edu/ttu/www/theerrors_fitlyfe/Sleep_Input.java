@@ -10,9 +10,24 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ListView;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.Locale;
+
 public class Sleep_Input extends AppCompatActivity {
 
 
+    private FirebaseAuth mAuth;
+    private FirebaseUser curUser;
     private ListView mListView;
 
     @Override
@@ -20,14 +35,14 @@ public class Sleep_Input extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sleep__input);
 
+        mAuth = FirebaseAuth.getInstance();
+        curUser = mAuth.getCurrentUser();
 
         ImageButton advance = (ImageButton) findViewById(R.id.Back);
         advance.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(Sleep_Input.this, Sleep_Tracking.class);
-                startActivity(intent);
-
+                finish();
             }
         });
 
@@ -62,13 +77,35 @@ public class Sleep_Input extends AppCompatActivity {
         mListView.setAdapter(adapter);
         */
     }
+
+
     private void Log(){
 
-
+        // Get the number of hours pasted by the user.
         EditText Slept = (EditText) findViewById(R.id.sleep);
         String SleptS = Slept.getText().toString();
         float SleptInt = Float.parseFloat(SleptS);
         Slept.setText("");
-        //Use SleptInt
+
+        // Get the current date and time.
+        Date c = Calendar.getInstance().getTime();
+
+        // Get just the current date.
+        SimpleDateFormat df = new SimpleDateFormat("dd-MMM-yyyy", Locale.US);
+        String dateString = df.format(c);
+
+        // Get just the current time.
+        SimpleDateFormat tf = new SimpleDateFormat("hh:mm:ss", Locale.US);
+        String timeString = tf.format(c);
+
+        // Get the spot to add the entry to location /<userID>/Sleep/<current date>/<current time>
+        DatabaseReference userDB = FirebaseDatabase.getInstance().getReference().child(curUser.getUid());
+        DatabaseReference sleepEntry = userDB.child("Sleep").child(dateString).child(timeString);
+
+        // Save the entry.
+        sleepEntry.setValue(SleptInt);
+
+        // Finish the activity and return to the last activity.
+        finish();
     }
 }

@@ -51,9 +51,8 @@ public class TermandConditionActivity extends AppCompatActivity {
             // Set that the terms and conditions were accepted.
             child.setValue(true);
 
-            // Got to the main page.
-            Intent intent = new Intent(getBaseContext(), MainActivity.class);
-            startActivity(intent);
+            // Finish the activity.
+            finish();
         }
         else{
             accept.setError("Terms and conditions must be accepted.");

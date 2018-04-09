@@ -44,7 +44,6 @@ public class Sleep_Tracking extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(Sleep_Tracking.this, Sleep_Input.class);
                 startActivity(intent);
-
             }
         });
 

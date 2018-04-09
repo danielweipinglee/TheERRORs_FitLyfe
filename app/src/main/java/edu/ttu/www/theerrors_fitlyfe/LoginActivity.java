@@ -366,6 +366,8 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     public void goToRegister(View v) {
         Intent intent = new Intent(getBaseContext(), CreateAcct.class);
         startActivity(intent);
+
+        finish();
     }
 }
 

@@ -205,6 +205,9 @@ public class CreateAcct extends AppCompatActivity {
                         // Go to the terms and conditions page.
                         Intent intent = new Intent(getBaseContext(), TermandConditionActivity.class);
                         startActivity(intent);
+
+                        // Finish this activity.
+                        finish();
                     }
                     else{
                         email.setError("This email address is already registered.");

@@ -1,4 +1,4 @@
-package edu.ttu.www.theerrors_fitlyfe;
+/*package edu.ttu.www.theerrors_fitlyfe;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -22,7 +22,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
-public class Weight_Input extends AppCompatActivity {
+public class BMI_Input extends AppCompatActivity {
 
     private FirebaseAuth mAuth;
     private FirebaseUser curUser;
@@ -74,15 +74,15 @@ public class Weight_Input extends AppCompatActivity {
         ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, listItems);
         mListView.setAdapter(adapter);
         */
-    }
+/*    }
     private void Log(){
 
 
-        EditText Weight = (EditText) findViewById(R.id.weight);
-        String WeightS = Weight.getText().toString();
-        float WeightInt = Float.parseFloat(WeightS);
-        Weight.setText("");
-        //Use SleptInt
+       EditText BMI = (EditText) findViewById(R.id.BMI);
+        String BMIS = BMI.getText().toString();
+        float bmiInt = Float.parseFloat(BMIS);
+        BMI.setText("");
+        //Use bmiInt
 
         // Get the current date and time.
         Date c = Calendar.getInstance().getTime();
@@ -97,12 +97,13 @@ public class Weight_Input extends AppCompatActivity {
 
         // Get the spot to add the entry to location /<userID>/Sleep/<current date>/<current time>
         DatabaseReference userDB = FirebaseDatabase.getInstance().getReference().child(curUser.getUid());
-        DatabaseReference WeightEntry = userDB.child("Weight").child(dateString).child(timeString);
+        DatabaseReference BMIEntry = userDB.child("BMI").child(dateString).child(timeString);
 
         // Save the entry.
-        WeightEntry.setValue(WeightInt);
+        BMIEntry.setValue(bmiInt);
 
         // Finish the activity and return to the last activity.
         finish();
     }
 }
+*/

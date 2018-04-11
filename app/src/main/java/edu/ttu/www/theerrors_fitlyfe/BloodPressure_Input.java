@@ -1,4 +1,4 @@
-package edu.ttu.www.theerrors_fitlyfe;
+/*package edu.ttu.www.theerrors_fitlyfe;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -22,7 +22,8 @@ import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
-public class Weight_Input extends AppCompatActivity {
+
+public class BloodPressure_Input extends AppCompatActivity {
 
     private FirebaseAuth mAuth;
     private FirebaseUser curUser;
@@ -51,7 +52,6 @@ public class Weight_Input extends AppCompatActivity {
                 Log();
             }
         });
-
 //  Did not mess with below because I assume its for the database and just copied it over
 
 /*      May be possible to display database in a list so that the user can see there calorie consumption
@@ -74,14 +74,14 @@ public class Weight_Input extends AppCompatActivity {
         ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, listItems);
         mListView.setAdapter(adapter);
         */
-    }
+  /*  }
     private void Log(){
 
 
-        EditText Weight = (EditText) findViewById(R.id.weight);
-        String WeightS = Weight.getText().toString();
-        float WeightInt = Float.parseFloat(WeightS);
-        Weight.setText("");
+        EditText Pressure = (EditText) findViewById(R.id.bloodPressure);
+        String PressureS = Pressure.getText().toString();
+        float PressureInt = Float.parseFloat(PressureS);
+        Pressure.setText("");
         //Use SleptInt
 
         // Get the current date and time.
@@ -97,12 +97,13 @@ public class Weight_Input extends AppCompatActivity {
 
         // Get the spot to add the entry to location /<userID>/Sleep/<current date>/<current time>
         DatabaseReference userDB = FirebaseDatabase.getInstance().getReference().child(curUser.getUid());
-        DatabaseReference WeightEntry = userDB.child("Weight").child(dateString).child(timeString);
+        DatabaseReference BPressureEntry = userDB.child("Blood Pressure").child(dateString).child(timeString);
 
         // Save the entry.
-        WeightEntry.setValue(WeightInt);
+        BPressureEntry.setValue(PressureInt);
 
         // Finish the activity and return to the last activity.
         finish();
     }
 }
+*/

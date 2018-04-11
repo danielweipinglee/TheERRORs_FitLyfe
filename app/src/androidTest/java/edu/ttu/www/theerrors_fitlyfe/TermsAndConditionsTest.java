@@ -26,7 +26,7 @@ public class TermsAndConditionsTest {
     @Rule
     public ActivityTestRule<TermandConditionActivity> activityRule = new ActivityTestRule<>(
             TermandConditionActivity.class);
-    
+
     /*
      * Make sure the user can proceed after accepting the terms and conditions
      */

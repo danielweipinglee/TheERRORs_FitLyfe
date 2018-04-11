@@ -3,6 +3,7 @@ package edu.ttu.www.theerrors_fitlyfe;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -21,15 +22,9 @@ public class BloodSurgar_Input extends AppCompatActivity {
         setContentView(R.layout.activity_weight_input);
 
 
-        ImageButton advance = (ImageButton) findViewById(R.id.Back);
-        advance.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(BloodSurgar_Input.this, BloodSurgar_Tracking.class);
-                startActivity(intent);
-
-            }
-        });
+        //Added back button to the action bar
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         Button Submit = (Button) findViewById(R.id.submit);
         Submit.setOnClickListener(new View.OnClickListener() {
@@ -70,5 +65,18 @@ public class BloodSurgar_Input extends AppCompatActivity {
         float SurgarInt = Float.parseFloat(SurgarS);
         Surgar.setText("");
         //Use SleptInt
+    }
+
+    //Method functionality for back button
+    public boolean onOptionsItemSelected(MenuItem item){
+
+        int id = item.getItemId();
+
+        if(id == android.R.id.home){
+            this.finish();
+        }
+
+
+        return super.onOptionsItemSelected(item);
     }
 }

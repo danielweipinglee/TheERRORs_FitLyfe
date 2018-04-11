@@ -3,6 +3,7 @@ package edu.ttu.www.theerrors_fitlyfe;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -20,17 +21,6 @@ public class Weight_Input extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_weight_input);
 
-
-        ImageButton advance = (ImageButton) findViewById(R.id.Back);
-        advance.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(Weight_Input.this, Weight_Tracking.class);
-                startActivity(intent);
-
-            }
-        });
-
         Button Submit = (Button) findViewById(R.id.submit);
         Submit.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -38,6 +28,10 @@ public class Weight_Input extends AppCompatActivity {
                 Log();
             }
         });
+
+        //Added back button to the action bar
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
 //  Did not mess with below because I assume its for the database and just copied it over
 
@@ -70,5 +64,18 @@ public class Weight_Input extends AppCompatActivity {
         float SleptInt = Float.parseFloat(WeightS);
         Weight.setText("");
         //Use SleptInt
+    }
+
+    //Method functionality for back button
+    public boolean onOptionsItemSelected(MenuItem item){
+
+        int id = item.getItemId();
+
+        if(id == android.R.id.home){
+            this.finish();
+        }
+
+
+        return super.onOptionsItemSelected(item);
     }
 }

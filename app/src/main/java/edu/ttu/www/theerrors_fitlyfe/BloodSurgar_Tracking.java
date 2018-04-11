@@ -7,6 +7,7 @@ import android.os.Handler;
 import android.support.v4.content.res.ResourcesCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ProgressBar;
@@ -47,6 +48,10 @@ public class BloodSurgar_Tracking extends AppCompatActivity {
 
             }
         });
+
+        //Added back button to the action bar
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
 
         Resources res = getResources();
@@ -106,5 +111,18 @@ public class BloodSurgar_Tracking extends AppCompatActivity {
         pProgress.setProgress(previousprogress);
         sleepcount.setText(totalbloodsurgar);
 
+    }
+
+    //Method functionality for back button
+    public boolean onOptionsItemSelected(MenuItem item){
+
+        int id = item.getItemId();
+
+        if(id == android.R.id.home){
+            this.finish();
+        }
+
+
+        return super.onOptionsItemSelected(item);
     }
 }

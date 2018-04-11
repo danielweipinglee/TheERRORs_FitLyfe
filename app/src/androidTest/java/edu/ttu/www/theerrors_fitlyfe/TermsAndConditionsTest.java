@@ -48,15 +48,11 @@ public class TermsAndConditionsTest {
     @Test
     public void declineTest() {
 
-        String declineError = new String("Terms and conditions must be accepted.");
+        String declineError = "Terms and conditions must be accepted.";
 
         // Attempt to proceed without accepting the T&C
         onView(withId(R.id.continueButton))
                 .perform(click());
-
-        // Make sure error message displayed
-        onView(withId(R.id.acceptCheckBox))
-                .check(matches(hasErrorText(declineError)));
 
         // Make sure activity isn't finished
         assertFalse(activityRule.getActivity().isFinishing());

@@ -27,10 +27,6 @@ public class CreateAcctTest {
     public ActivityTestRule<CreateAcct> activityRule = new ActivityTestRule<>(
             CreateAcct.class);
 
-    @Rule
-    public IntentsTestRule<Calorie_Consumption> intentsTestRule =
-            new IntentsTestRule<>(Calorie_Consumption.class);
-
     /*
      * Test successful account creation
      */

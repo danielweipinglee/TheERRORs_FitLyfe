@@ -30,8 +30,8 @@ public class LoginActivityTest {
             LoginActivity.class);
 
     @Rule
-    public IntentsTestRule<Calorie_Consumption> intentsTestRule =
-            new IntentsTestRule<>(Calorie_Consumption.class);
+    public IntentsTestRule<LoginActivity> intentsTestRule =
+            new IntentsTestRule<>(LoginActivity.class);
 
     /*
      * Test login with existing account

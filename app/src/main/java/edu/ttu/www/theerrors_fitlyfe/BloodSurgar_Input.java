@@ -18,7 +18,7 @@ public class BloodSurgar_Input extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_weight_input);
+        setContentView(R.layout.activity_blood_surgar_input);
 
 
         ImageButton advance = (ImageButton) findViewById(R.id.Back);
@@ -64,11 +64,13 @@ public class BloodSurgar_Input extends AppCompatActivity {
     }
     private void Log(){
 
-
-        EditText Surgar = (EditText) findViewById(R.id.bloodsurgar);
-        String SurgarS = Surgar.getText().toString();
-        float SurgarInt = Float.parseFloat(SurgarS);
-        Surgar.setText("");
-        //Use SleptInt
+        EditText Surgar = findViewById(R.id.bloodsurgar);
+        if (Surgar != null && Surgar.length() > 0) {
+            String SurgarS = Surgar.getText().toString();
+            float SurgarInt = Float.parseFloat(SurgarS);
+            Surgar.setText("");
+            //Use SleptInt
+            finish();
+        }
     }
 }

@@ -45,6 +45,9 @@
             android:name=".Water_Input"
             android:label="@string/title_activity_water_input" />
         <activity
+            android:name=".BloodSurgar_Input"
+            android:label="BloodSurgar_Input" />
+        <activity
             android:name=".Exercise_log"
             android:label="@string/title_activity_exercise_log" />
         <activity

@@ -3,6 +3,7 @@ package edu.ttu.www.theerrors_fitlyfe;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -34,17 +35,9 @@ public class Calorie_Input extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_calorie__input);
 
+
         mAuth = FirebaseAuth.getInstance();
         curUser = mAuth.getCurrentUser();
-
-
-        ImageButton advance = (ImageButton) findViewById(R.id.Back);
-        advance.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                finish();
-            }
-        });
 
         Button Submit = (Button) findViewById(R.id.submit);
         Submit.setOnClickListener(new View.OnClickListener() {
@@ -54,6 +47,9 @@ public class Calorie_Input extends AppCompatActivity {
             }
         });
 
+        //Added back button to the action bar
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
 
 
@@ -136,5 +132,16 @@ public class Calorie_Input extends AppCompatActivity {
 
         // Use CalorieInt, FoodName, and SugarInt to add to database
 
+    }
+
+    //Method functionality for back button
+    public boolean onOptionsItemSelected(MenuItem item){
+        int id = item.getItemId();
+
+        if(id == android.R.id.home){
+            this.finish();
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 }

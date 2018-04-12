@@ -3,6 +3,7 @@ package edu.ttu.www.theerrors_fitlyfe;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -33,17 +34,10 @@ public class Weight_Input extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_weight_input);
 
+
         mAuth = FirebaseAuth.getInstance();
         curUser = mAuth.getCurrentUser();
-
-        ImageButton advance = (ImageButton) findViewById(R.id.Back);
-        advance.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                finish();
-            }
-        });
-
+      
         Button Submit = (Button) findViewById(R.id.submit);
         Submit.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -51,6 +45,10 @@ public class Weight_Input extends AppCompatActivity {
                 Log();
             }
         });
+
+        //Added back button to the action bar
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
 //  Did not mess with below because I assume its for the database and just copied it over
 
@@ -104,5 +102,18 @@ public class Weight_Input extends AppCompatActivity {
 
         // Finish the activity and return to the last activity.
         finish();
+    }
+
+    //Method functionality for back button
+    public boolean onOptionsItemSelected(MenuItem item){
+
+        int id = item.getItemId();
+
+        if(id == android.R.id.home){
+            this.finish();
+        }
+
+
+        return super.onOptionsItemSelected(item);
     }
 }

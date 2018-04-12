@@ -72,6 +72,26 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+
+        Button advancetoweight = (Button) findViewById(R.id.BMI_button);
+        advancetoweight.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, Weight_Tracking.class);
+                startActivity(intent);
+
+            }
+        });
+
+        Button advancetoblood = (Button) findViewById(R.id.blood_pressure_button);
+        advancetoblood.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, BloodSurgar_Tracking.class);
+                startActivity(intent);
+
+            }
+        });
     }
 
     @Override

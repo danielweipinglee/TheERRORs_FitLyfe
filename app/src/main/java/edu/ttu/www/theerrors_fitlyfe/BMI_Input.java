@@ -1,9 +1,8 @@
-package edu.ttu.www.theerrors_fitlyfe;
+/*package edu.ttu.www.theerrors_fitlyfe;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -23,7 +22,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
-public class Exercise_Input extends AppCompatActivity {
+public class BMI_Input extends AppCompatActivity {
 
     private FirebaseAuth mAuth;
     private FirebaseUser curUser;
@@ -32,12 +31,19 @@ public class Exercise_Input extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_exercise__input);
-
+        setContentView(R.layout.activity_weight_input);
 
         mAuth = FirebaseAuth.getInstance();
         curUser = mAuth.getCurrentUser();
-      
+
+        ImageButton advance = (ImageButton) findViewById(R.id.Back);
+        advance.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
+
         Button Submit = (Button) findViewById(R.id.submit);
         Submit.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -46,21 +52,7 @@ public class Exercise_Input extends AppCompatActivity {
             }
         });
 
-        //Added back button to the action bar
-        getSupportActionBar().setDisplayShowHomeEnabled(true);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
-
-
-
-
-
-
-
-
-
-
-
+//  Did not mess with below because I assume its for the database and just copied it over
 
 /*      May be possible to display database in a list so that the user can see there calorie consumption
         logs.
@@ -82,22 +74,15 @@ public class Exercise_Input extends AppCompatActivity {
         ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, listItems);
         mListView.setAdapter(adapter);
         */
-
-    }
-
+/*    }
     private void Log(){
 
 
-        EditText Name = (EditText) findViewById(R.id.workoutname);
-        String WorkoutName = Name.getText().toString();
-        Name.setText("");
-
-        EditText Length = (EditText) findViewById(R.id.exercise);
-        String LengthS = Length.getText().toString();
-        Float LengthInt = Float.parseFloat(LengthS);
-        Length.setText("");
-
-        //use WorkoutName and LengthInt
+       EditText BMI = (EditText) findViewById(R.id.BMI);
+        String BMIS = BMI.getText().toString();
+        float bmiInt = Float.parseFloat(BMIS);
+        BMI.setText("");
+        //Use bmiInt
 
         // Get the current date and time.
         Date c = Calendar.getInstance().getTime();
@@ -112,27 +97,13 @@ public class Exercise_Input extends AppCompatActivity {
 
         // Get the spot to add the entry to location /<userID>/Sleep/<current date>/<current time>
         DatabaseReference userDB = FirebaseDatabase.getInstance().getReference().child(curUser.getUid());
-        DatabaseReference NameEntry = userDB.child("Excersize").child(dateString).child(timeString).child("Name");
-        DatabaseReference LengthEntry = userDB.child("Excersize").child(dateString).child(timeString).child("Duration");
+        DatabaseReference BMIEntry = userDB.child("BMI").child(dateString).child(timeString);
+
         // Save the entry.
-        NameEntry.setValue(WorkoutName);
-        LengthEntry.setValue(LengthInt);
+        BMIEntry.setValue(bmiInt);
 
         // Finish the activity and return to the last activity.
         finish();
-
-    }
-
-    //Method functionality for back button
-    public boolean onOptionsItemSelected(MenuItem item){
-
-        int id = item.getItemId();
-
-        if(id == android.R.id.home){
-            this.finish();
-        }
-
-
-        return super.onOptionsItemSelected(item);
     }
 }
+*/

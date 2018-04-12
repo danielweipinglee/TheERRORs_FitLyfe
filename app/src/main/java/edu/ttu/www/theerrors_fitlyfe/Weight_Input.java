@@ -11,9 +11,22 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ListView;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.Locale;
 public class Weight_Input extends AppCompatActivity {
 
-
+    private FirebaseAuth mAuth;
+    private FirebaseUser curUser;
     private ListView mListView;
 
     @Override
@@ -21,6 +34,10 @@ public class Weight_Input extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_weight_input);
 
+
+        mAuth = FirebaseAuth.getInstance();
+        curUser = mAuth.getCurrentUser();
+      
         Button Submit = (Button) findViewById(R.id.submit);
         Submit.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -61,9 +78,30 @@ public class Weight_Input extends AppCompatActivity {
 
         EditText Weight = (EditText) findViewById(R.id.weight);
         String WeightS = Weight.getText().toString();
-        float SleptInt = Float.parseFloat(WeightS);
+        float WeightInt = Float.parseFloat(WeightS);
         Weight.setText("");
         //Use SleptInt
+
+        // Get the current date and time.
+        Date c = Calendar.getInstance().getTime();
+
+        // Get just the current date.
+        SimpleDateFormat df = new SimpleDateFormat("dd-MMM-yyyy", Locale.US);
+        String dateString = df.format(c);
+
+        // Get just the current time.
+        SimpleDateFormat tf = new SimpleDateFormat("hh:mm:ss", Locale.US);
+        String timeString = tf.format(c);
+
+        // Get the spot to add the entry to location /<userID>/Sleep/<current date>/<current time>
+        DatabaseReference userDB = FirebaseDatabase.getInstance().getReference().child(curUser.getUid());
+        DatabaseReference WeightEntry = userDB.child("Weight").child(dateString).child(timeString);
+
+        // Save the entry.
+        WeightEntry.setValue(WeightInt);
+
+        // Finish the activity and return to the last activity.
+        finish();
     }
 
     //Method functionality for back button

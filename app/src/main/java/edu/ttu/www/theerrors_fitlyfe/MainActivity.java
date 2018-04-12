@@ -136,6 +136,7 @@ public class MainActivity extends AppCompatActivity {
 
     /*
      * Go to the login screen on button click.
+     * @todo: Remove me after login page is stable.
      */
     public void goToLogin(View v) {
         Intent intent = new Intent(getBaseContext(), LoginActivity.class);

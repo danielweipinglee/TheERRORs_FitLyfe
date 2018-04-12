@@ -4,15 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="edu.ttu.www.theerrors_fitlyfe.Calorie_Input">
+    tools:context="edu.ttu.www.theerrors_fitlyfe.BloodSurgar_Input">
 
     <EditText
         android:id="@+id/bloodsurgar"
         android:layout_width="190dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="52dp"
+        android:layout_marginTop="76dp"
         android:ems="10"
-        android:hint="Blood Surgar (mool/L)"
+        android:hint="@string/blood_surgar_mool_l"
         android:inputType="number|numberDecimal"
         android:textAlignment="center"
         android:textSize="26sp"
@@ -27,10 +27,11 @@
         android:layout_marginTop="16dp"
         android:text="Submit"
         android:textSize="24sp"
-        app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/bloodsurgar" />
+
+
 
 
 </android.support.constraint.ConstraintLayout>

@@ -1,7 +1,6 @@
 package edu.ttu.www.theerrors_fitlyfe;
 
 import android.content.Intent;
-import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
 import android.os.Handler;
 import android.support.v4.content.res.ResourcesCompat;
@@ -12,32 +11,35 @@ import android.widget.ImageButton;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.Locale;
+
 public class Sleep_Tracking extends AppCompatActivity {
-
-
-
-    int pStatus = 0;
+    private int pStatus = 0;
     private Handler handler = new Handler();
-    TextView tv;
-    //Variables to change values of 3 progress bar and this weeks calorie consumptions
+    private TextView tv;
 
-    int currentprogress = 25;
-    int previousprogress = 50;
-    int goalpercentage = 55;
-    float sleep = 100;
+    private FirebaseAuth mAuth;
+    private FirebaseUser curUser;
+
+    private int goalpercentage = 55;
 
     @Override
-
-
     protected void onCreate(Bundle savedInstanceState) {
-
-
-
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sleep__tracking);
 
-
+        // Set the Add button's function.
         ImageButton advance = (ImageButton) findViewById(R.id.Add);
         advance.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -47,8 +49,7 @@ public class Sleep_Tracking extends AppCompatActivity {
             }
         });
 
-
-        Resources res = getResources();
+        // Create the drawable progress bars.
         Drawable drawable = ResourcesCompat.getDrawable(getResources(),R.drawable.custom_progressbar_drawable, null);
         final ProgressBar mProgress = (ProgressBar) findViewById(R.id.circularProgressbar);
         mProgress.setProgress(0);   // Main Progress
@@ -56,18 +57,11 @@ public class Sleep_Tracking extends AppCompatActivity {
         mProgress.setMax(100); // Maximum Progress
         mProgress.setProgressDrawable(drawable);
 
-      /*  ObjectAnimator animation = ObjectAnimator.ofInt(mProgress, "progress", 0, 100);
-        animation.setDuration(50000);
-        animation.setInterpolator(new DecelerateInterpolator());
-        animation.start();*/
-
-
         tv = (TextView) findViewById(R.id.tv);
         new Thread(new Runnable() {
 
             @Override
             public void run() {
-                // TODO Auto-generated method stub
                 //Indicates when the progress bar will stop
                 while (pStatus < goalpercentage) {
                     pStatus += 1;
@@ -76,12 +70,12 @@ public class Sleep_Tracking extends AppCompatActivity {
 
                         @Override
                         public void run() {
-                            // TODO Auto-generated method stub
                             mProgress.setProgress(pStatus);
                             tv.setText(pStatus + "%");
 
                         }
                     });
+
                     try {
                         // Sleep for 200 milliseconds.
                         // Just to display the progress slowly
@@ -93,17 +87,91 @@ public class Sleep_Tracking extends AppCompatActivity {
             }
         }).start();
 
+        // Get the Firebase Authenticator.
+        mAuth = FirebaseAuth.getInstance();
 
-        //Code to change values of both progress bars and what the this weeks calorie count is
+        // Get the current user of the app.
+        curUser = mAuth.getCurrentUser();
+
+        //Code to change values of both progress bars and what the this weeks sleep is
         final ProgressBar cProgress = (ProgressBar) findViewById(R.id.currentProgress);
         final ProgressBar pProgress = (ProgressBar) findViewById(R.id.previousProgress);
         final TextView sleepcount = (TextView) findViewById(R.id.avgSleep);
 
-        CharSequence totalsleep = sleep + " hours";
+        // Get a calendar object.
+        Calendar calendar = Calendar.getInstance();
 
-        cProgress.setProgress(currentprogress);
-        pProgress.setProgress(previousprogress);
-        sleepcount.setText(totalsleep);
+        // Get the current date and time.
+        Date today = calendar.getTime();
 
+        // Get just the current date as a String.
+        SimpleDateFormat df = new SimpleDateFormat("dd-MMM-yyyy", Locale.US);
+        String todaySting = df.format(today);
+
+        // Get yesterday's date and time.
+        calendar.add(Calendar.DATE, -1);
+        Date yesterday = calendar.getTime();
+
+        // Get just yesterday's date as a String.
+        String yesterdayString = df.format(yesterday);
+
+        // Get the sleep data for the current user for today.
+        DatabaseReference user = FirebaseDatabase.getInstance().getReference().child(curUser.getUid());
+        DatabaseReference sleep = user.child("Sleep").child(todaySting);
+
+        // Get the total amount of sleep for today.
+        sleep.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+
+                long totalSleep = 0;
+
+                for(DataSnapshot childData : dataSnapshot.getChildren()){
+                    Long data = (Long) childData.getValue();
+                    if(data != null){
+                        totalSleep += data;
+                    }
+                }
+
+                // Set the progress on the current progress bar.
+                cProgress.setProgress((int) totalSleep);
+
+                // Set the top text with the total amount of sleep.
+                sleepcount.setText("" + totalSleep + " hours");
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                cProgress.setProgress(0);
+                sleepcount.setText("0 hours");
+            }
+        });
+
+        // Get the sleep data for the current user for yesterday.
+        sleep = user.child("Sleep").child(yesterdayString);
+
+        // Get the total amount of sleep for yesterday.
+        sleep.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+
+                long totalSleep = 0;
+
+                for(DataSnapshot childData : dataSnapshot.getChildren()){
+                    Long data = (Long) childData.getValue();
+                    if(data != null){
+                        totalSleep += data;
+                    }
+                }
+
+                // Set the progress on the current progress bar.
+                pProgress.setProgress((int) totalSleep);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                pProgress.setProgress(0);
+            }
+        });
     }
 }

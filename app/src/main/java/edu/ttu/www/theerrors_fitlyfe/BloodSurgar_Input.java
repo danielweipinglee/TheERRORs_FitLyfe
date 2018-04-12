@@ -17,6 +17,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
+
 public class BloodSurgar_Input extends AppCompatActivity {
 
     private FirebaseAuth mAuth;
@@ -71,31 +72,35 @@ public class BloodSurgar_Input extends AppCompatActivity {
     }
     private void Log(){
 
+        float SurgarInt;
         EditText Surgar = (EditText) findViewById(R.id.bloodsurgar);
-        String SurgarS = Surgar.getText().toString();
-        float SurgarInt = Float.parseFloat(SurgarS);
-        Surgar.setText("");
-        //Use SleptInt
 
-        // Get the current date and time.
-        Date c = Calendar.getInstance().getTime();
+        if (Surgar != null && Surgar.length() > 0) {
+            String SurgarS = Surgar.getText().toString();
+            SurgarInt = Float.parseFloat(SurgarS);
+            Surgar.setText("");
+            //Use SleptInt
 
-        // Get just the current date.
-        SimpleDateFormat df = new SimpleDateFormat("dd-MMM-yyyy", Locale.US);
-        String dateString = df.format(c);
+            // Get the current date and time.
+            Date c = Calendar.getInstance().getTime();
 
-        // Get just the current time.
-        SimpleDateFormat tf = new SimpleDateFormat("hh:mm:ss", Locale.US);
-        String timeString = tf.format(c);
+            // Get just the current date.
+            SimpleDateFormat df = new SimpleDateFormat("dd-MMM-yyyy", Locale.US);
+            String dateString = df.format(c);
 
-        // Get the spot to add the entry to location /<userID>/Sleep/<current date>/<current time>
-        DatabaseReference userDB = FirebaseDatabase.getInstance().getReference().child(curUser.getUid());
-        DatabaseReference BsugarEntry = userDB.child("Blood Sugar").child(dateString).child(timeString);
+            // Get just the current time.
+            SimpleDateFormat tf = new SimpleDateFormat("hh:mm:ss", Locale.US);
+            String timeString = tf.format(c);
 
-        // Save the entry.
-        BsugarEntry.setValue(SurgarInt);
+            // Get the spot to add the entry to location /<userID>/Sleep/<current date>/<current time>
+            DatabaseReference userDB = FirebaseDatabase.getInstance().getReference().child(curUser.getUid());
+            DatabaseReference BsugarEntry = userDB.child("Blood Sugar").child(dateString).child(timeString);
 
-        // Finish the activity and return to the last activity.
-        finish();
+            // Save the entry.
+            BsugarEntry.setValue(SurgarInt);
+
+            // Finish the activity and return to the last activity.
+            finish();
+        }
     }
 }

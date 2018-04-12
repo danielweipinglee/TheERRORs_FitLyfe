@@ -38,8 +38,8 @@ public class LoginActivityTest {
      */
     @Test
     public void loginSuccessTest() {
-        String dummyEmail = new String("potatoboy@gmail.com");
-        String dummyPassword = new String("password");
+        String dummyEmail = "potatoboy@gmail.com";
+        String dummyPassword = "password";
 
         // Sign in with test account
         onView(withId(R.id.email)).perform(typeText(dummyEmail));

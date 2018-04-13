@@ -7,6 +7,7 @@ import android.os.Handler;
 import android.support.v4.content.res.ResourcesCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ProgressBar;
@@ -40,9 +41,14 @@ public class Calorie_Consumption extends AppCompatActivity {
             }
         });
 
-        Resources res = getResources();
-        Drawable drawable = ResourcesCompat.getDrawable(getResources(),R.drawable.custom_progressbar_drawable, null);
-        final ProgressBar mProgress = (ProgressBar) findViewById(R.id.circularProgressbar);
+        //Added back button to the action bar
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+    Resources res = getResources();
+    Drawable drawable = ResourcesCompat.getDrawable(getResources(), R.drawable.custom_progressbar_drawable, null);
+    final ProgressBar mProgress = (ProgressBar) findViewById(R.id.circularProgressbar);
+
         mProgress.setProgress(0);   // Main Progress
         mProgress.setSecondaryProgress(100); // Secondary Progress
         mProgress.setMax(100); // Maximum Progress
@@ -53,48 +59,67 @@ public class Calorie_Consumption extends AppCompatActivity {
         animation.setInterpolator(new DecelerateInterpolator());
         animation.start();*/
 
-        tv = (TextView) findViewById(R.id.tv);
-        new Thread(new Runnable() {
+    tv =(TextView)
 
-            @Override
-            public void run() {
-                // TODO Auto-generated method stub
-                //Indicates when the progress bar will stop
-                while (pStatus < goalpercentage) {
-                    pStatus += 1;
+    findViewById(R.id.tv);
+        new
 
-                    handler.post(new Runnable() {
+    Thread(new Runnable() {
 
-                        @Override
-                        public void run() {
-                            // TODO Auto-generated method stub
-                            mProgress.setProgress(pStatus);
-                            tv.setText(pStatus + "%");
+        @Override
+        public void run () {
+            // TODO Auto-generated method stub
+            //Indicates when the progress bar will stop
+            while (pStatus < goalpercentage) {
+                pStatus += 1;
 
-                        }
-                    });
-                    try {
-                        // Sleep for 200 milliseconds.
-                        // Just to display the progress slowly
-                        Thread.sleep(16); //thread will take approx 1.5 seconds to finish
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
+                handler.post(new Runnable() {
+
+                    @Override
+                    public void run() {
+                        // TODO Auto-generated method stub
+                        mProgress.setProgress(pStatus);
+                        tv.setText(pStatus + "%");
+
                     }
+                });
+                try {
+                    // Sleep for 200 milliseconds.
+                    // Just to display the progress slowly
+                    Thread.sleep(16); //thread will take approx 1.5 seconds to finish
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
                 }
             }
-        }).start();
+        }
+    }).
 
+    start();
 
-        //Code to change values of both progress bars and what the this weeks calorie count is
-        final ProgressBar cProgress = (ProgressBar) findViewById(R.id.currentProgress);
-        final ProgressBar pProgress = (ProgressBar) findViewById(R.id.previousProgress);
-        final TextView caloriecount = (TextView) findViewById(R.id.waterCount);
+    //Code to change values of both progress bars and what the this weeks calorie count is
+    final ProgressBar cProgress = (ProgressBar) findViewById(R.id.currentProgress);
+    final ProgressBar pProgress = (ProgressBar) findViewById(R.id.previousProgress);
+    final TextView caloriecount = (TextView) findViewById(R.id.calorieCount);
 
-        CharSequence totalcalories = calories + " Calories";
+    CharSequence totalcalories = calories + " Calories";
 
         cProgress.setProgress(currentprogress);
         pProgress.setProgress(previousprogress);
         caloriecount.setText(totalcalories);
 
+
+}
+    //Method functionality for back button
+    public boolean onOptionsItemSelected(MenuItem item){
+
+        int id = item.getItemId();
+
+        if(id == android.R.id.home){
+            this.finish();
+        }
+
+
+        return super.onOptionsItemSelected(item);
     }
+
 }

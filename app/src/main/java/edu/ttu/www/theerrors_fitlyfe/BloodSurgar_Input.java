@@ -2,6 +2,7 @@ package edu.ttu.www.theerrors_fitlyfe;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -32,13 +33,11 @@ public class BloodSurgar_Input extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         curUser = mAuth.getCurrentUser();
 
-        ImageButton advance = (ImageButton) findViewById(R.id.Back);
-        advance.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                finish();
-            }
-        });
+        //Added back button to the action bar
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+      
 
         Button Submit = (Button) findViewById(R.id.submit);
         Submit.setOnClickListener(new View.OnClickListener() {
@@ -102,5 +101,18 @@ public class BloodSurgar_Input extends AppCompatActivity {
             // Finish the activity and return to the last activity.
             finish();
         }
+    }
+
+    //Method functionality for back button
+    public boolean onOptionsItemSelected(MenuItem item){
+
+        int id = item.getItemId();
+
+        if(id == android.R.id.home){
+            this.finish();
+        }
+
+
+        return super.onOptionsItemSelected(item);
     }
 }

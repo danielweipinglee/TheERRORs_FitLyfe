@@ -7,6 +7,7 @@ import android.os.Handler;
 import android.support.v4.content.res.ResourcesCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ProgressBar;
@@ -47,6 +48,10 @@ public class Exercise_log extends AppCompatActivity {
 
             }
         });
+
+        //Added back button to the action bar
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
 
         Resources res = getResources();
@@ -98,7 +103,7 @@ public class Exercise_log extends AppCompatActivity {
         //Code to change values of both progress bars and what the this weeks calorie count is
         final ProgressBar cProgress = (ProgressBar) findViewById(R.id.currentProgress);
         final ProgressBar pProgress = (ProgressBar) findViewById(R.id.previousProgress);
-        final TextView hourlycount = (TextView) findViewById(R.id.waterCount);
+        final TextView hourlycount = (TextView) findViewById(R.id.calorieCount);
 
         CharSequence totalhours = hours + " Hours";
 
@@ -106,6 +111,19 @@ public class Exercise_log extends AppCompatActivity {
         pProgress.setProgress(previousprogress);
         hourlycount.setText(totalhours);
 
+    }
+
+    //Method functionality for back button
+    public boolean onOptionsItemSelected(MenuItem item){
+
+        int id = item.getItemId();
+
+        if(id == android.R.id.home){
+            this.finish();
+        }
+
+
+        return super.onOptionsItemSelected(item);
     }
 }
 

@@ -1,6 +1,5 @@
 package edu.ttu.www.theerrors_fitlyfe;
 
-import android.support.test.espresso.intent.rule.IntentsTestRule;
 import android.support.test.rule.ActivityTestRule;
 
 import org.junit.Rule;
@@ -141,13 +140,13 @@ public class CreateAcctTest {
     @Test
     public void UITest() {
         onView(withId(R.id.name_field)).check(matches(withHint("Name")));
-        onView(withId(R.id.username_field)).check(matches(withHint("UserName")));
+        onView(withId(R.id.username_field)).check(matches(withHint("User Name")));
         onView(withId(R.id.password_field)).check(matches(withHint("Password")));
         onView(withId(R.id.confirm_password_field)).check(matches(withHint("Confirm Password")));
         onView(withId(R.id.email_field)).check(matches(withHint("Email")));
         onView(withId(R.id.age_field)).check(matches(withHint("Age")));
-        onView(withId(R.id.weight_field)).check(matches(withHint("Weight")));
-        onView(withId(R.id.height_field)).check(matches(withHint("Height")));
+        onView(withId(R.id.weight_field)).check(matches(withHint("Weight (lb)")));
+        onView(withId(R.id.height_field)).check(matches(withHint("Height (ft)")));
         onView(withId(R.id.gender_field)).check(matches(withHint("Gender")));
         onView(withId(R.id.create_account_button)).check(matches(withText("Create Account")));
     }

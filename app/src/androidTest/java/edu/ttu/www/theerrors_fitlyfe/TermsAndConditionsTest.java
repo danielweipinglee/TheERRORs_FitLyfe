@@ -1,6 +1,5 @@
 package edu.ttu.www.theerrors_fitlyfe;
 
-import android.support.test.espresso.intent.rule.IntentsTestRule;
 import android.support.test.rule.ActivityTestRule;
 
 import org.junit.Rule;
@@ -8,11 +7,7 @@ import org.junit.Test;
 
 import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.action.ViewActions.click;
-import static android.support.test.espresso.assertion.ViewAssertions.matches;
-import static android.support.test.espresso.matcher.ViewMatchers.hasErrorText;
-import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
-import static android.support.test.espresso.matcher.ViewMatchers.withText;
 import static junit.framework.Assert.assertFalse;
 import static junit.framework.Assert.assertTrue;
 
@@ -47,8 +42,6 @@ public class TermsAndConditionsTest {
      */
     @Test
     public void declineTest() {
-
-        String declineError = "Terms and conditions must be accepted.";
 
         // Attempt to proceed without accepting the T&C
         onView(withId(R.id.continueButton))

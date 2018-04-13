@@ -1,17 +1,13 @@
 package edu.ttu.www.theerrors_fitlyfe;
 
 import android.support.test.espresso.intent.Intents;
-import android.support.test.rule.ActivityTestRule;
-import android.widget.ProgressBar;
-import android.widget.TextView;
+import android.support.test.espresso.intent.rule.IntentsTestRule;
 
-import org.junit.Assert;
 import org.junit.Rule;
 import org.junit.Test;
 
 import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.action.ViewActions.click;
-import static android.support.test.espresso.action.ViewActions.typeText;
 import static android.support.test.espresso.intent.matcher.IntentMatchers.hasComponent;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
 
@@ -22,8 +18,8 @@ import static android.support.test.espresso.matcher.ViewMatchers.withId;
 public class WaterConsumptionTest {
 
     @Rule
-    public ActivityTestRule<Water_Consumption> activityRule =
-            new ActivityTestRule<>(Water_Consumption.class);
+    public IntentsTestRule<Water_Consumption> activityRule =
+            new IntentsTestRule<>(Water_Consumption.class);
 
     /*
      * Verify that clicking the add button launches the sleep input activity
@@ -36,7 +32,7 @@ public class WaterConsumptionTest {
 
         // Make sure the appropriate page launches
         Intents.intended(hasComponent(
-                "package edu.ttu.www.theerrors_fitlyfe.Water_Input"));
+                Water_Input.class.getName()));
     }
 
     /*

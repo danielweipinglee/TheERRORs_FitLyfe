@@ -1,7 +1,5 @@
 package edu.ttu.www.theerrors_fitlyfe;
 
-import android.support.test.espresso.intent.Intents;
-import android.support.test.espresso.intent.matcher.IntentMatchers;
 import android.support.test.rule.ActivityTestRule;
 
 import org.junit.Rule;

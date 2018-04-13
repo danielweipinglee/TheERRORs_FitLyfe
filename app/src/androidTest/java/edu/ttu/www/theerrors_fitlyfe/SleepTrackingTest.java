@@ -1,17 +1,13 @@
 package edu.ttu.www.theerrors_fitlyfe;
 
 import android.support.test.espresso.intent.Intents;
-import android.support.test.rule.ActivityTestRule;
-import android.widget.ProgressBar;
-import android.widget.TextView;
+import android.support.test.espresso.intent.rule.IntentsTestRule;
 
-import org.junit.Assert;
 import org.junit.Rule;
 import org.junit.Test;
 
 import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.action.ViewActions.click;
-import static android.support.test.espresso.action.ViewActions.typeText;
 import static android.support.test.espresso.intent.matcher.IntentMatchers.hasComponent;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
 
@@ -22,8 +18,8 @@ import static android.support.test.espresso.matcher.ViewMatchers.withId;
 public class SleepTrackingTest {
 
     @Rule
-    public ActivityTestRule<Sleep_Tracking> activityRule =
-            new ActivityTestRule<>(Sleep_Tracking.class);
+    public IntentsTestRule<Sleep_Tracking> activityRule =
+            new IntentsTestRule<>(Sleep_Tracking.class);
 
     /*
      * Verify that clicking the add button launches the sleep input activity
@@ -36,7 +32,7 @@ public class SleepTrackingTest {
 
         // Make sure the appropriate page launches
         Intents.intended(hasComponent(
-                "package edu.ttu.www.theerrors_fitlyfe.Sleep_Input"));
+                Sleep_Input.class.getName()));
     }
 
     /*

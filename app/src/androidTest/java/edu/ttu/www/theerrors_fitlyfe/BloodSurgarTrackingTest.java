@@ -18,8 +18,10 @@ public class BloodSurgarTrackingTest {
     /*
      * TODO: when blood sugar tracking finished
      */
+    /**
     @Test
     public void test() {
 
     }
+    /**/
 }

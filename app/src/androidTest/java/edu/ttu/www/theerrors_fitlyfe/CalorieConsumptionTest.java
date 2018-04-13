@@ -1,19 +1,13 @@
 package edu.ttu.www.theerrors_fitlyfe;
 
 import android.support.test.espresso.intent.Intents;
-import android.support.test.rule.ActivityTestRule;
-import android.view.View;
-import android.widget.ProgressBar;
-import android.widget.TextView;
-
-import junit.framework.Assert;
+import android.support.test.espresso.intent.rule.IntentsTestRule;
 
 import org.junit.Rule;
 import org.junit.Test;
 
 import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.action.ViewActions.click;
-import static android.support.test.espresso.action.ViewActions.typeText;
 import static android.support.test.espresso.intent.matcher.IntentMatchers.hasComponent;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
 
@@ -24,8 +18,8 @@ import static android.support.test.espresso.matcher.ViewMatchers.withId;
 public class CalorieConsumptionTest {
 
     @Rule
-    public ActivityTestRule<Calorie_Consumption> activityRule =
-            new ActivityTestRule<>(Calorie_Consumption.class);
+    public IntentsTestRule<Calorie_Consumption> activityRule =
+            new IntentsTestRule<>(Calorie_Consumption.class);
 
     /*
      * Verify that clicking the add button launches the calorie input activity
@@ -38,7 +32,7 @@ public class CalorieConsumptionTest {
 
         // Make sure the appropriate page launches
         Intents.intended(hasComponent(
-                "package edu.ttu.www.theerrors_fitlyfe.Calorie_Input"));
+                Calorie_Input.class.getName()));
     }
 
     /*

@@ -1,17 +1,13 @@
 package edu.ttu.www.theerrors_fitlyfe;
 
 import android.support.test.espresso.intent.Intents;
-import android.support.test.rule.ActivityTestRule;
-import android.widget.ProgressBar;
-import android.widget.TextView;
+import android.support.test.espresso.intent.rule.IntentsTestRule;
 
-import org.junit.Assert;
 import org.junit.Rule;
 import org.junit.Test;
 
 import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.action.ViewActions.click;
-import static android.support.test.espresso.action.ViewActions.typeText;
 import static android.support.test.espresso.intent.matcher.IntentMatchers.hasComponent;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
 
@@ -22,8 +18,8 @@ import static android.support.test.espresso.matcher.ViewMatchers.withId;
 public class ExerciseLogTest {
 
     @Rule
-    public ActivityTestRule<Exercise_log> activityRule =
-            new ActivityTestRule<>(Exercise_log.class);
+    public IntentsTestRule<Exercise_log> activityRule =
+            new IntentsTestRule<>(Exercise_log.class);
 
     /*
      * Verify that clicking the add button launches the exercise input activity
@@ -36,14 +32,14 @@ public class ExerciseLogTest {
 
         // Make sure the appropriate page launches
         Intents.intended(hasComponent(
-                "package edu.ttu.www.theerrors_fitlyfe.Exercise_Input"));
+                Exercise_Input.class.getName()));
     }
 
     /*
      * Verify that the GUI updates when exercises are logged
      * TODO: Uncomment when functionality exists
      */
-    /**/
+    /**
     @Test
     public void guiUpdateTest() {
 

@@ -2,7 +2,6 @@ package edu.ttu.www.theerrors_fitlyfe;
 
 import android.support.test.espresso.intent.Intents;
 import android.support.test.espresso.intent.rule.IntentsTestRule;
-import android.support.test.rule.ActivityTestRule;
 
 import org.junit.Rule;
 import org.junit.Test;
@@ -23,11 +22,6 @@ import static junit.framework.Assert.assertTrue;
 
 public class LoginActivityTest {
 
-    // Create activity instance
-    @Rule
-    public ActivityTestRule<LoginActivity> activityRule = new ActivityTestRule<>(
-            LoginActivity.class);
-
     @Rule
     public IntentsTestRule<LoginActivity> intentsTestRule =
             new IntentsTestRule<>(LoginActivity.class);
@@ -36,9 +30,11 @@ public class LoginActivityTest {
      * Test login with existing account
      */
     @Test
-    public void loginSuccessTest() {
+    public void loginSuccessTest() throws InterruptedException {
         String dummyEmail = "potatoboy@gmail.com";
         String dummyPassword = "password";
+
+        Thread.sleep(1500);
 
         // Sign in with test account
         onView(withId(R.id.email)).perform(typeText(dummyEmail));
@@ -46,7 +42,7 @@ public class LoginActivityTest {
         onView(withId(R.id.sign_in_button)).perform(click());
 
         // Successful login should end the activity
-        assertTrue(activityRule.getActivity().isFinishing());
+        assertTrue(intentsTestRule.getActivity().isFinishing());
     }
 
     /*
@@ -54,8 +50,8 @@ public class LoginActivityTest {
      */
     @Test
     public void loginWrongPasswordTest() {
-        String dummyEmail = new String("testyboy@gmail.com");
-        String wrongPassword = new String("incorrectpassword");
+        String dummyEmail = "testyboy@gmail.com";
+        String wrongPassword = "incorrectpassword";
 
         // Sign in with test account
         onView(withId(R.id.email)).perform(typeText(dummyEmail));
@@ -63,7 +59,7 @@ public class LoginActivityTest {
         onView(withId(R.id.sign_in_button)).perform(click());
 
         // Activity should not finish
-        assertFalse(activityRule.getActivity().isFinishing());
+        assertFalse(intentsTestRule.getActivity().isFinishing());
     }
 
     /*
@@ -71,8 +67,8 @@ public class LoginActivityTest {
     */
     @Test
     public void loginNoAccountTest() {
-        String dummyEmail = new String("notregistered@gmail.com");
-        String wrongPassword = new String("password");
+        String dummyEmail = "notregistered@gmail.com";
+        String wrongPassword = "password";
 
         // Attempt sign in
         onView(withId(R.id.email)).perform(typeText(dummyEmail));
@@ -80,7 +76,7 @@ public class LoginActivityTest {
         onView(withId(R.id.sign_in_button)).perform(click());
 
         // Activity should not finish
-        assertFalse(activityRule.getActivity().isFinishing());
+        assertFalse(intentsTestRule.getActivity().isFinishing());
     }
 
     /*
@@ -100,7 +96,7 @@ public class LoginActivityTest {
     */
     @Test
     public void UITest() {
-        onView(withId(R.id.sign_in_button)).check(matches(withText("Sign In")));
+        onView(withId(R.id.sign_in_button)).check(matches(withText("Sign in")));
         onView(withId(R.id.register_button)).check(matches(withText("Register")));
     }
 }

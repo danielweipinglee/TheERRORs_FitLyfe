@@ -52,8 +52,10 @@
             android:label="@string/title_activity_exercise_log" />
         <activity
             android:name=".Exercise_Input"
-            android:label="@string/title_activity_exercise_input">
-        </activity>
+            android:label="@string/title_activity_exercise_input" />
+        <activity
+            android:name=".Weight_Input"
+            android:label="Weight Input" />
     </application>
 
 </manifest>

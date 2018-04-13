@@ -1,10 +1,14 @@
-package edu.ttu.www.theerrors_fitlyfe;
+package edu.ttu.www.theerrors_fitlyfe.integrationtest;
 
 import android.support.test.espresso.intent.Intents;
 import android.support.test.espresso.intent.rule.IntentsTestRule;
+import android.support.test.espresso.matcher.ViewMatchers;
 
 import org.junit.Rule;
 import org.junit.Test;
+
+import edu.ttu.www.theerrors_fitlyfe.LoginActivity;
+import edu.ttu.www.theerrors_fitlyfe.R;
 
 import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.action.ViewActions.click;
@@ -37,7 +41,7 @@ public class LoginActivityTest {
         Thread.sleep(1500);
 
         // Sign in with test account
-        onView(withId(R.id.email)).perform(typeText(dummyEmail));
+        onView(ViewMatchers.withId(R.id.email)).perform(typeText(dummyEmail));
         onView(withId(R.id.password)).perform(typeText(dummyPassword));
         onView(withId(R.id.sign_in_button)).perform(click());
 

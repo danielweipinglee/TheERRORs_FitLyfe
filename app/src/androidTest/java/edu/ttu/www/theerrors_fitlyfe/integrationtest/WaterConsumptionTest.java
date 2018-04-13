@@ -1,10 +1,15 @@
-package edu.ttu.www.theerrors_fitlyfe;
+package edu.ttu.www.theerrors_fitlyfe.integrationtest;
 
 import android.support.test.espresso.intent.Intents;
 import android.support.test.espresso.intent.rule.IntentsTestRule;
+import android.support.test.espresso.matcher.ViewMatchers;
 
 import org.junit.Rule;
 import org.junit.Test;
+
+import edu.ttu.www.theerrors_fitlyfe.R;
+import edu.ttu.www.theerrors_fitlyfe.Water_Consumption;
+import edu.ttu.www.theerrors_fitlyfe.Water_Input;
 
 import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.action.ViewActions.click;
@@ -12,31 +17,31 @@ import static android.support.test.espresso.intent.matcher.IntentMatchers.hasCom
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
 
 /**
- * Integration tests for the ExerciseLog and ExerciseInput activities
+ * Integration tests for WaterConsumption and WaterInput activities
  */
 
-public class ExerciseLogTest {
+public class WaterConsumptionTest {
 
     @Rule
-    public IntentsTestRule<Exercise_log> activityRule =
-            new IntentsTestRule<>(Exercise_log.class);
+    public IntentsTestRule<Water_Consumption> activityRule =
+            new IntentsTestRule<>(Water_Consumption.class);
 
     /*
-     * Verify that clicking the add button launches the exercise input activity
+     * Verify that clicking the add button launches the sleep input activity
      */
     @Test
     public void intentTest() {
 
         // Click the add button
-        onView(withId(R.id.Add)).perform(click());
+        onView(ViewMatchers.withId(R.id.Add)).perform(click());
 
         // Make sure the appropriate page launches
         Intents.intended(hasComponent(
-                Exercise_Input.class.getName()));
+                Water_Input.class.getName()));
     }
 
     /*
-     * Verify that the GUI updates when exercises are logged
+     * Verify that the GUI updates when waters are logged
      * TODO: Uncomment when functionality exists
      */
     /**
@@ -48,29 +53,28 @@ public class ExerciseLogTest {
                 activityRule.getActivity().findViewById(R.id.currentProgress);
         final ProgressBar previousProgressBar =
                 activityRule.getActivity().findViewById(R.id.previousProgress);
-        final TextView exerciseCountView =
-                activityRule.getActivity().findViewById(R.id.exerciseCount);
+        final TextView waterCountView =
+                activityRule.getActivity().findViewById(R.id.waterCount);
 
         final int currentProgressInital = currentProgressBar.getProgress();
         final int previousProgressInitial = previousProgressBar.getProgress();
-        final int exerciseCountInitial = Integer.parseInt((String) exerciseCountView.getText());
+        final int waterCountInitial = Integer.parseInt((String) waterCountView.getText());
 
         // Click the add button
         onView(withId(R.id.Add)).perform(click());
 
-        // Add exercise
-        onView(withId(R.id.workoutname)).perform(typeText("Power Cleans"));
-        onView(withId(R.id.exercise)).perform(typeText("60"));
+        // Add water
+        onView(withId(R.id.water)).perform(typeText("1000"));
         onView(withId(R.id.submit)).perform(click());
 
         // See if the GUI has changed
         final int currentProgressNew = currentProgressBar.getProgress();
         final int previousProgressNew = previousProgressBar.getProgress();
-        final int exerciseCountNew = Integer.parseInt((String) exerciseCountView.getText());
+        final int waterCountNew = Integer.parseInt((String) waterCountView.getText());
 
-        Assert.assertEquals(currentProgressNew, currentProgressInital + 60);
+        Assert.assertEquals(currentProgressNew, currentProgressInital + 1000);
         Assert.assertEquals(previousProgressNew, previousProgressInitial);
-        Assert.assertEquals(exerciseCountNew, exerciseCountInitial + 60);
+        Assert.assertEquals(waterCountNew, waterCountInitial + 1000);
     }
     /**/
 }

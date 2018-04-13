@@ -1,10 +1,15 @@
-package edu.ttu.www.theerrors_fitlyfe;
+package edu.ttu.www.theerrors_fitlyfe.integrationtest;
 
 import android.support.test.espresso.intent.Intents;
 import android.support.test.espresso.intent.rule.IntentsTestRule;
+import android.support.test.espresso.matcher.ViewMatchers;
 
 import org.junit.Rule;
 import org.junit.Test;
+
+import edu.ttu.www.theerrors_fitlyfe.Exercise_Input;
+import edu.ttu.www.theerrors_fitlyfe.Exercise_log;
+import edu.ttu.www.theerrors_fitlyfe.R;
 
 import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.action.ViewActions.click;
@@ -12,31 +17,31 @@ import static android.support.test.espresso.intent.matcher.IntentMatchers.hasCom
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
 
 /**
- * Integration tests for the SleepTracking and SleepInput activities
+ * Integration tests for the ExerciseLog and ExerciseInput activities
  */
 
-public class SleepTrackingTest {
+public class ExerciseLogTest {
 
     @Rule
-    public IntentsTestRule<Sleep_Tracking> activityRule =
-            new IntentsTestRule<>(Sleep_Tracking.class);
+    public IntentsTestRule<Exercise_log> activityRule =
+            new IntentsTestRule<>(Exercise_log.class);
 
     /*
-     * Verify that clicking the add button launches the sleep input activity
+     * Verify that clicking the add button launches the exercise input activity
      */
     @Test
     public void intentTest() {
 
         // Click the add button
-        onView(withId(R.id.Add)).perform(click());
+        onView(ViewMatchers.withId(R.id.Add)).perform(click());
 
         // Make sure the appropriate page launches
         Intents.intended(hasComponent(
-                Sleep_Input.class.getName()));
+                Exercise_Input.class.getName()));
     }
 
     /*
-     * Verify that the GUI updates when sleeps are logged
+     * Verify that the GUI updates when exercises are logged
      * TODO: Uncomment when functionality exists
      */
     /**
@@ -48,28 +53,29 @@ public class SleepTrackingTest {
                 activityRule.getActivity().findViewById(R.id.currentProgress);
         final ProgressBar previousProgressBar =
                 activityRule.getActivity().findViewById(R.id.previousProgress);
-        final TextView sleepCountView =
-                activityRule.getActivity().findViewById(R.id.avgSleep);
+        final TextView exerciseCountView =
+                activityRule.getActivity().findViewById(R.id.exerciseCount);
 
         final int currentProgressInital = currentProgressBar.getProgress();
         final int previousProgressInitial = previousProgressBar.getProgress();
-        final int sleepCountInitial = Integer.parseInt((String) sleepCountView.getText());
+        final int exerciseCountInitial = Integer.parseInt((String) exerciseCountView.getText());
 
         // Click the add button
         onView(withId(R.id.Add)).perform(click());
 
-        // Add sleep
-        onView(withId(R.id.sleep)).perform(typeText("10"));
+        // Add exercise
+        onView(withId(R.id.workoutname)).perform(typeText("Power Cleans"));
+        onView(withId(R.id.exercise)).perform(typeText("60"));
         onView(withId(R.id.submit)).perform(click());
 
         // See if the GUI has changed
         final int currentProgressNew = currentProgressBar.getProgress();
         final int previousProgressNew = previousProgressBar.getProgress();
-        final int sleepCountNew = Integer.parseInt((String) sleepCountView.getText());
+        final int exerciseCountNew = Integer.parseInt((String) exerciseCountView.getText());
 
-        Assert.assertEquals(currentProgressNew, currentProgressInital + 10);
+        Assert.assertEquals(currentProgressNew, currentProgressInital + 60);
         Assert.assertEquals(previousProgressNew, previousProgressInitial);
-        Assert.assertEquals(sleepCountNew, sleepCountInitial + 10);
+        Assert.assertEquals(exerciseCountNew, exerciseCountInitial + 60);
     }
     /**/
 }

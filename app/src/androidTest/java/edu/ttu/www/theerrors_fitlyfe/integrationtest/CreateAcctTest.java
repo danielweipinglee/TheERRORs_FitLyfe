@@ -1,18 +1,19 @@
-package edu.ttu.www.theerrors_fitlyfe;
+package edu.ttu.www.theerrors_fitlyfe.integrationtest;
 
+import android.support.test.espresso.matcher.ViewMatchers;
 import android.support.test.rule.ActivityTestRule;
 
 import org.junit.Rule;
 import org.junit.Test;
 
+import edu.ttu.www.theerrors_fitlyfe.CreateAcct;
+import edu.ttu.www.theerrors_fitlyfe.R;
+
 import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.action.ViewActions.click;
 import static android.support.test.espresso.action.ViewActions.closeSoftKeyboard;
 import static android.support.test.espresso.action.ViewActions.typeText;
-import static android.support.test.espresso.assertion.ViewAssertions.matches;
-import static android.support.test.espresso.matcher.ViewMatchers.withHint;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
-import static android.support.test.espresso.matcher.ViewMatchers.withText;
 import static junit.framework.Assert.assertFalse;
 
 /*
@@ -49,7 +50,7 @@ public class CreateAcctTest {
         String existingGender = "Male";
 
         // Fill out form with existing credentials and attempt account creation
-        onView(withId(R.id.name_field)).perform(typeText(existingName));
+        onView(ViewMatchers.withId(R.id.name_field)).perform(typeText(existingName));
         onView(withId(R.id.username_field)).perform(typeText(existingUname));
         onView(withId(R.id.password_field)).perform(typeText(existingPassword));
         onView(withId(R.id.confirm_password_field)).perform(typeText(existingPassword));
@@ -131,23 +132,5 @@ public class CreateAcctTest {
 
         // Activity should not finish
         assertFalse(activityRule.getActivity().isFinishing());
-    }
-
-
-    /*
-     * Make sure UI behaves
-     */
-    @Test
-    public void UITest() {
-        onView(withId(R.id.name_field)).check(matches(withHint("Name")));
-        onView(withId(R.id.username_field)).check(matches(withHint("User Name")));
-        onView(withId(R.id.password_field)).check(matches(withHint("Password")));
-        onView(withId(R.id.confirm_password_field)).check(matches(withHint("Confirm Password")));
-        onView(withId(R.id.email_field)).check(matches(withHint("Email")));
-        onView(withId(R.id.age_field)).check(matches(withHint("Age")));
-        onView(withId(R.id.weight_field)).check(matches(withHint("Weight (lb)")));
-        onView(withId(R.id.height_field)).check(matches(withHint("Height (ft)")));
-        onView(withId(R.id.gender_field)).check(matches(withHint("Gender")));
-        onView(withId(R.id.create_account_button)).check(matches(withText("Create Account")));
     }
 }

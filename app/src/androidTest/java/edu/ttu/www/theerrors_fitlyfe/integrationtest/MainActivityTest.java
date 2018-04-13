@@ -1,13 +1,18 @@
-package edu.ttu.www.theerrors_fitlyfe;
+package edu.ttu.www.theerrors_fitlyfe.integrationtest;
 
 import android.support.test.espresso.intent.rule.*;
 import android.support.test.espresso.intent.Intents;
+import android.support.test.espresso.matcher.ViewMatchers;
 import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
 
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+
+import edu.ttu.www.theerrors_fitlyfe.Calorie_Consumption;
+import edu.ttu.www.theerrors_fitlyfe.MainActivity;
+import edu.ttu.www.theerrors_fitlyfe.R;
 
 import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.action.ViewActions.click;
@@ -57,7 +62,7 @@ public class MainActivityTest {
     @Test
     public void calorieConsumptionIntentTest() {
         // Click calorie consumption button
-        onView(withId(R.id.calorie_consumption_button))
+        onView(ViewMatchers.withId(R.id.calorie_consumption_button))
                 .perform(click());
 
         // Make sure the calorie consumption page is launched

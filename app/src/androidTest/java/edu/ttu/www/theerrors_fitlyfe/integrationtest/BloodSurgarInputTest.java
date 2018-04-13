@@ -1,9 +1,13 @@
-package edu.ttu.www.theerrors_fitlyfe;
+package edu.ttu.www.theerrors_fitlyfe.integrationtest;
 
+import android.support.test.espresso.matcher.ViewMatchers;
 import android.support.test.rule.ActivityTestRule;
 
 import org.junit.Rule;
 import org.junit.Test;
+
+import edu.ttu.www.theerrors_fitlyfe.BloodSurgar_Input;
+import edu.ttu.www.theerrors_fitlyfe.R;
 
 import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.action.ViewActions.click;
@@ -28,7 +32,7 @@ public class BloodSurgarInputTest {
     @Test
     public void dataEntryTest() {
         // Enter data and click button
-        onView(withId(R.id.bloodsurgar)).perform(typeText("4.5"));
+        onView(ViewMatchers.withId(R.id.bloodsurgar)).perform(typeText("4.5"));
         onView(withId(R.id.submit)).perform(click());
 
         // Ensure activity completes

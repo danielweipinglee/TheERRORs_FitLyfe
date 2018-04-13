@@ -1,10 +1,15 @@
-package edu.ttu.www.theerrors_fitlyfe;
+package edu.ttu.www.theerrors_fitlyfe.integrationtest;
 
 import android.support.test.espresso.intent.Intents;
 import android.support.test.espresso.intent.rule.IntentsTestRule;
+import android.support.test.espresso.matcher.ViewMatchers;
 
 import org.junit.Rule;
 import org.junit.Test;
+
+import edu.ttu.www.theerrors_fitlyfe.Calorie_Consumption;
+import edu.ttu.www.theerrors_fitlyfe.Calorie_Input;
+import edu.ttu.www.theerrors_fitlyfe.R;
 
 import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.action.ViewActions.click;
@@ -12,34 +17,34 @@ import static android.support.test.espresso.intent.matcher.IntentMatchers.hasCom
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
 
 /**
- * Integration tests for WaterConsumption and WaterInput activities
+ * Integration tests for the CalorieConsumption and CalorieInput activities
  */
 
-public class WaterConsumptionTest {
+public class CalorieConsumptionTest {
 
     @Rule
-    public IntentsTestRule<Water_Consumption> activityRule =
-            new IntentsTestRule<>(Water_Consumption.class);
+    public IntentsTestRule<Calorie_Consumption> activityRule =
+            new IntentsTestRule<>(Calorie_Consumption.class);
 
     /*
-     * Verify that clicking the add button launches the sleep input activity
+     * Verify that clicking the add button launches the calorie input activity
      */
     @Test
     public void intentTest() {
 
         // Click the add button
-        onView(withId(R.id.Add)).perform(click());
+        onView(ViewMatchers.withId(R.id.Add)).perform(click());
 
         // Make sure the appropriate page launches
         Intents.intended(hasComponent(
-                Water_Input.class.getName()));
+                Calorie_Input.class.getName()));
     }
 
     /*
-     * Verify that the GUI updates when waters are logged
+     * Verify that the GUI updates when calories are logged
      * TODO: Uncomment when functionality exists
      */
-    /**
+    /*
     @Test
     public void guiUpdateTest() {
 
@@ -48,28 +53,30 @@ public class WaterConsumptionTest {
                 activityRule.getActivity().findViewById(R.id.currentProgress);
         final ProgressBar previousProgressBar =
                 activityRule.getActivity().findViewById(R.id.previousProgress);
-        final TextView waterCountView =
-                activityRule.getActivity().findViewById(R.id.waterCount);
+        final TextView calorieCountView =
+                activityRule.getActivity().findViewById(R.id.caloriecount);
 
         final int currentProgressInital = currentProgressBar.getProgress();
         final int previousProgressInitial = previousProgressBar.getProgress();
-        final int waterCountInitial = Integer.parseInt((String) waterCountView.getText());
+        final int calorieCountInitial = Integer.parseInt((String) calorieCountView.getText());
 
         // Click the add button
         onView(withId(R.id.Add)).perform(click());
 
-        // Add water
-        onView(withId(R.id.water)).perform(typeText("1000"));
+        // Add candy
+        onView(withId(R.id.foodname)).perform(typeText("Candy"));
+        onView(withId(R.id.sugar)).perform(typeText("30"));
+        onView(withId(R.id.calories)).perform(typeText("300"));
         onView(withId(R.id.submit)).perform(click());
 
         // See if the GUI has changed
         final int currentProgressNew = currentProgressBar.getProgress();
         final int previousProgressNew = previousProgressBar.getProgress();
-        final int waterCountNew = Integer.parseInt((String) waterCountView.getText());
+        final int calorieCountNew = Integer.parseInt((String) calorieCountView.getText());
 
-        Assert.assertEquals(currentProgressNew, currentProgressInital + 1000);
+        Assert.assertEquals(currentProgressNew, currentProgressInital + 300);
         Assert.assertEquals(previousProgressNew, previousProgressInitial);
-        Assert.assertEquals(waterCountNew, waterCountInitial + 1000);
+        Assert.assertEquals(calorieCountNew, calorieCountInitial + 300);
     }
-    /**/
+    */
 }

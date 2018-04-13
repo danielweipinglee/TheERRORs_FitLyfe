@@ -1,9 +1,13 @@
-package edu.ttu.www.theerrors_fitlyfe;
+package edu.ttu.www.theerrors_fitlyfe.integrationtest;
 
+import android.support.test.espresso.matcher.ViewMatchers;
 import android.support.test.rule.ActivityTestRule;
 
 import org.junit.Rule;
 import org.junit.Test;
+
+import edu.ttu.www.theerrors_fitlyfe.R;
+import edu.ttu.www.theerrors_fitlyfe.TermandConditionActivity;
 
 import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.action.ViewActions.click;
@@ -28,7 +32,7 @@ public class TermsAndConditionsTest {
     @Test
     public void acceptTest() {
         // Accept the T&C
-        onView(withId(R.id.acceptCheckBox))
+        onView(ViewMatchers.withId(R.id.acceptCheckBox))
                 .perform(click());
         onView(withId(R.id.continueButton))
                 .perform(click());

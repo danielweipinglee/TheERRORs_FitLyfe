@@ -16,17 +16,17 @@ import static android.support.test.espresso.intent.matcher.IntentMatchers.hasCom
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
 
 /**
- * Integration tests for the ExerciseLog and ExerciseInput activities
+ * Integration tests for the SleepTracking and SleepInput activities
  */
 
-public class ExerciseLogTest {
+public class SleepTrackingTest {
 
     @Rule
     public ActivityTestRule<Calorie_Consumption> activityRule =
             new ActivityTestRule<>(Calorie_Consumption.class);
 
     /*
-     * Verify that clicking the add button launches the exercise input activity
+     * Verify that clicking the add button launches the sleep input activity
      */
     @Test
     public void intentTest() {
@@ -36,14 +36,14 @@ public class ExerciseLogTest {
 
         // Make sure the appropriate page launches
         Intents.intended(hasComponent(
-                "package edu.ttu.www.theerrors_fitlyfe.Exercise_Input"));
+                "package edu.ttu.www.theerrors_fitlyfe.Sleep_Input"));
     }
 
     /*
-     * Verify that the GUI updates when exercises are logged
+     * Verify that the GUI updates when sleeps are logged
      * TODO: Uncomment when functionality exists
      */
-    /**/
+    /**
     @Test
     public void guiUpdateTest() {
 
@@ -52,29 +52,28 @@ public class ExerciseLogTest {
                 activityRule.getActivity().findViewById(R.id.currentProgress);
         final ProgressBar previousProgressBar =
                 activityRule.getActivity().findViewById(R.id.previousProgress);
-        final TextView exerciseCountView =
-                activityRule.getActivity().findViewById(R.id.exerciseCount);
+        final TextView sleepCountView =
+                activityRule.getActivity().findViewById(R.id.avgSleep);
 
         final int currentProgressInital = currentProgressBar.getProgress();
         final int previousProgressInitial = previousProgressBar.getProgress();
-        final int exerciseCountInitial = Integer.parseInt((String) exerciseCountView.getText());
+        final int sleepCountInitial = Integer.parseInt((String) sleepCountView.getText());
 
         // Click the add button
         onView(withId(R.id.Add)).perform(click());
 
-        // Add exercise
-        onView(withId(R.id.workoutname)).perform(typeText("Power Cleans"));
-        onView(withId(R.id.exercise)).perform(typeText("60"));
+        // Add sleep
+        onView(withId(R.id.sleep)).perform(typeText("10"));
         onView(withId(R.id.submit)).perform(click());
 
         // See if the GUI has changed
         final int currentProgressNew = currentProgressBar.getProgress();
         final int previousProgressNew = previousProgressBar.getProgress();
-        final int exerciseCountNew = Integer.parseInt((String) exerciseCountView.getText());
+        final int sleepCountNew = Integer.parseInt((String) sleepCountView.getText());
 
-        Assert.assertEquals(currentProgressNew, currentProgressInital + 60);
+        Assert.assertEquals(currentProgressNew, currentProgressInital + 10);
         Assert.assertEquals(previousProgressNew, previousProgressInitial);
-        Assert.assertEquals(exerciseCountNew, exerciseCountInitial + 60);
+        Assert.assertEquals(sleepCountNew, sleepCountInitial + 10);
     }
     /**/
 }

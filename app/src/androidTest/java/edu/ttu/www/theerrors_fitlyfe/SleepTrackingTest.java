@@ -22,8 +22,8 @@ import static android.support.test.espresso.matcher.ViewMatchers.withId;
 public class SleepTrackingTest {
 
     @Rule
-    public ActivityTestRule<Calorie_Consumption> activityRule =
-            new ActivityTestRule<>(Calorie_Consumption.class);
+    public ActivityTestRule<Sleep_Tracking> activityRule =
+            new ActivityTestRule<>(Sleep_Tracking.class);
 
     /*
      * Verify that clicking the add button launches the sleep input activity

@@ -18,7 +18,7 @@ import static android.support.test.espresso.intent.matcher.IntentMatchers.hasCom
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
 
 /**
- * Integration tests for the CalorieConsumption activity
+ * Integration tests for the CalorieConsumption and CalorieInput activities
  */
 
 public class CalorieConsumptionTest {
@@ -38,7 +38,7 @@ public class CalorieConsumptionTest {
 
         // Make sure the appropriate page launches
         Intents.intended(hasComponent(
-                "package edu.ttu.www.theerrors_fitlyfe.Calorie_Consumption"));
+                "package edu.ttu.www.theerrors_fitlyfe.Calorie_Input"));
     }
 
     /*

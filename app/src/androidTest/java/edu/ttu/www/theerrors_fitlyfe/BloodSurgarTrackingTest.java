@@ -6,7 +6,7 @@ import org.junit.Rule;
 import org.junit.Test;
 
 /**
- * Created by a on 4/11/18.
+ * Integration tests for the BllodSugarTracking activirty
  */
 
 public class BloodSurgarTrackingTest {
@@ -15,6 +15,9 @@ public class BloodSurgarTrackingTest {
     public ActivityTestRule<BloodSurgar_Tracking> activityRule =
             new ActivityTestRule<>(BloodSurgar_Tracking.class);
 
+    /*
+     * TODO: when blood sugar tracking finished
+     */
     @Test
     public void test() {
 

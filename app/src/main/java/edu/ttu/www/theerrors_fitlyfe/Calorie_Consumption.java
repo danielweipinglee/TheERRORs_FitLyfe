@@ -23,8 +23,6 @@ import android.widget.TextView;
 
 public class Calorie_Consumption extends AppCompatActivity {
 
-
-
     int pStatus = 0;
     private Handler handler = new Handler();
     TextView tv;
@@ -36,16 +34,10 @@ public class Calorie_Consumption extends AppCompatActivity {
     int calories = 100;
 
     @Override
-
-
     protected void onCreate(Bundle savedInstanceState) {
-
-
-
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_calorie__consumption);
-
 
         ImageButton advance = (ImageButton) findViewById(R.id.Add);
         advance.setOnClickListener(new View.OnClickListener() {
@@ -56,7 +48,6 @@ public class Calorie_Consumption extends AppCompatActivity {
 
             }
         });
-
 
         Resources res = getResources();
         Drawable drawable = ResourcesCompat.getDrawable(getResources(),R.drawable.custom_progressbar_drawable, null);
@@ -70,7 +61,6 @@ public class Calorie_Consumption extends AppCompatActivity {
         animation.setDuration(50000);
         animation.setInterpolator(new DecelerateInterpolator());
         animation.start();*/
-
 
         tv = (TextView) findViewById(R.id.tv);
         new Thread(new Runnable() {

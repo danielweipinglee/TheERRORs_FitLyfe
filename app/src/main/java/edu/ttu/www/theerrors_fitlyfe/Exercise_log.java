@@ -14,9 +14,9 @@ import android.widget.ImageButton;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.google.firebase.auth.FirebaseAuth;
+
 public class Exercise_log extends AppCompatActivity {
-
-
 
     int pStatus = 0;
     private Handler handler = new Handler();
@@ -28,16 +28,14 @@ public class Exercise_log extends AppCompatActivity {
     int goalpercentage = 55;
     float hours = 16;
 
+    FirebaseAuth mAuth;
+
     @Override
-
-
     protected void onCreate(Bundle savedInstanceState) {
-
-
-
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_calorie__consumption);
+
+        mAuth = FirebaseAuth.getInstance();
 
         //Added back button to the action bar
         getSupportActionBar().setDisplayShowHomeEnabled(true);

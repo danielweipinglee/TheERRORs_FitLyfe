@@ -14,10 +14,9 @@ import android.widget.ImageButton;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.google.firebase.auth.FirebaseAuth;
+
 public class BloodSurgar_Tracking extends AppCompatActivity {
-
-
-
     int pStatus = 0;
     private Handler handler = new Handler();
     TextView tv;
@@ -28,17 +27,14 @@ public class BloodSurgar_Tracking extends AppCompatActivity {
     int goalpercentage = 55;
     float bloodsurgar = 100;
 
+    FirebaseAuth mAuth;
+
     @Override
-
-
     protected void onCreate(Bundle savedInstanceState) {
-
-
-
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sleep__tracking);
 
+        mAuth = FirebaseAuth.getInstance();
 
         //Added back button to the action bar
         getSupportActionBar().setDisplayShowHomeEnabled(true);
@@ -130,6 +126,7 @@ public class BloodSurgar_Tracking extends AppCompatActivity {
         }
         //Sign out Button
         if(id == R.id.sign_out) {
+            mAuth.signOut();
             Intent intent = new Intent(getBaseContext(), LoginActivity.class);
             startActivity(intent);
         }

@@ -14,9 +14,9 @@ import android.widget.ImageButton;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.google.firebase.auth.FirebaseAuth;
+
 public class Water_Consumption extends AppCompatActivity {
-
-
 
     int pStatus = 0;
     private Handler handler = new Handler();
@@ -28,13 +28,12 @@ public class Water_Consumption extends AppCompatActivity {
     int goalpercentage = 55;
     float water = 33;
 
+    private FirebaseAuth mAuth;
+
     @Override
-
-
     protected void onCreate(Bundle savedInstanceState) {
 
-
-
+        mAuth = FirebaseAuth.getInstance();
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_water_consumption);
@@ -130,6 +129,7 @@ public class Water_Consumption extends AppCompatActivity {
 
         //Sign out Button
         if(id == R.id.sign_out) {
+            mAuth.signOut();
             Intent intent = new Intent(getBaseContext(), LoginActivity.class);
             startActivity(intent);
         }

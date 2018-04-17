@@ -125,6 +125,7 @@ public class Weight_Input extends AppCompatActivity {
 
         //Sign out Button
         if(id == R.id.sign_out) {
+            mAuth.signOut();
             Intent intent = new Intent(getBaseContext(), LoginActivity.class);
             startActivity(intent);
         }

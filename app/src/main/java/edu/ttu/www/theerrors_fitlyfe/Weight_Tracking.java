@@ -15,6 +15,17 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.Locale;
 
 public class Weight_Tracking extends AppCompatActivity {
 
@@ -29,13 +40,12 @@ public class Weight_Tracking extends AppCompatActivity {
     float weight = 100;
 
     FirebaseAuth mAuth;
+    FirebaseUser curUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_sleep__tracking);
-
-        mAuth = FirebaseAuth.getInstance();
+        setContentView(R.layout.activity_weight__tracking);
 
         //Added back button to the action bar
         getSupportActionBar().setDisplayShowHomeEnabled(true);
@@ -87,18 +97,41 @@ public class Weight_Tracking extends AppCompatActivity {
             }
         }).start();
 
+        // Get the Firebase Authenticator.
+        mAuth = FirebaseAuth.getInstance();
 
-        //Code to change values of both progress bars and what the this weeks calorie count is
-        final ProgressBar cProgress = (ProgressBar) findViewById(R.id.currentProgress);
-        final ProgressBar pProgress = (ProgressBar) findViewById(R.id.previousProgress);
+        // Get the current user of the app.
+        curUser = mAuth.getCurrentUser();
+
+        //Code to change values of both progress bars and what the this weeks sleep is
         final TextView sleepcount = (TextView) findViewById(R.id.avgSleep);
 
-        CharSequence totalweight = weight + " lbs";
+        // Get the sleep data for the current user for today.
+        DatabaseReference user = FirebaseDatabase.getInstance().getReference().child(curUser.getUid());
+        DatabaseReference sleep = user.child("weight");
 
-        cProgress.setProgress(currentprogress);
-        pProgress.setProgress(previousprogress);
-        sleepcount.setText(totalweight);
+        // Get the total amount of sleep for today.
+        sleep.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
 
+                long weight = 0;
+
+                // Get the current weight from the database.
+                Long data = (Long) dataSnapshot.getValue();
+                if(data != null){
+                    weight = data;
+                }
+
+                // Set the top text with the current weight.
+                sleepcount.setText("" + weight + " lbs");
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                sleepcount.setText("0 lbs");
+            }
+        });
     }
 
     //Links this xml file with the Menu xml file so that all pages will have the same menu

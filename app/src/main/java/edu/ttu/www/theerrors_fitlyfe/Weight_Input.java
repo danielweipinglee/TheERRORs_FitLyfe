@@ -51,28 +51,6 @@ public class Weight_Input extends AppCompatActivity {
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-//  Did not mess with below because I assume its for the database and just copied it over
-
-/*      May be possible to display database in a list so that the user can see there calorie consumption
-        logs.
-
-
-
-
-        mListView = (ListView) findViewById(R.id.calorielist);
-// 1
-        final ArrayList<Calories> recipeList = Calories.getRecipesFromFile("recipes.json", this);
-// 2
-        String[] listItems = new String[recipeList.size()];
-// 3
-        for(int i = 0; i < recipeList.size(); i++){
-            Calories calorie = recipeList.get(i);
-            listItems[i] = recipe.title;
-        }
-// 4
-        ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, listItems);
-        mListView.setAdapter(adapter);
-        */
     }
     private void Log(){
 
@@ -86,17 +64,9 @@ public class Weight_Input extends AppCompatActivity {
         // Get the current date and time.
         Date c = Calendar.getInstance().getTime();
 
-        // Get just the current date.
-        SimpleDateFormat df = new SimpleDateFormat("dd-MMM-yyyy", Locale.US);
-        String dateString = df.format(c);
-
-        // Get just the current time.
-        SimpleDateFormat tf = new SimpleDateFormat("hh:mm:ss", Locale.US);
-        String timeString = tf.format(c);
-
         // Get the spot to add the entry to location /<userID>/Sleep/<current date>/<current time>
         DatabaseReference userDB = FirebaseDatabase.getInstance().getReference().child(curUser.getUid());
-        DatabaseReference WeightEntry = userDB.child("Weight").child(dateString).child(timeString);
+        DatabaseReference WeightEntry = userDB.child("weight");
 
         // Save the entry.
         WeightEntry.setValue(WeightInt);

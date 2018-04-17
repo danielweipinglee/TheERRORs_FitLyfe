@@ -61,18 +61,14 @@ public class CreateAcct extends AppCompatActivity {
         // by the Firebase authentifier.
         DatabaseReference child = reference.child(curUser.getUid());
 
-        // Put all the data to be input into a HashMap.
-        HashMap<String, String> user = new HashMap<String, String>();
-        user.put("email", email.getText().toString());
-        user.put("username", username.getText().toString());
-        user.put("name", name.getText().toString());
-        user.put("age", age.getText().toString());
-        user.put("height", height.getText().toString());
-        user.put("weight", weight.getText().toString());
-        user.put("gender", gender.getText().toString());
-
-        // Put the value into the database.
-        child.setValue(user);
+        // Put all the data to be input into the database.
+        child.child("email").setValue(email.getText().toString());
+        child.child("username").setValue(username.getText().toString());
+        child.child("name").setValue(name.getText().toString());
+        child.child("age").setValue(Integer.parseInt(age.getText().toString()));
+        child.child("height").setValue(Float.parseFloat(height.getText().toString()));
+        child.child("weight").setValue(Integer.parseInt(weight.getText().toString()));
+        child.child("gender").setValue(gender.getText().toString());
     }
 
     /* checkInputs checks the inputs from the user and determines whether they are valid.

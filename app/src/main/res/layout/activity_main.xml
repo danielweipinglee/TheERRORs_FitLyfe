@@ -107,13 +107,4 @@
         </LinearLayout>
     </ScrollView>
 
-    <Button
-        android:id="@+id/goto_login"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="goToLogin"
-        android:text="Go to login"
-        tools:layout_editor_absoluteX="138dp"
-        tools:layout_editor_absoluteY="25dp" />
-
 </android.support.constraint.ConstraintLayout>

@@ -3,6 +3,7 @@ package edu.ttu.www.theerrors_fitlyfe;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -128,13 +129,27 @@ public class Water_Input extends AppCompatActivity {
 
     }
 
-    //Method functionality for back button
+    //Links this xml file with the Menu xml file so that all pages will have the same menu
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.inputmenu, menu);
+        return true;
+    }
+
+    //Method functionality for action buttons
     public boolean onOptionsItemSelected(MenuItem item){
 
+        //Gets the id of the button that was pressed
         int id = item.getItemId();
 
+        //Back Button
         if(id == android.R.id.home){
             this.finish();
+        }
+        //Sign out Button
+        if(id == R.id.sign_out) {
+            Intent intent = new Intent(getBaseContext(), LoginActivity.class);
+            startActivity(intent);
         }
 
 

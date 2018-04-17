@@ -125,15 +125,6 @@
 
     </RelativeLayout>
 
-    <ImageButton
-        android:id="@+id/Add"
-        android:layout_width="60dp"
-        android:layout_height="63dp"
-        android:src="@drawable/plus"
-        android:background="#0000"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <TextView
         android:id="@+id/avgSleep"
         android:layout_width="wrap_content"

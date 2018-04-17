@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.os.Bundle;
@@ -133,14 +134,26 @@ public class MainActivity extends AppCompatActivity {
         }
 
     }
-
-    /*
-     * Go to the login screen on button click.
-     * @todo: Remove me after login page is stable.
-     */
-    public void goToLogin(View v) {
-        Intent intent = new Intent(getBaseContext(), LoginActivity.class);
-        startActivity(intent);
+    //Links this xml file with the Menu xml file so that all pages will have the same menu
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.inputmenu, menu);
+        return true;
     }
+
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        int id = item.getItemId();
+
+        //Sign out Button
+        if(id == R.id.sign_out) {
+            Intent intent = new Intent(getBaseContext(), LoginActivity.class);
+            startActivity(intent);
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
+
 
 }

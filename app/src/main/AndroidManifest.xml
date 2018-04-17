@@ -45,9 +45,6 @@
             android:name=".Water_Input"
             android:label="@string/title_activity_water_input" />
         <activity
-            android:name=".BloodSurgar_Input"
-            android:label="BloodSurgar_Input" />
-        <activity
             android:name=".Exercise_log"
             android:label="@string/title_activity_exercise_log" />
         <activity
@@ -55,7 +52,16 @@
             android:label="@string/title_activity_exercise_input" />
         <activity
             android:name=".Weight_Input"
-            android:label="Weight Input" />
+            android:label="@string/title_activity_weight_input" />
+        <activity
+            android:name=".Weight_Tracking"
+            android:label="@string/title_activity_weight_tracking" />
+        <activity
+            android:name=".BloodSurgar_Tracking"
+            android:label="@string/title_activity_blood_surgar_tracking" />
+        <activity
+            android:name=".BloodSurgar_Input"
+            android:label="@string/title_activity_blood_surgar_input" />
     </application>
 
 </manifest>

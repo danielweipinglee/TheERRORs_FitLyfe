@@ -7,6 +7,7 @@ import android.os.Handler;
 import android.support.v4.content.res.ResourcesCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
@@ -26,20 +27,11 @@ public class Calorie_Consumption extends AppCompatActivity {
     int calories = 100;
 
     @Override
+
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_calorie__consumption);
-
-        ImageButton advance = (ImageButton) findViewById(R.id.Add);
-        advance.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(Calorie_Consumption.this, Calorie_Input.class);
-                startActivity(intent);
-
-            }
-        });
 
         //Added back button to the action bar
         getSupportActionBar().setDisplayShowHomeEnabled(true);
@@ -109,15 +101,35 @@ public class Calorie_Consumption extends AppCompatActivity {
 
 
 }
-    //Method functionality for back button
+
+    //Links this xml file with the Menu xml file so that all pages will have the same menu
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.mainmenu, menu);
+        return true;
+    }
+
+    //Method functionality for action buttons
     public boolean onOptionsItemSelected(MenuItem item){
 
         int id = item.getItemId();
 
+        //Back Button
         if(id == android.R.id.home){
             this.finish();
         }
 
+        //Add Button
+        if(id == R.id.action_name){
+            Intent intent = new Intent(Calorie_Consumption.this, Calorie_Input.class);
+            startActivity(intent);
+
+        }
+        //Sign out Button
+        if(id == R.id.sign_out) {
+            Intent intent = new Intent(getBaseContext(), LoginActivity.class);
+            startActivity(intent);
+        }
 
         return super.onOptionsItemSelected(item);
     }

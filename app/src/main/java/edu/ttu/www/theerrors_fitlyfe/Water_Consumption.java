@@ -121,7 +121,7 @@ public class Water_Consumption extends AppCompatActivity {
         }
 
         //Add Button
-        if(id == R.id.action_name){
+        if(id == R.id.Add){
             Intent intent = new Intent(Water_Consumption.this, Water_Input.class);
             startActivity(intent);
 

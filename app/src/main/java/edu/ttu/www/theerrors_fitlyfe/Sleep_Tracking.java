@@ -190,7 +190,7 @@ public class Sleep_Tracking extends AppCompatActivity {
         }
 
         //Add Button
-        if(id == R.id.action_name){
+        if(id == R.id.Add){
             Intent intent = new Intent(Sleep_Tracking.this, Sleep_Input.class);
             startActivity(intent);
 

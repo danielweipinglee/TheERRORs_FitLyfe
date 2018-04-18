@@ -30,8 +30,8 @@ public class CalorieInputUnitTest {
     */
     @Test
     public void UITest() {
-        onView(ViewMatchers.withId(R.id.foodname)).check(matches(withHint("Enter Food")));
-        onView(withId(R.id.sugar)).check(matches(withHint("Enter Sugar")));
+        onView(ViewMatchers.withId(R.id.foodname)).check(matches(withHint("Enter Food Name")));
+        onView(withId(R.id.sugar)).check(matches(withHint("Enter Sugar (g)")));
         onView(withId(R.id.calories)).check(matches(withHint("Enter Calories")));
         onView(withId(R.id.submit)).check(matches(withText("Submit")));
 

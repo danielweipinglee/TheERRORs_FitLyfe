@@ -206,7 +206,7 @@ public class Calorie_Consumption extends AppCompatActivity {
         }
 
         //Add Button
-        if(id == R.id.action_name){
+        if(id == R.id.Add){
             Intent intent = new Intent(Calorie_Consumption.this, Calorie_Input.class);
             startActivity(intent);
 

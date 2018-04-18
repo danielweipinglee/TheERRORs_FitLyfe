@@ -119,7 +119,7 @@ public class BloodSurgar_Tracking extends AppCompatActivity {
         }
 
         //Add Button
-        if(id == R.id.action_name){
+        if(id == R.id.Add){
             Intent intent = new Intent(BloodSurgar_Tracking.this, BloodSurgar_Input.class);
             startActivity(intent);
 

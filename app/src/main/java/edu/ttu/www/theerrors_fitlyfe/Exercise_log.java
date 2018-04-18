@@ -119,7 +119,7 @@ public class Exercise_log extends AppCompatActivity {
         }
 
         //Add Button
-        if(id == R.id.action_name){
+        if(id == R.id.Add){
             Intent intent = new Intent(Exercise_log.this, Exercise_Input.class);
             startActivity(intent);
 

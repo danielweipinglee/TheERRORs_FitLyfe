@@ -14,6 +14,7 @@ import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -25,12 +26,16 @@ import com.google.firebase.database.ValueEventListener;
 
 public class MainActivity extends AppCompatActivity {
 
+    public TextView name;
+
     private FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        name = findViewById(R.id.name);
 
         mAuth = FirebaseAuth.getInstance();
 
@@ -108,6 +113,29 @@ public class MainActivity extends AppCompatActivity {
             startActivity(intent);
         }
         else {
+
+            DatabaseReference name = FirebaseDatabase.getInstance().getReference(curUser.getUid());
+            name.addValueEventListener(new ValueEventListener() {
+
+                private TextView name = findViewById(R.id.name);
+
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    String data = (String) dataSnapshot.child("name").getValue();
+
+                    if(data != null) {
+                        name.setText(data);
+                    }
+                    else{
+                        name.setText("John Smith");
+                    }
+                }
+
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+                    name.setText("John Smith");
+                }
+            });
 
             // Get the database for the current user.
             DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();

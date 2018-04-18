@@ -35,4 +35,15 @@
     </string>
     <string name="blood_surgar_mool_l">Blood Surgar (mool/L)</string>
 
+    <!-- Strings for Goal Setting Page-->
+    <string-array name="goal_type">
+        <item>Blood Sugar</item>
+        <item>Blood Pressure</item>
+        <item>Calories</item>
+        <item>Exercise</item>
+        <item>Sleep</item>
+        <item>Water</item>
+        <item>Weight</item>
+    </string-array>
+
 </resources>

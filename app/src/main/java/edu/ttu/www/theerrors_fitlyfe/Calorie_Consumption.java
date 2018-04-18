@@ -15,6 +15,17 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.Locale;
 
 public class Calorie_Consumption extends AppCompatActivity {
 
@@ -29,13 +40,12 @@ public class Calorie_Consumption extends AppCompatActivity {
     int calories = 100;
 
     FirebaseAuth mAuth;
+    FirebaseUser curUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_calorie__consumption);
-
-        mAuth = FirebaseAuth.getInstance();
 
         //Added back button to the action bar
         getSupportActionBar().setDisplayShowHomeEnabled(true);
@@ -88,23 +98,95 @@ public class Calorie_Consumption extends AppCompatActivity {
                 }
             }
         }
-    }).
+    }).start();
 
-    start();
+        // Get the Firebase Authenticator.
+        mAuth = FirebaseAuth.getInstance();
 
-    //Code to change values of both progress bars and what the this weeks calorie count is
-    final ProgressBar cProgress = (ProgressBar) findViewById(R.id.currentProgress);
-    final ProgressBar pProgress = (ProgressBar) findViewById(R.id.previousProgress);
-    final TextView caloriecount = (TextView) findViewById(R.id.calorieCount);
+        // Get the current user of the app.
+        curUser = mAuth.getCurrentUser();
 
-    CharSequence totalcalories = calories + " Calories";
+        //Code to change values of both progress bars and what the this weeks sleep is
+        final ProgressBar cProgress = (ProgressBar) findViewById(R.id.currentProgress);
+        final ProgressBar pProgress = (ProgressBar) findViewById(R.id.previousProgress);
+        final TextView calorieCount = (TextView) findViewById(R.id.calorieCount);
 
-        cProgress.setProgress(currentprogress);
-        pProgress.setProgress(previousprogress);
-        caloriecount.setText(totalcalories);
+        // Get a calendar object.
+        Calendar calendar = Calendar.getInstance();
 
+        // Get the current date and time.
+        Date today = calendar.getTime();
 
-}
+        // Get just the current date as a String.
+        SimpleDateFormat df = new SimpleDateFormat("dd-MMM-yyyy", Locale.US);
+        String todaySting = df.format(today);
+
+        // Get yesterday's date and time.
+        calendar.add(Calendar.DATE, -1);
+        Date yesterday = calendar.getTime();
+
+        // Get just yesterday's date as a String.
+        String yesterdayString = df.format(yesterday);
+
+        // Get the sleep data for the current user for today.
+        DatabaseReference user = FirebaseDatabase.getInstance().getReference().child(curUser.getUid());
+        DatabaseReference food = user.child("Food").child(todaySting);
+
+        // Get the total amount of food for today.
+        food.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+
+                long totalCalories = 0;
+
+                for(DataSnapshot childData : dataSnapshot.getChildren()){
+                    Long data = (Long) childData.child("Calories").getValue();
+                    if(data != null){
+                        totalCalories += data;
+                    }
+                }
+
+                // Set the progress on the current progress bar.
+                cProgress.setProgress((int) ((totalCalories*100)/2000));
+
+                // Set the top text with the total amount of calories.
+                calorieCount.setText("" + totalCalories + " calories");
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                cProgress.setProgress(0);
+                calorieCount.setText("0 calories");
+            }
+        });
+
+        // Get the food data for the current user for yesterday.
+        food = user.child("Food").child(yesterdayString);
+
+        // Get the total amount of food for yesterday.
+        food.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+
+                long totalCalories = 0;
+
+                for(DataSnapshot childData : dataSnapshot.getChildren()){
+                    Long data = (Long) childData.child("Calories").getValue();
+                    if(data != null){
+                        totalCalories += data;
+                    }
+                }
+
+                // Set the progress on the current progress bar.
+                pProgress.setProgress((int) ((totalCalories*100)/2000));
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                pProgress.setProgress(0);
+            }
+        });
+    }
 
     //Links this xml file with the Menu xml file so that all pages will have the same menu
     public boolean onCreateOptionsMenu(Menu menu) {

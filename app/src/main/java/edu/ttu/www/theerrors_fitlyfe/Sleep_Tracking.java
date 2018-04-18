@@ -131,7 +131,7 @@ public class Sleep_Tracking extends AppCompatActivity {
                 }
 
                 // Set the progress on the current progress bar.
-                cProgress.setProgress((int) totalSleep);
+                cProgress.setProgress((int) ((totalSleep * 100) / 8));
 
                 // Set the top text with the total amount of sleep.
                 sleepcount.setText("" + totalSleep + " hours");
@@ -162,7 +162,7 @@ public class Sleep_Tracking extends AppCompatActivity {
                 }
 
                 // Set the progress on the current progress bar.
-                pProgress.setProgress((int) totalSleep);
+                pProgress.setProgress((int) ((totalSleep * 100) / 8));
             }
 
             @Override

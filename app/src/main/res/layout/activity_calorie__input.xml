@@ -8,8 +8,8 @@
 
     <EditText
         android:id="@+id/calories"
-        android:layout_width="190dp"
-        android:layout_height="wrap_content"
+        android:layout_width="221dp"
+        android:layout_height="55dp"
         android:layout_marginTop="112dp"
         android:contentDescription="Enter Calorie"
         android:ems="10"
@@ -23,11 +23,11 @@
 
     <EditText
         android:id="@+id/foodname"
-        android:layout_width="190dp"
-        android:layout_height="wrap_content"
+        android:layout_width="221dp"
+        android:layout_height="55dp"
         android:contentDescription="Enter Food"
         android:ems="10"
-        android:hint="Enter Food"
+        android:hint="Enter Food Name"
         android:inputType="text"
         android:textAlignment="center"
         android:textSize="26sp"
@@ -38,11 +38,11 @@
 
     <EditText
         android:id="@+id/sugar"
-        android:layout_width="190dp"
-        android:layout_height="wrap_content"
+        android:layout_width="221dp"
+        android:layout_height="56dp"
         android:contentDescription="Enter Sugar"
         android:ems="10"
-        android:hint="Enter Sugar"
+        android:hint="Enter Sugar (g)"
         android:inputType="number"
         android:textAlignment="center"
         android:textSize="26sp"

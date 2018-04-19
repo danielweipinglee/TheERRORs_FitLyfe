@@ -98,6 +98,18 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+
+        Button advancetogoal = (Button) findViewById(R.id.goal_settings_button);
+        advancetogoal.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, GoalSetting.class);
+                startActivity(intent);
+
+            }
+        });
+
+
     }
 
     @Override

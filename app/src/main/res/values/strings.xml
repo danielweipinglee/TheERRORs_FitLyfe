@@ -13,6 +13,7 @@
     <string name="title_activity_weight_input">Weight Input</string>
     <string name="title_activity_blood_surgar_input">Blood Sugar</string>
     <string name="title_activity_blood_surgar_tracking">Blood Sugar</string>
+    <string name="title_activity_goal_settings">Goals</string>
 
 
     <!-- Strings related to login -->

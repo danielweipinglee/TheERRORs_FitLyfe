@@ -62,6 +62,9 @@
         <activity
             android:name=".BloodSurgar_Input"
             android:label="@string/title_activity_blood_surgar_input" />
+        <activity
+            android:name=".GoalSetting"
+            android:label="@string/title_activity_goal_settings" />
     </application>
 
 </manifest>

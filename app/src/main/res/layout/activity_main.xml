@@ -104,6 +104,12 @@
                 android:layout_height="wrap_content"
                 android:text="Blood Pressure and Sugar Tracker" />
 
+            <Button
+                android:id="@+id/goal_settings_button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Goals" />
+
         </LinearLayout>
     </ScrollView>
 

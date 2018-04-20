@@ -69,7 +69,7 @@
         android:text="Current Week"
         android:textSize="18sp"
         app:layout_constraintStart_toEndOf="@+id/currentProgress"
-        app:layout_constraintTop_toBottomOf="@+id/calorieCount" />
+        app:layout_constraintTop_toBottomOf="@+id/avgExercise" />
 
     <RelativeLayout
         android:id="@+id/relativeLayout2"
@@ -126,12 +126,12 @@
     </RelativeLayout>
 
     <TextView
-        android:id="@+id/exerciseCount"
+        android:id="@+id/avgExercise"
         android:layout_width="wrap_content"
         android:layout_height="26dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="16dp"
-        android:text="440 Calories"
+        android:text="440 Minutes"
         android:textSize="24sp"
         app:layout_constraintStart_toEndOf="@+id/textView4"
         app:layout_constraintTop_toTopOf="parent" />

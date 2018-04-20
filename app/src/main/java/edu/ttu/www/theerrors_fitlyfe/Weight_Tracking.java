@@ -29,18 +29,16 @@ import java.util.Locale;
 
 public class Weight_Tracking extends AppCompatActivity {
 
-    int pStatus = 0;
+    private int pStatus = 0;
     private Handler handler = new Handler();
-    TextView tv;
+    private TextView tv;
     //Variables to change values of 3 progress bar and this weeks calorie consumptions
 
-    int currentprogress = 25;
-    int previousprogress = 50;
-    int goalpercentage = 55;
-    float weight = 100;
 
-    FirebaseAuth mAuth;
-    FirebaseUser curUser;
+    private FirebaseAuth mAuth;
+    private FirebaseUser curUser;
+
+    private int goalpercentage = 55;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,7 +50,6 @@ public class Weight_Tracking extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
 
-        Resources res = getResources();
         Drawable drawable = ResourcesCompat.getDrawable(getResources(),R.drawable.custom_progressbar_drawable, null);
         final ProgressBar mProgress = (ProgressBar) findViewById(R.id.circularProgressbar);
         mProgress.setProgress(0);   // Main Progress
@@ -103,33 +100,83 @@ public class Weight_Tracking extends AppCompatActivity {
         // Get the current user of the app.
         curUser = mAuth.getCurrentUser();
 
-        //Code to change values of both progress bars and what the this weeks sleep is
-        final TextView sleepcount = (TextView) findViewById(R.id.avgSleep);
+        final ProgressBar cProgress = (ProgressBar) findViewById(R.id.currentProgress);
+        final ProgressBar pProgress = (ProgressBar) findViewById(R.id.previousProgress);
+        final TextView weightCount = (TextView) findViewById(R.id.avgWeight);
+
+        // Get a calendar object.
+        Calendar calendar = Calendar.getInstance();
+
+        // Get the current date and time.
+        Date today = calendar.getTime();
+
+        // Get just the current date as a String.
+        SimpleDateFormat df = new SimpleDateFormat("dd-MMM-yyyy", Locale.US);
+        String todaySting = df.format(today);
+
+        // Get yesterday's date and time.
+        calendar.add(Calendar.DATE, -1);
+        Date yesterday = calendar.getTime();
+
+        // Get just yesterday's date as a String.
+        String yesterdayString = df.format(yesterday);
 
         // Get the sleep data for the current user for today.
         DatabaseReference user = FirebaseDatabase.getInstance().getReference().child(curUser.getUid());
-        DatabaseReference sleep = user.child("weight");
+        DatabaseReference weight = user.child("Weight").child(todaySting);
 
         // Get the total amount of sleep for today.
-        sleep.addValueEventListener(new ValueEventListener() {
+        weight.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
 
-                long weight = 0;
+                long totalWeight = 0;
 
-                // Get the current weight from the database.
-                Long data = (Long) dataSnapshot.getValue();
-                if(data != null){
-                    weight = data;
+                for(DataSnapshot childData : dataSnapshot.getChildren()){
+                    Long data = (Long) childData.getValue();
+                    if(data != null){
+                        totalWeight += data;
+                    }
                 }
 
-                // Set the top text with the current weight.
-                sleepcount.setText("" + weight + " lbs");
+                // Set the progress on the current progress bar.
+                cProgress.setProgress((int) ((totalWeight * 100) / 8));
+
+                // Set the top text with the total amount of sleep.
+                weightCount.setText("" + totalWeight + " hours");
             }
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
-                sleepcount.setText("0 lbs");
+                cProgress.setProgress(0);
+                weightCount.setText("0 hours");
+            }
+        });
+
+        // Get the sleep data for the current user for yesterday.
+        weight = user.child("Weight").child(yesterdayString);
+
+        // Get the total amount of sleep for yesterday.
+        weight.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+
+                long totalWeight = 0;
+
+                for(DataSnapshot childData : dataSnapshot.getChildren()){
+                    Long data = (Long) childData.getValue();
+                    if(data != null){
+                        totalWeight += data;
+                    }
+                }
+
+                // Set the progress on the current progress bar.
+                pProgress.setProgress((int) ((totalWeight * 100) / 8));
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                pProgress.setProgress(0);
             }
         });
     }

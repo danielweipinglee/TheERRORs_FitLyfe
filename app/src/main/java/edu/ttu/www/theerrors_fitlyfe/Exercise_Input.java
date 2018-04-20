@@ -113,8 +113,8 @@ public class Exercise_Input extends AppCompatActivity {
 
         // Get the spot to add the entry to location /<userID>/Sleep/<current date>/<current time>
         DatabaseReference userDB = FirebaseDatabase.getInstance().getReference().child(curUser.getUid());
-        DatabaseReference NameEntry = userDB.child("Excersize").child(dateString).child(timeString).child("Name");
-        DatabaseReference LengthEntry = userDB.child("Excersize").child(dateString).child(timeString).child("Duration");
+        DatabaseReference NameEntry = userDB.child("Exercise").child(dateString).child(timeString).child("Name");
+        DatabaseReference LengthEntry = userDB.child("Exercise").child(dateString).child(timeString).child("Duration");
         // Save the entry.
         NameEntry.setValue(WorkoutName);
         LengthEntry.setValue(LengthInt);

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="edu.ttu.www.theerrors_fitlyfe.Sleep_Tracking"
+    tools:context="edu.ttu.www.theerrors_fitlyfe.Weight_Tracking"
     tools:layout_editor_absoluteY="81dp">
 
     <TextView
@@ -77,7 +77,7 @@
     </RelativeLayout>
 
     <TextView
-        android:id="@+id/avgSleep"
+        android:id="@+id/avgWeight"
         android:layout_width="wrap_content"
         android:layout_height="26dp"
         android:layout_marginStart="24dp"

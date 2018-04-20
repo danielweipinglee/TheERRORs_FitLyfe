@@ -79,7 +79,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        Button advancetoweight = (Button) findViewById(R.id.BMI_button);
+        Button advancetoweight = (Button) findViewById(R.id.Weight_button);
         advancetoweight.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -89,7 +89,27 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        Button advancetoblood = (Button) findViewById(R.id.blood_pressure_button);
+        Button advancetoBMI = (Button) findViewById(R.id.BMI_button);
+        advancetoBMI.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, BMI_Tracking.class);
+                startActivity(intent);
+
+            }
+        });
+
+        Button advancetobloodp = (Button) findViewById(R.id.blood_pressure_button);
+        advancetobloodp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, Blood_Pressure_Tracking.class);
+                startActivity(intent);
+
+            }
+        });
+
+        Button advancetoblood = (Button) findViewById(R.id.blood_sugar_button);
         advancetoblood.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

@@ -29,7 +29,7 @@ import java.util.Locale;
 
 //import com.google.firebase.auth.FirebaseAuth;
 
-public class BloodSurgar_Tracking extends AppCompatActivity {
+public class BMI_Tracking extends AppCompatActivity {
     int pStatus = 0;
     private Handler handler = new Handler();
     TextView tv;
@@ -50,7 +50,7 @@ public class BloodSurgar_Tracking extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         //Needs a activity_blood_surgar_tracking
-        setContentView(R.layout.activity_blood_surgar_tracking);
+        setContentView(R.layout.activity_bmi__tracking);
 
 
 
@@ -113,7 +113,7 @@ public class BloodSurgar_Tracking extends AppCompatActivity {
         //Code to change values of both progress bars and what the this weeks calorie count is
         final ProgressBar cProgress = (ProgressBar) findViewById(R.id.currentProgress);
         final ProgressBar pProgress = (ProgressBar) findViewById(R.id.previousProgress);
-        final TextView bloodsugarCount = (TextView) findViewById(R.id.bloodsurgar);
+        final TextView bloodsugarCount = (TextView) findViewById(R.id.BMIValue);
 
 
         // Get a calendar object.
@@ -212,7 +212,7 @@ public class BloodSurgar_Tracking extends AppCompatActivity {
 
         //Add Button
         if(id == R.id.Add){
-            Intent intent = new Intent(BloodSurgar_Tracking.this, BloodSurgar_Input.class);
+            Intent intent = new Intent(BMI_Tracking.this, bmi_input.class);
             startActivity(intent);
 
         }
@@ -226,3 +226,4 @@ public class BloodSurgar_Tracking extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 }
+

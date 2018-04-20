@@ -21,7 +21,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 
-public class bmi_input extends AppCompatActivity {
+public class Blood_Pressure_Input extends AppCompatActivity {
 
     private FirebaseAuth mAuth;
     private FirebaseUser curUser;
@@ -30,7 +30,7 @@ public class bmi_input extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_bmi_input);
+        setContentView(R.layout.activity_blood__pressure__input);
 
         mAuth = FirebaseAuth.getInstance();
         curUser = mAuth.getCurrentUser();
@@ -48,38 +48,17 @@ public class bmi_input extends AppCompatActivity {
                 Log();
             }
         });
-//  Did not mess with below because I assume its for the database and just copied it over
 
-/*      May be possible to display database in a list so that the user can see there calorie consumption
-        logs.
-
-
-
-
-        mListView = (ListView) findViewById(R.id.calorielist);
-// 1
-        final ArrayList<Calories> recipeList = Calories.getRecipesFromFile("recipes.json", this);
-// 2
-        String[] listItems = new String[recipeList.size()];
-// 3
-        for(int i = 0; i < recipeList.size(); i++){
-            Calories calorie = recipeList.get(i);
-            listItems[i] = recipe.title;
-        }
-// 4
-        ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, listItems);
-        mListView.setAdapter(adapter);
-        */
     }
     private void Log(){
 
-        float BMIint;
-        EditText BMI = (EditText) findViewById(R.id.BMIValue);
+        float SurgarInt;
+        EditText Surgar = (EditText) findViewById(R.id.bloodpressure);
 
-        if (BMI != null && BMI.length() > 0) {
-            String BMIS = BMI.getText().toString();
-            BMIint = Float.parseFloat(BMIS);
-            BMI.setText("");
+        if (Surgar != null && Surgar.length() > 0) {
+            String SurgarS = Surgar.getText().toString();
+            SurgarInt = Float.parseFloat(SurgarS);
+            Surgar.setText("");
             //Use SleptInt
 
             // Get the current date and time.
@@ -98,7 +77,7 @@ public class bmi_input extends AppCompatActivity {
             DatabaseReference BsugarEntry = userDB.child("Blood Sugar").child(dateString).child(timeString);
 
             // Save the entry.
-            BsugarEntry.setValue(BMIint);
+            BsugarEntry.setValue(SurgarInt);
 
             // Finish the activity and return to the last activity.
             finish();

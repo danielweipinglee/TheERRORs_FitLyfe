@@ -13,6 +13,9 @@
     <string name="title_activity_weight_input">Weight Input</string>
     <string name="title_activity_blood_surgar_input">Blood Sugar</string>
     <string name="title_activity_blood_surgar_tracking">Blood Sugar</string>
+    <string name="title_activity_bmi_tracking">BMI Tracking</string>
+    <string name="title_activity_bmi_input">BMI Input</string>
+    <string name="title_activity_blood_pressure_tracking">Blood Pressure</string>
     <string name="title_activity_goal_settings">Goals</string>
 
 

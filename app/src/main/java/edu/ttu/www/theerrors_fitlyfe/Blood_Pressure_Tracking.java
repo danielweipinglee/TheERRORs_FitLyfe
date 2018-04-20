@@ -29,19 +29,17 @@ import java.util.Locale;
 
 //import com.google.firebase.auth.FirebaseAuth;
 
-public class BloodSurgar_Tracking extends AppCompatActivity {
-    int pStatus = 0;
+public class Blood_Pressure_Tracking extends AppCompatActivity {
+
+    private int pStatus = 0;
     private Handler handler = new Handler();
-    TextView tv;
+    private TextView tv;
     //Variables to change values of 3 progress bar and this weeks calorie consumptions
+
     private FirebaseAuth mAuth;
     private FirebaseUser curUser;
 
-    int currentprogress = 25;
-    int previousprogress = 50;
-    int goalpercentage = 55;
-    float bloodsurgar = 100;
-
+    private int goalpercentage= 55;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,10 +47,7 @@ public class BloodSurgar_Tracking extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
 
         super.onCreate(savedInstanceState);
-        //Needs a activity_blood_surgar_tracking
-        setContentView(R.layout.activity_blood_surgar_tracking);
-
-
+        setContentView(R.layout.activity_blood__pressure__tracking);
 
         //Added back button to the action bar
         getSupportActionBar().setDisplayShowHomeEnabled(true);
@@ -104,17 +99,18 @@ public class BloodSurgar_Tracking extends AppCompatActivity {
             }
         }).start();
 
+
         // Get the Firebase Authenticator.
         mAuth = FirebaseAuth.getInstance();
 
         // Get the current user of the app.
         curUser = mAuth.getCurrentUser();
 
+
         //Code to change values of both progress bars and what the this weeks calorie count is
         final ProgressBar cProgress = (ProgressBar) findViewById(R.id.currentProgress);
         final ProgressBar pProgress = (ProgressBar) findViewById(R.id.previousProgress);
-        final TextView bloodsugarCount = (TextView) findViewById(R.id.bloodsurgar);
-
+        final TextView waterCount = (TextView) findViewById(R.id.avgwater);
 
         // Get a calendar object.
         Calendar calendar = Calendar.getInstance();
@@ -135,55 +131,55 @@ public class BloodSurgar_Tracking extends AppCompatActivity {
 
         // Get the sleep data for the current user for today.
         DatabaseReference user = FirebaseDatabase.getInstance().getReference().child(curUser.getUid());
-        DatabaseReference BloodSugar = user.child("Blood Sugar").child(todaySting);
+        DatabaseReference water = user.child("Water").child(todaySting);
 
         // Get the total amount of sleep for today.
-        BloodSugar.addValueEventListener(new ValueEventListener() {
+        water.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
 
-                long totalBloodSugar = 0;
+                long totalWater = 0;
 
                 for(DataSnapshot childData : dataSnapshot.getChildren()){
                     Long data = (Long) childData.getValue();
                     if(data != null){
-                        totalBloodSugar += data;
+                        totalWater += data;
                     }
                 }
 
                 // Set the progress on the current progress bar.
-                cProgress.setProgress((int) ((totalBloodSugar * 100) / 8));
+                cProgress.setProgress((int) ((totalWater * 100) / 8));
 
                 // Set the top text with the total amount of sleep.
-                bloodsugarCount.setText("" + totalBloodSugar + " hours");
+                waterCount.setText("" + totalWater + " Ounces");
             }
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
                 cProgress.setProgress(0);
-                bloodsugarCount.setText("0 mool/L");
+                waterCount.setText("0 Ounces");
             }
         });
 
         // Get the sleep data for the current user for yesterday.
-        BloodSugar = user.child("Blood Sugar").child(yesterdayString);
+        water = user.child("Water").child(yesterdayString);
 
         // Get the total amount of sleep for yesterday.
-        BloodSugar.addValueEventListener(new ValueEventListener() {
+        water.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
 
-                long totalBloodSugar = 0;
+                long totalWater = 0;
 
                 for(DataSnapshot childData : dataSnapshot.getChildren()){
                     Long data = (Long) childData.getValue();
                     if(data != null){
-                        totalBloodSugar += data;
+                        totalWater += data;
                     }
                 }
 
                 // Set the progress on the current progress bar.
-                pProgress.setProgress((int) ((totalBloodSugar * 100) / 8));
+                pProgress.setProgress((int) ((totalWater * 100) / 8));
             }
 
             @Override
@@ -212,7 +208,7 @@ public class BloodSurgar_Tracking extends AppCompatActivity {
 
         //Add Button
         if(id == R.id.Add){
-            Intent intent = new Intent(BloodSurgar_Tracking.this, BloodSurgar_Input.class);
+            Intent intent = new Intent(Blood_Pressure_Tracking.this, Blood_Pressure_Input.class);
             startActivity(intent);
 
         }

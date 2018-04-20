@@ -63,8 +63,21 @@
             android:name=".BloodSurgar_Input"
             android:label="@string/title_activity_blood_surgar_input" />
         <activity
+            android:name=".BMI_Tracking"
+            android:label="@string/title_activity_bmi_tracking" />
+        <activity
+            android:name=".bmi_input"
+            android:label="@string/title_activity_bmi_input" />
+        <activity
             android:name=".GoalSetting"
             android:label="@string/title_activity_goal_settings" />
+        <activity
+            android:name=".Blood_Pressure_Tracking"
+            android:label="@string/title_activity_blood_pressure_tracking"/>
+        <activity
+            android:name=".Blood_Pressure_Input"
+            android:label="@string/title_activity_blood_pressure_tracking">
+        </activity>
     </application>
 
 </manifest>

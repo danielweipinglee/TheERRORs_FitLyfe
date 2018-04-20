@@ -93,16 +93,28 @@
                 android:text="Sleep Tracking" />
 
             <Button
+                android:id="@+id/Weight_button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Weight Tracker" />
+
+            <Button
                 android:id="@+id/BMI_button"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Weight and BMI Tracker" />
+                android:text="BMI Tracker" />
 
             <Button
                 android:id="@+id/blood_pressure_button"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Blood Pressure and Sugar Tracker" />
+                android:text="Blood Pressure Tracker" />
+
+            <Button
+                android:id="@+id/blood_sugar_button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Blood Sugar Tracker" />
 
             <Button
                 android:id="@+id/goal_settings_button"

@@ -205,37 +205,6 @@ public class Sleep_Tracking extends AppCompatActivity {
 
             }
         });
-
-//        tv = (TextView) findViewById(R.id.tv);
-//        new Thread(new Runnable() {
-//
-//            @Override
-//            public void run() {
-//                //Indicates when the progress bar will stop
-//                while (pStatus < goalpercentage) {
-//                    pStatus += 1;
-//
-//                    handler.post(new Runnable() {
-//
-//                        @Override
-//                        public void run() {
-//                            mProgress.setProgress(pStatus);
-//                            tv.setText(pStatus + "%");
-//
-//                        }
-//                    });
-//
-//                    try {
-//                        // Sleep for 200 milliseconds.
-//                        // Just to display the progress slowly
-//                        Thread.sleep(16); //thread will take approx 1.5 seconds to finish
-//                    } catch (InterruptedException e) {
-//                        e.printStackTrace();
-//                    }
-//                }
-//            }
-//        }).start();
-
     }
 
     //Links this xml file with the Menu xml file so that all pages will have the same menu

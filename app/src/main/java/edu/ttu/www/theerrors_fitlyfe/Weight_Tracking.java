@@ -3,10 +3,12 @@ package edu.ttu.www.theerrors_fitlyfe;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
+import android.os.Debug;
 import android.os.Handler;
 import android.support.v4.content.res.ResourcesCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -37,11 +39,15 @@ public class Weight_Tracking extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private FirebaseUser curUser;
 
-    private int goalpercentage = 55;
+    private long goalpercentage = 55;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        // Get the Firebase Authenticator.
         mAuth = FirebaseAuth.getInstance();
+
+        // Get the current user of the app.
+        curUser = mAuth.getCurrentUser();
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_weight__tracking);
@@ -58,72 +64,80 @@ public class Weight_Tracking extends AppCompatActivity {
         mProgress.setMax(100); // Maximum Progress
         mProgress.setProgressDrawable(drawable);
 
-      /*  ObjectAnimator animation = ObjectAnimator.ofInt(mProgress, "progress", 0, 100);
-        animation.setDuration(50000);
-        animation.setInterpolator(new DecelerateInterpolator());
-        animation.start();*/
+        // Get the current user from the database.
+        final DatabaseReference database = FirebaseDatabase.getInstance().getReference();
+        DatabaseReference user = database.child(curUser.getUid());
 
-
-        tv = (TextView) findViewById(R.id.tv);
-        new Thread(new Runnable() {
-
+        user.addValueEventListener(new ValueEventListener() {
             @Override
-            public void run() {
-                // TODO Auto-generated method stub
-                //Indicates when the progress bar will stop
-                while (pStatus < goalpercentage) {
-                    pStatus += 1;
+            public void onDataChange(DataSnapshot dataSnapshot) {
 
-                    handler.post(new Runnable() {
+                // Get the text view that displays the percentage.
+                tv = (TextView) findViewById(R.id.tv);
 
+                // Set the progress circle and text to 0%.
+                mProgress.setProgress(0);
+                tv.setText("0%");
+
+                // Get the user's current weight, starting weight, and goal weight from the database.
+                Long startWeight = (Long) dataSnapshot.child("Goals").child("Weight").child("Start").getValue();
+                Long goalWeight = (Long) dataSnapshot.child("Goals").child("Weight").child("Goal").getValue();
+                Long curWeight = (Long) dataSnapshot.child("weight").getValue();
+
+                // If all the variables were in the database.
+                if(startWeight != null && goalWeight != null && curWeight != null){
+
+                    // Calculate the percentage accomplished towards the goal.
+                    goalpercentage = ((curWeight - startWeight) * 100) / (goalWeight - startWeight);
+
+                    // Reset pStatus.
+                    pStatus = 0;
+
+                    // If goalpercentage is less than zero, no progress has been made.
+                    if(goalpercentage < 0){
+                        goalpercentage = 0;
+                    }
+
+                    new Thread(new Runnable() {
                         @Override
                         public void run() {
-                            // TODO Auto-generated method stub
-                            mProgress.setProgress(pStatus);
-                            tv.setText(pStatus + "%");
+                            //Indicates when the progress bar will stop
+                            while (pStatus < goalpercentage) {
+                                pStatus += 1;
 
+                                handler.post(new Runnable() {
+
+                                    @Override
+                                    public void run() {
+                                        mProgress.setProgress(pStatus);
+                                        tv.setText(pStatus + "%");
+
+                                    }
+                                });
+                                try {
+                                    // Sleep for 200 milliseconds.
+                                    // Just to display the progress slowly
+                                    Thread.sleep(16); //thread will take approx 1.5 seconds to finish
+                                } catch (InterruptedException e) {
+                                    e.printStackTrace();
+                                }
+                            }
                         }
-                    });
-                    try {
-                        // Sleep for 200 milliseconds.
-                        // Just to display the progress slowly
-                        Thread.sleep(16); //thread will take approx 1.5 seconds to finish
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
+                    }).start();
                 }
             }
-        }).start();
 
-        // Get the Firebase Authenticator.
-        mAuth = FirebaseAuth.getInstance();
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
 
-        // Get the current user of the app.
-        curUser = mAuth.getCurrentUser();
+            }
+        });
 
         final ProgressBar cProgress = (ProgressBar) findViewById(R.id.currentProgress);
         final ProgressBar pProgress = (ProgressBar) findViewById(R.id.previousProgress);
         final TextView weightCount = (TextView) findViewById(R.id.avgWeight);
 
-        // Get a calendar object.
-       /* Calendar calendar = Calendar.getInstance();
-
-        // Get the current date and time.
-        Date today = calendar.getTime();
-
-        // Get just the current date as a String.
-        SimpleDateFormat df = new SimpleDateFormat("dd-MMM-yyyy", Locale.US);
-        String todaySting = df.format(today);
-
-        // Get yesterday's date and time.
-        calendar.add(Calendar.DATE, -1);
-        Date yesterday = calendar.getTime();
-
-        // Get just yesterday's date as a String.
-        String yesterdayString = df.format(yesterday);
-*/
-        // Get the sleep data for the current user for today.
-        DatabaseReference user = FirebaseDatabase.getInstance().getReference().child(curUser.getUid());
+        // Get the weight data for the current user for today.
         DatabaseReference weight = user.child("weight");
 
         // Get the total amount of sleep for today.
@@ -131,17 +145,7 @@ public class Weight_Tracking extends AppCompatActivity {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
 
-                long totalWeight = 0;
-
-                for(DataSnapshot childData : dataSnapshot.getChildren()){
-                    Long data = (Long)childData.getValue();
-                    if(data != null){
-                        totalWeight += data;
-                    }
-                }
-
-                // Set the progress on the current progress bar.
-                //cProgress.setProgress((int) ((totalWeight * 100) / 8));
+                Long totalWeight = (Long) dataSnapshot.getValue();
 
                 // Set the top text with the total amount of sleep.
                 weightCount.setText("" + totalWeight + " lbs");
@@ -152,33 +156,6 @@ public class Weight_Tracking extends AppCompatActivity {
                 weightCount.setText("0 lbs");
             }
         });
-
-     /*   // Get the sleep data for the current user for yesterday.
-        weight = user.child("weight").child(yesterdayString);
-
-        // Get the total amount of sleep for yesterday.
-        weight.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-
-                long totalWeight = 0;
-
-                for(DataSnapshot childData : dataSnapshot.getChildren()){
-                    Long data = (Long) childData.child("weight").getValue();
-                    if(data != null){
-                        totalWeight += data;
-                    }
-                }
-
-                // Set the progress on the current progress bar.
-                pProgress.setProgress((int) ((totalWeight * 100) / 8));
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-                pProgress.setProgress(0);
-            }
-        });*/
     }
 
     //Links this xml file with the Menu xml file so that all pages will have the same menu

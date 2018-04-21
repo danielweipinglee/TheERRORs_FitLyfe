@@ -131,7 +131,7 @@
         android:layout_height="26dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="16dp"
-        android:text="100 mool/L"
+        android:text="100 mmol/L"
         android:textSize="24sp"
         app:layout_constraintStart_toEndOf="@+id/textView4"
         app:layout_constraintTop_toTopOf="parent" />

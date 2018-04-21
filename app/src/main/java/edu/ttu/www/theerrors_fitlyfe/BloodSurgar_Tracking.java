@@ -113,7 +113,7 @@ public class BloodSurgar_Tracking extends AppCompatActivity {
         //Code to change values of both progress bars and what the this weeks calorie count is
         final ProgressBar cProgress = (ProgressBar) findViewById(R.id.currentProgress);
         final ProgressBar pProgress = (ProgressBar) findViewById(R.id.previousProgress);
-        final TextView bloodsugarCount = (TextView) findViewById(R.id.bloodsurgar);
+        final TextView bloodsugarCount = (TextView) findViewById(R.id.SugarTracking);
 
 
         // Get a calendar object.
@@ -152,16 +152,16 @@ public class BloodSurgar_Tracking extends AppCompatActivity {
                 }
 
                 // Set the progress on the current progress bar.
-                cProgress.setProgress((int) ((totalBloodSugar * 100) / 8));
+                cProgress.setProgress((int) ((totalBloodSugar * 100) / 7.8));
 
                 // Set the top text with the total amount of sleep.
-                bloodsugarCount.setText("" + totalBloodSugar + " hours");
+                bloodsugarCount.setText("" + totalBloodSugar + " mmol/L");
             }
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
                 cProgress.setProgress(0);
-                bloodsugarCount.setText("0 mool/L");
+                bloodsugarCount.setText("0 mmol/L");
             }
         });
 
@@ -183,7 +183,7 @@ public class BloodSurgar_Tracking extends AppCompatActivity {
                 }
 
                 // Set the progress on the current progress bar.
-                pProgress.setProgress((int) ((totalBloodSugar * 100) / 8));
+                pProgress.setProgress((int) ((totalBloodSugar * 100) / 7.8));
             }
 
             @Override

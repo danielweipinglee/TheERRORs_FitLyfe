@@ -30,17 +30,16 @@ import java.util.Locale;
 //import com.google.firebase.auth.FirebaseAuth;
 
 public class BMI_Tracking extends AppCompatActivity {
-    int pStatus = 0;
+    private int pStatus = 0;
     private Handler handler = new Handler();
-    TextView tv;
+    private TextView tv;
     //Variables to change values of 3 progress bar and this weeks calorie consumptions
     private FirebaseAuth mAuth;
     private FirebaseUser curUser;
 
-    int currentprogress = 25;
-    int previousprogress = 50;
+
     int goalpercentage = 55;
-    float bloodsurgar = 100;
+
 
 
     @Override
@@ -49,7 +48,7 @@ public class BMI_Tracking extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
 
         super.onCreate(savedInstanceState);
-        //Needs a activity_blood_surgar_tracking
+
         setContentView(R.layout.activity_bmi__tracking);
 
 
@@ -113,7 +112,7 @@ public class BMI_Tracking extends AppCompatActivity {
         //Code to change values of both progress bars and what the this weeks calorie count is
         final ProgressBar cProgress = (ProgressBar) findViewById(R.id.currentProgress);
         final ProgressBar pProgress = (ProgressBar) findViewById(R.id.previousProgress);
-        final TextView bloodsugarCount = (TextView) findViewById(R.id.BMIValue);
+        final TextView bmiCount = (TextView) findViewById(R.id.BMITracking);
 
 
         // Get a calendar object.
@@ -135,55 +134,55 @@ public class BMI_Tracking extends AppCompatActivity {
 
         // Get the sleep data for the current user for today.
         DatabaseReference user = FirebaseDatabase.getInstance().getReference().child(curUser.getUid());
-        DatabaseReference BloodSugar = user.child("Blood Sugar").child(todaySting);
+        DatabaseReference bmi = user.child("BMI").child(todaySting);
 
         // Get the total amount of sleep for today.
-        BloodSugar.addValueEventListener(new ValueEventListener() {
+        bmi.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
 
-                long totalBloodSugar = 0;
+                long totalbmi = 0;
 
                 for(DataSnapshot childData : dataSnapshot.getChildren()){
                     Long data = (Long) childData.getValue();
                     if(data != null){
-                        totalBloodSugar += data;
+                        totalbmi += data;
                     }
                 }
 
                 // Set the progress on the current progress bar.
-                cProgress.setProgress((int) ((totalBloodSugar * 100) / 8));
+                cProgress.setProgress((int) ((totalbmi * 100) / 21));
 
                 // Set the top text with the total amount of sleep.
-                bloodsugarCount.setText("" + totalBloodSugar + " hours");
+                bmiCount.setText("" + totalbmi + " kg/m");
             }
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
                 cProgress.setProgress(0);
-                bloodsugarCount.setText("0 mool/L");
+                bmiCount.setText("0 kg/m");
             }
         });
 
         // Get the sleep data for the current user for yesterday.
-        BloodSugar = user.child("Blood Sugar").child(yesterdayString);
+        bmi = user.child("BMI").child(yesterdayString);
 
         // Get the total amount of sleep for yesterday.
-        BloodSugar.addValueEventListener(new ValueEventListener() {
+        bmi.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
 
-                long totalBloodSugar = 0;
+                long totalbmi = 0;
 
                 for(DataSnapshot childData : dataSnapshot.getChildren()){
                     Long data = (Long) childData.getValue();
                     if(data != null){
-                        totalBloodSugar += data;
+                        totalbmi += data;
                     }
                 }
 
                 // Set the progress on the current progress bar.
-                pProgress.setProgress((int) ((totalBloodSugar * 100) / 8));
+                pProgress.setProgress((int) ((totalbmi * 100) / 21));
             }
 
             @Override

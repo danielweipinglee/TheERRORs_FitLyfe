@@ -52,13 +52,13 @@ public class Blood_Pressure_Input extends AppCompatActivity {
     }
     private void Log(){
 
-        float SurgarInt;
-        EditText Surgar = (EditText) findViewById(R.id.bloodpressure);
+        float PressureInt;
+        EditText Pressure = (EditText) findViewById(R.id.bloodpressure);
 
-        if (Surgar != null && Surgar.length() > 0) {
-            String SurgarS = Surgar.getText().toString();
-            SurgarInt = Float.parseFloat(SurgarS);
-            Surgar.setText("");
+        if (Pressure != null && Pressure.length() > 0) {
+            String PressureS = Pressure.getText().toString();
+            PressureInt = Float.parseFloat(PressureS);
+            Pressure.setText("");
             //Use SleptInt
 
             // Get the current date and time.
@@ -74,10 +74,10 @@ public class Blood_Pressure_Input extends AppCompatActivity {
 
             // Get the spot to add the entry to location /<userID>/Sleep/<current date>/<current time>
             DatabaseReference userDB = FirebaseDatabase.getInstance().getReference().child(curUser.getUid());
-            DatabaseReference BsugarEntry = userDB.child("Blood Sugar").child(dateString).child(timeString);
+            DatabaseReference BPressureEntry = userDB.child("Blood Pressure").child(dateString).child(timeString);
 
             // Save the entry.
-            BsugarEntry.setValue(SurgarInt);
+            BPressureEntry.setValue(PressureInt);
 
             // Finish the activity and return to the last activity.
             finish();

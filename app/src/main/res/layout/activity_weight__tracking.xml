@@ -82,7 +82,7 @@
         android:layout_height="26dp"
         android:layout_marginStart="24dp"
         android:layout_marginTop="48dp"
-        android:text="8 hrs per night"
+        android:text="lbs"
         android:textSize="24sp"
         app:layout_constraintStart_toEndOf="@+id/textView4"
         app:layout_constraintTop_toTopOf="parent" />

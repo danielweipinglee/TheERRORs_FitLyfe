@@ -110,7 +110,7 @@ public class Blood_Pressure_Tracking extends AppCompatActivity {
         //Code to change values of both progress bars and what the this weeks calorie count is
         final ProgressBar cProgress = (ProgressBar) findViewById(R.id.currentProgress);
         final ProgressBar pProgress = (ProgressBar) findViewById(R.id.previousProgress);
-        final TextView waterCount = (TextView) findViewById(R.id.avgwater);
+        final TextView pressureCount = (TextView) findViewById(R.id.BloodTracking);
 
         // Get a calendar object.
         Calendar calendar = Calendar.getInstance();
@@ -131,55 +131,55 @@ public class Blood_Pressure_Tracking extends AppCompatActivity {
 
         // Get the sleep data for the current user for today.
         DatabaseReference user = FirebaseDatabase.getInstance().getReference().child(curUser.getUid());
-        DatabaseReference water = user.child("Water").child(todaySting);
+        DatabaseReference pressure = user.child("Blood Pressure").child(todaySting);
 
         // Get the total amount of sleep for today.
-        water.addValueEventListener(new ValueEventListener() {
+        pressure.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
 
-                long totalWater = 0;
+                long totalPressure = 0;
 
                 for(DataSnapshot childData : dataSnapshot.getChildren()){
                     Long data = (Long) childData.getValue();
                     if(data != null){
-                        totalWater += data;
+                        totalPressure += data;
                     }
                 }
 
                 // Set the progress on the current progress bar.
-                cProgress.setProgress((int) ((totalWater * 100) / 8));
+                cProgress.setProgress((int) (totalPressure));
 
                 // Set the top text with the total amount of sleep.
-                waterCount.setText("" + totalWater + " Ounces");
+                pressureCount.setText("" + totalPressure + " mmHg");
             }
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
                 cProgress.setProgress(0);
-                waterCount.setText("0 Ounces");
+                pressureCount.setText("0 mmHg");
             }
         });
 
         // Get the sleep data for the current user for yesterday.
-        water = user.child("Water").child(yesterdayString);
+        pressure = user.child("Blood Pressure").child(yesterdayString);
 
         // Get the total amount of sleep for yesterday.
-        water.addValueEventListener(new ValueEventListener() {
+        pressure.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
 
-                long totalWater = 0;
+                long totalPressure = 0;
 
                 for(DataSnapshot childData : dataSnapshot.getChildren()){
                     Long data = (Long) childData.getValue();
                     if(data != null){
-                        totalWater += data;
+                        totalPressure += data;
                     }
                 }
 
                 // Set the progress on the current progress bar.
-                pProgress.setProgress((int) ((totalWater * 100) / 8));
+                pProgress.setProgress((int) (totalPressure));
             }
 
             @Override

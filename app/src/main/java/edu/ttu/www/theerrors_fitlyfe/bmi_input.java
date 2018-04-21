@@ -95,7 +95,7 @@ public class bmi_input extends AppCompatActivity {
 
             // Get the spot to add the entry to location /<userID>/Sleep/<current date>/<current time>
             DatabaseReference userDB = FirebaseDatabase.getInstance().getReference().child(curUser.getUid());
-            DatabaseReference BsugarEntry = userDB.child("Blood Sugar").child(dateString).child(timeString);
+            DatabaseReference BsugarEntry = userDB.child("BMI").child(dateString).child(timeString);
 
             // Save the entry.
             BsugarEntry.setValue(BMIint);

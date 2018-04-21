@@ -28,7 +28,6 @@ import java.util.Date;
 import java.util.Locale;
 
 public class Weight_Tracking extends AppCompatActivity {
-
     private int pStatus = 0;
     private Handler handler = new Handler();
     private TextView tv;
@@ -42,6 +41,8 @@ public class Weight_Tracking extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        mAuth = FirebaseAuth.getInstance();
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_weight__tracking);
 
@@ -105,7 +106,7 @@ public class Weight_Tracking extends AppCompatActivity {
         final TextView weightCount = (TextView) findViewById(R.id.avgWeight);
 
         // Get a calendar object.
-        Calendar calendar = Calendar.getInstance();
+       /* Calendar calendar = Calendar.getInstance();
 
         // Get the current date and time.
         Date today = calendar.getTime();
@@ -120,10 +121,10 @@ public class Weight_Tracking extends AppCompatActivity {
 
         // Get just yesterday's date as a String.
         String yesterdayString = df.format(yesterday);
-
+*/
         // Get the sleep data for the current user for today.
         DatabaseReference user = FirebaseDatabase.getInstance().getReference().child(curUser.getUid());
-        DatabaseReference weight = user.child("Weight").child(todaySting);
+        DatabaseReference weight = user.child("weight");
 
         // Get the total amount of sleep for today.
         weight.addValueEventListener(new ValueEventListener() {
@@ -133,28 +134,27 @@ public class Weight_Tracking extends AppCompatActivity {
                 long totalWeight = 0;
 
                 for(DataSnapshot childData : dataSnapshot.getChildren()){
-                    Long data = (Long) childData.getValue();
+                    Long data = (Long)childData.getValue();
                     if(data != null){
                         totalWeight += data;
                     }
                 }
 
                 // Set the progress on the current progress bar.
-                cProgress.setProgress((int) ((totalWeight * 100) / 8));
+                //cProgress.setProgress((int) ((totalWeight * 100) / 8));
 
                 // Set the top text with the total amount of sleep.
-                weightCount.setText("" + totalWeight + " hours");
+                weightCount.setText("" + totalWeight + " lbs");
             }
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
-                cProgress.setProgress(0);
-                weightCount.setText("0 hours");
+                weightCount.setText("0 lbs");
             }
         });
 
-        // Get the sleep data for the current user for yesterday.
-        weight = user.child("Weight").child(yesterdayString);
+     /*   // Get the sleep data for the current user for yesterday.
+        weight = user.child("weight").child(yesterdayString);
 
         // Get the total amount of sleep for yesterday.
         weight.addValueEventListener(new ValueEventListener() {
@@ -164,7 +164,7 @@ public class Weight_Tracking extends AppCompatActivity {
                 long totalWeight = 0;
 
                 for(DataSnapshot childData : dataSnapshot.getChildren()){
-                    Long data = (Long) childData.getValue();
+                    Long data = (Long) childData.child("weight").getValue();
                     if(data != null){
                         totalWeight += data;
                     }
@@ -178,7 +178,7 @@ public class Weight_Tracking extends AppCompatActivity {
             public void onCancelled(DatabaseError databaseError) {
                 pProgress.setProgress(0);
             }
-        });
+        });*/
     }
 
     //Links this xml file with the Menu xml file so that all pages will have the same menu

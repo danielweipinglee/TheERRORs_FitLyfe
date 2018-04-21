@@ -34,12 +34,18 @@ public class Sleep_Tracking extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private FirebaseUser curUser;
 
-    private int goalpercentage = 55;
+    private long goalpercentage = 55;
+
+    private long totalSleep = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
+        // Get the Firebase Authenticator.
         mAuth = FirebaseAuth.getInstance();
+
+        // Get the current user of the app.
+        curUser = mAuth.getCurrentUser();
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sleep__tracking);
@@ -48,50 +54,6 @@ public class Sleep_Tracking extends AppCompatActivity {
         //Added back button to the action bar
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
-        // Create the drawable progress bars.
-        Drawable drawable = ResourcesCompat.getDrawable(getResources(),R.drawable.custom_progressbar_drawable, null);
-        final ProgressBar mProgress = (ProgressBar) findViewById(R.id.circularProgressbar);
-        mProgress.setProgress(0);   // Main Progress
-        mProgress.setSecondaryProgress(100); // Secondary Progress
-        mProgress.setMax(100); // Maximum Progress
-        mProgress.setProgressDrawable(drawable);
-
-        tv = (TextView) findViewById(R.id.tv);
-        new Thread(new Runnable() {
-
-            @Override
-            public void run() {
-                //Indicates when the progress bar will stop
-                while (pStatus < goalpercentage) {
-                    pStatus += 1;
-
-                    handler.post(new Runnable() {
-
-                        @Override
-                        public void run() {
-                            mProgress.setProgress(pStatus);
-                            tv.setText(pStatus + "%");
-
-                        }
-                    });
-
-                    try {
-                        // Sleep for 200 milliseconds.
-                        // Just to display the progress slowly
-                        Thread.sleep(16); //thread will take approx 1.5 seconds to finish
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                }
-            }
-        }).start();
-
-        // Get the Firebase Authenticator.
-        mAuth = FirebaseAuth.getInstance();
-
-        // Get the current user of the app.
-        curUser = mAuth.getCurrentUser();
 
         //Code to change values of both progress bars and what the this weeks sleep is
         final ProgressBar cProgress = (ProgressBar) findViewById(R.id.currentProgress);
@@ -124,7 +86,7 @@ public class Sleep_Tracking extends AppCompatActivity {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
 
-                long totalSleep = 0;
+                totalSleep = 0;
 
                 for(DataSnapshot childData : dataSnapshot.getChildren()){
                     Long data = (Long) childData.getValue();
@@ -173,6 +135,107 @@ public class Sleep_Tracking extends AppCompatActivity {
                 pProgress.setProgress(0);
             }
         });
+
+        // Create the drawable progress bars.
+        Drawable drawable = ResourcesCompat.getDrawable(getResources(), R.drawable.custom_progressbar_drawable, null);
+        final ProgressBar mProgress = (ProgressBar) findViewById(R.id.circularProgressbar);
+        mProgress.setProgress(0);   // Main Progress
+        mProgress.setSecondaryProgress(100); // Secondary Progress
+        mProgress.setMax(100); // Maximum Progress
+        mProgress.setProgressDrawable(drawable);
+
+        user.addValueEventListener(new ValueEventListener() {
+           @Override
+           public void onDataChange(DataSnapshot dataSnapshot) {
+
+               // Get the text view that displays the percentage.
+               tv = (TextView) findViewById(R.id.tv);
+
+               // Set the progress circle and text to 0%.
+               mProgress.setProgress(0);
+               tv.setText("0%");
+
+               // Get the user's current amount of sleep from the database.
+               Long goalSleep = (Long) dataSnapshot.child("Goals").child("Sleep").child("Goal").getValue();
+
+               // If all the variables were in the database.
+               if(goalSleep != null){
+
+                   // Calculate the percentage accomplished towards the goal.
+                   goalpercentage = (totalSleep * 100) / goalSleep;
+
+                   // Reset pStatus.
+                   pStatus = 0;
+
+                   // If goalpercentage is less than zero, no progress has been made.
+                   if(goalpercentage < 0){
+                       goalpercentage = 0;
+                   }
+
+                   new Thread(new Runnable() {
+                       @Override
+                       public void run() {
+                           //Indicates when the progress bar will stop
+                           while (pStatus < goalpercentage) {
+                               pStatus += 1;
+
+                               handler.post(new Runnable() {
+
+                                   @Override
+                                   public void run() {
+                                       mProgress.setProgress(pStatus);
+                                       tv.setText(pStatus + "%");
+
+                                   }
+                               });
+                               try {
+                                   // Sleep for 200 milliseconds.
+                                   // Just to display the progress slowly
+                                   Thread.sleep(16); //thread will take approx 1.5 seconds to finish
+                               } catch (InterruptedException e) {
+                                   e.printStackTrace();
+                               }
+                           }
+                       }
+                   }).start();
+               }
+           }
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+//        tv = (TextView) findViewById(R.id.tv);
+//        new Thread(new Runnable() {
+//
+//            @Override
+//            public void run() {
+//                //Indicates when the progress bar will stop
+//                while (pStatus < goalpercentage) {
+//                    pStatus += 1;
+//
+//                    handler.post(new Runnable() {
+//
+//                        @Override
+//                        public void run() {
+//                            mProgress.setProgress(pStatus);
+//                            tv.setText(pStatus + "%");
+//
+//                        }
+//                    });
+//
+//                    try {
+//                        // Sleep for 200 milliseconds.
+//                        // Just to display the progress slowly
+//                        Thread.sleep(16); //thread will take approx 1.5 seconds to finish
+//                    } catch (InterruptedException e) {
+//                        e.printStackTrace();
+//                    }
+//                }
+//            }
+//        }).start();
+
     }
 
     //Links this xml file with the Menu xml file so that all pages will have the same menu

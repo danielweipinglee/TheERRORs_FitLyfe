@@ -36,10 +36,13 @@ public class BloodSurgar_Tracking extends AppCompatActivity {
     //Variables to change values of 3 progress bar and this weeks calorie consumptions
     private FirebaseAuth mAuth;
     private FirebaseUser curUser;
-
+    // create current progress and set its value to 25
     int currentprogress = 25;
+    //Set previosu progress to 50
     int previousprogress = 50;
+    //Set goal percentage to 55
     int goalpercentage = 55;
+    //Set blood surgar to 100
     float bloodsurgar = 100;
 
 

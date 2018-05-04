@@ -26,6 +26,7 @@ import java.util.Date;
 import java.util.Locale;
 public class Exercise_Input extends AppCompatActivity {
 
+    // Create private FirbesAuth variable 
     private FirebaseAuth mAuth;
     private FirebaseUser curUser;
     private ListView mListView;

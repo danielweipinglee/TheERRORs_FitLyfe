@@ -45,7 +45,7 @@ public class BloodSurgar_Tracking extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        //create mAuth variable 
+        //create mAuth variable
         mAuth = FirebaseAuth.getInstance();
 
         super.onCreate(savedInstanceState);

@@ -19,7 +19,7 @@ android {
 }
 
 dependencies {
-
+    // Espresso Testing
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation 'com.android.support:appcompat-v7:26.1.0'
     implementation 'com.google.firebase:firebase-auth:12.0.1'
@@ -36,7 +36,7 @@ dependencies {
     androidTestImplementation 'com.android.support.test.espresso:espresso-web:3.0.1'
     androidTestImplementation 'com.android.support.test.espresso.idling:idling-concurrent:3.0.1'
     androidTestImplementation 'com.android.support.test.espresso:espresso-idling-resource:3.0.1'
-
+    //Espresso Testing
     testImplementation 'com.android.support.test:runner:1.0.1'
     testImplementation 'com.android.support.test:rules:1.0.1'
     testImplementation 'junit:junit:4.12'
@@ -57,5 +57,5 @@ dependencies {
 
 
 
-
+//apply plugin here
 apply plugin: 'com.google.gms.google-services'

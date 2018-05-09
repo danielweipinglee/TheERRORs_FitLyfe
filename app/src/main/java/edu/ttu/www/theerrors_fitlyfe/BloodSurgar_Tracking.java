@@ -75,7 +75,7 @@ public class BloodSurgar_Tracking extends AppCompatActivity {
         animation.setInterpolator(new DecelerateInterpolator());
         animation.start();*/
 
-
+        // use find view by id feature to direct the program
         tv = (TextView) findViewById(R.id.tv);
         new Thread(new Runnable() {
 

@@ -30,17 +30,17 @@ import java.util.Date;
 import java.util.Locale;
 
 public class Weight_Tracking extends AppCompatActivity {
+    //Variable creation
     private int pStatus = 0;
     private Handler handler = new Handler();
     private TextView tv;
     //Variables to change values of 3 progress bar and this weeks calorie consumptions
 
-
     private FirebaseAuth mAuth;
     private FirebaseUser curUser;
-
+    //Assign the default value to 55
     private long goalpercentage = 55;
-
+    //Override the following function
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         // Get the Firebase Authenticator.
@@ -144,9 +144,9 @@ public class Weight_Tracking extends AppCompatActivity {
         weight.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-
+                // Create a variable called totalWeight to track the total weight
                 Long totalWeight = (Long) dataSnapshot.getValue();
-
+                // Set the text on its user interface
                 // Set the top text with the total amount of sleep.
                 weightCount.setText("" + totalWeight + " lbs");
             }
@@ -171,12 +171,12 @@ public class Weight_Tracking extends AppCompatActivity {
         //Gets the id of the button that was pressed
         int id = item.getItemId();
 
-        //Back Button
+        //Back Button for user to click
         if(id == android.R.id.home){
             this.finish();
         }
 
-        //Add Button
+        //Add Button for user to click
         if(id == R.id.Add){
             Intent intent = new Intent(Weight_Tracking.this, Weight_Input.class);
             startActivity(intent);
